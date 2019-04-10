@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" >
+	
+	
+	
+	
+<h:head>
+  <title><ui:insert name="title">Default title</ui:insert></title>
+  <meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	
+	<link rel="icon" type="image/png" href="#{resource['images:logoZc.png']}"/>
+	
+	<!--Login image-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700" media="all"/>
+        
+	
+    <link rel="stylesheet" href="#{resource['css:buttons.css']}" />
+    <link rel="stylesheet" href="#{resource['css:animate.css']}" />
+    <link rel="stylesheet" href="#{resource['css:animateStyle.css']}" />
+	
+	<!--Medical Guide Icons-->
+    <link rel="stylesheet" href="#{resource['css:medical-guide-icons.css']}" />
+	
+    <!--main file-->
+    <link rel="stylesheet" href="#{resource['css:medical-guide.css']}" />
+    
+    
+    <link rel="stylesheet" href="#{resource['css:main.css']}" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Default Color-->
+    <link rel="stylesheet" href="#{resource['css:default-color.css']}" />
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="#{resource['css:bootstrap.css']}" />
+    <link rel="stylesheet" href="#{resource['css:bootstrap.min.css']}" />
+    
+    <!--Dropmenu-->
+    <link rel="stylesheet" href="#{resource['css:dropmenu.css']}" />
+    
+	<!--Sticky Header-->
+    <link rel="stylesheet" href="#{resource['css:sticky-header.css']}" />
+	
+	<!--revolution-->
+    <link rel="stylesheet" href="#{resource['css:style.css']}" />
+    <link rel="stylesheet" href="#{resource['css:settings.css']}" /> 
+    <link rel="stylesheet" href="#{resource['css:extralayers.css']}" />   
+   
+    <!--Accordion-->
+    <link rel="stylesheet" href="#{resource['css:accordion.css']}" />
+     
+    <!--tabs-->
+    <link rel="stylesheet" href="#{resource['css:tabs.css']}" />  
+   
+    <!--Owl Carousel--> 
+    <link rel="stylesheet" href="#{resource['css:owl.carousel.css']}" />  
+    
+   <!-- Mobile Menu -->
+    <link rel="stylesheet" href="#{resource['css:jquery.mmenu.all.css']}" />
+    <link rel="stylesheet" href="#{resource['css:demo.css']}" />
+   
+   <!--PreLoader-->
+    <link rel="stylesheet" href="#{resource['css:loader.css']}" />
+    <link rel="stylesheet" href="#{resource['css:jquery.fancybox.css']}" />
+    
+</h:head>
+
+<h:body>
+
+
+
+	<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <ul id="ulDiv" class="nav nav-pills nav-stacked" style="display: block;">
+        <li class="menuParam active"><a href="adminController.xhtml"> Home</a></li>
+        <li class="menuParam"><a href="addListUser.xhtml">Manage Courses</a></li>
+        <li class="menuParam"><a href="addListUser.xhtml">Add List Of users</a></li>
+        <li class="menuParam"><a href="managePrograms.xhtml">Manage Programs</a></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-9">
+       <ui:insert  name="content"> 
+    	 <ui:include src="content.xhtml"/> 
+  	   </ui:insert>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+// Add active class to the current button (highlight it)
+var header = document.getElementById("ulDiv");
+var menuElements = header.getElementsByClassName("menuParam");
+
+var current = document.getElementsByClassName("menuParam active");
+
+current[0].className = current[0].className.replace(" active", "");
+
+var path = window.location.pathname;
+var page = path.split("/").pop();
+
+if(page=='adminController.xhtml'){
+	menuElements[0].className += " active";
+}else if(page=="addListUser.xhtml"){
+	menuElements[2].className += " active";
+}else if(page=="managePrograms.xhtml"){
+	menuElements[3].className += " active";
+}
+
+  
+
+</script>
+
+
+<!-- SMOOTH SCROLL -->	
+<h:outputScript name="js/scroll-desktop.js"/>
+<h:outputScript name="js/scroll-desktop-smooth.js"/>
+
+<!-- START REVOLUTION SLIDER -->	
+<h:outputScript name="js/jquery.themepunch.revolution.min.js"/>
+<h:outputScript name="js/jquery.themepunch.tools.min.js"/>
+
+
+
+<!-- Date Picker and input hover -->
+<h:outputScript name="js/classie.js"/> 
+<h:outputScript name="js/jquery-ui-1.10.3.custom.js"/>
+
+
+
+
+<!-- Fun Facts Counter -->
+<h:outputScript name="js/counter.js"/> 
+
+
+<!-- Welcome Tabs -->	
+<h:outputScript name="js/tabs.js"/>
+
+<!-- Mobile Menu -->
+<h:outputScript name="js/jquery.mmenu.min.all.js"/>
+
+<!-- All Carousel -->
+<h:outputScript name="js/owl.carousel.js"/>
+
+
+<!-- All Scripts -->
+<h:outputScript name="js/custom.js"/>
+
+
+<!-- Easy responsive tabs -->
+<h:outputScript name="js/easy-responsive-tabs.js"/>
+
+
+<!-- RS slides -->
+<h:outputScript name="js/rs-slides.js"/>
+
+
+
+ <!--begin::Global Theme Bundle -->
+<h:outputScript name="js/scripts.bundle.js"/>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+<!--end::Global Theme Bundle -->
+
+
+        
+
+<!-- Date Picker and input hover -->
+<h:outputScript name="js/jquery.fancybox.js"/>
+<h:outputScript name="js/jquery.fancybox-media.js"/>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+ <script>
+	<!-- Fancybox -->	
+/*
+             *  Simple image gallery. Uses default settings
+             */
+    
+            $('.fancybox').fancybox();
+    
+            /*
+             *  Different effects
+             */
+    
+            $(document).ready(function() {
+			$('.fancybox-media').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+				helpers : {
+					media : {}
+				}
+			});
+			});
+</script>
+
+<script type="text/javascript">
+
+				jQuery(document).ready(function() {
+				
+					
+								
+					jQuery('.tp-banner').show().revolution(
+					{
+						dottedOverlay:"none",
+						delay:16000,
+						startwidth:1170,
+						startheight:750,
+						hideThumbs:200,
+						
+						thumbWidth:100,
+						thumbHeight:50,
+						thumbAmount:5,
+						
+						navigationType:"bullet",
+						navigationArrows:"solo",
+						navigationStyle:"preview4",
+						
+						touchenabled:"on",
+						onHoverStop:"off",
+						
+						swipe_velocity: 0.7,
+						swipe_min_touches: 1,
+						swipe_max_touches: 1,
+						drag_block_vertical: false,
+												
+												parallax:"mouse",
+						parallaxBgFreeze:"on",
+						parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
+												
+						keyboardNavigation:"off",
+						
+						navigationHAlign:"center",
+						navigationVAlign:"bottom",
+						navigationHOffset:0,
+						navigationVOffset:20,
+
+						soloArrowLeftHalign:"left",
+						soloArrowLeftValign:"center",
+						soloArrowLeftHOffset:20,
+						soloArrowLeftVOffset:0,
+
+						soloArrowRightHalign:"right",
+						soloArrowRightValign:"center",
+						soloArrowRightHOffset:20,
+						soloArrowRightVOffset:0,
+								
+						shadow:0,
+						fullWidth:"on",
+						fullScreen:"off",
+
+						spinner:"spinner4",
+						
+						stopLoop:"off",
+						stopAfterLoops:-1,
+						stopAtSlide:-1,
+
+						shuffle:"off",
+						
+						autoHeight:"off",						
+						forceFullWidth:"off",						
+												
+												
+												
+						hideThumbsOnMobile:"off",
+						hideNavDelayOnMobile:1500,						
+						hideBulletsOnMobile:"off",
+						hideArrowsOnMobile:"off",
+						hideThumbsUnderResolution:0,
+						
+						hideSliderAtLimit:0,
+						hideCaptionAtLimit:0,
+						hideAllCaptionAtLilmit:0,
+						startWithSlide:0,
+						videoJsPath:"rs-plugin/videojs/",
+						fullScreenOffsetContainer: ""	
+					});
+					
+					
+					
+									
+				});	//ready
+				
+			</script>		
+	
+
+<script>
+(function () {
+			"use strict";
+
+			
+			
+			/* ------------------------------------------------------------------------ 
+			   ADD REVIEW CUSTOM SCRIPT [open/close]
+			------------------------------------------------------------------------ */
+			jQuery("#add-review-btn").click(function(){
+				jQuery("#add-review-form").slideDown();
+			});
+			jQuery("#review-form-close").click(function(){
+				jQuery("#add-review-form").slideUp();
+			});
+			
+			
+			
+			/* ------------------------------------------------------------------------ 
+			   PRODUCT DETAIL
+			------------------------------------------------------------------------ */
+			jQuery("#product-detail-slider").responsiveSlides({
+				maxwidth: 1000,
+				timeout: 3E3,
+				pager: true,
+				speed: 700
+			});
+			/* ------------------------------------------------------------------------ 
+			   VERTICAL TABS [with bordered nav]
+			------------------------------------------------------------------------ */
+			jQuery('.verticalTab').easyResponsiveTabs({
+				type: 'vertical',
+				width: 'auto',
+				fit: true
+			});
+			
+			
+			/* ------------------------------------------------------------------------ 
+			   ITEM COUNTER CUSTOM SCRIPT
+			------------------------------------------------------------------------ */
+			var itemcount= 0;
+
+			$('#pluss-item').on("click", function() { 
+				itemcount++;
+				$('#total-items').val(itemcount);
+				return false;
+			});
+
+			$('#less-item').on("click", function() { 
+				itemcount--;
+				$('#total-items').val(itemcount);
+				return false;
+			});
+			
+			$('.verticalTab').easyResponsiveTabs({
+				type: 'vertical',
+				width: 'auto',
+				fit: true
+			});
+			
+	
+	
+			})(jQuery);
+</script>
+</h:body>
+
+</html>
