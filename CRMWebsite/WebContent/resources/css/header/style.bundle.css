@@ -6,7 +6,7 @@
 .m-dropdown{position:relative}
 .m-dropdown.m-dropdown--inline{display:inline-block}
 .m-dropdown .m-dropdown__toggle .la-ellipsis-h{font-size:2.1rem}
-.m-dropdown .m-dropdown__wrapper{top:100%;text-align:left;display:none;position:absolute;z-index:101;padding-top:0;width:245px;border-radius:4px;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transform-style:preserve-3d;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.m-dropdown .m-dropdown__wrapper{top:100%;text-align:center;display:none;position:absolute;z-index:101;padding-top:0;width:145px;border-radius:4px;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transform-style:preserve-3d;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .m-dropdown .m-dropdown__wrapper .m-dropdown__inner{border-radius:4px}
 .m-dropdown .m-dropdown__wrapper .m-dropdown__inner .mCSB_container,.m-dropdown .m-dropdown__wrapper .m-dropdown__inner .mCustomScrollBox,.m-dropdown .m-dropdown__wrapper .m-dropdown__inner .m-dropdown__content,.m-dropdown .m-dropdown__wrapper .m-dropdown__inner .m-dropdown__scrollable{border-radius:4px}
 .m-dropdown .m-dropdown__wrapper .m-dropdown__header{padding:20px 20px;border-radius:4px 4px 0 0}
