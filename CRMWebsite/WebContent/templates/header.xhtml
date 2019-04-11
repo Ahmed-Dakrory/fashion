@@ -6,28 +6,135 @@
 		xmlns:p="http://primefaces.org/ui">
   
   
+    <link rel="stylesheet" href="#{resource['css:header/style.bundle1.css']}" />
+    
+    
+    
+    
+    
+    
+    
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Racks</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="solutions.html" class="nav-link">Solution</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="portfolio.html">Portfolio</a>
+                  <a class="dropdown-item" href="portfolio-single.html">Portfolio Single</a>
+                </div>
+            </li>
+            <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            
+            
+          <li class="d-none d-lg-block d-xl-block m-nav__item m-topbar__user-profile m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click" aria-expanded="true" >
+					        <h:form style="margin-left: 100px;">   
+						<a href="#" class="m-nav__link m-dropdown__toggle">
+							<span class="m-topbar__userpic">
+								<h:graphicImage value="#{loginBean.imageOfAccountUser}" style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab;display: #{loginBean.getTheStatueOfImageLoginMenu()};"  class="m--img-rounded m--marginless m--img-centered" alt=""/>
+								<h:graphicImage name="images/comment-img3.jpg" 			style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab; display: #{loginBean.getTheStatueOfImageMenu()};"  class="m--img-rounded m--marginless m--img-centered" alt=""/>
+							</span>
+											
+						</a>
+						
+						
+						
+						<div class="m-dropdown__wrapper" style="z-index: 101;">
+							<span class="m-dropdown__arrow m-dropdown__arrow--right " style="left: auto; right: 27%;"></span>
+							<div style="display: #{loginBean.getTheStatueOfLoginMenu()};" class="m-dropdown__inner">
+								<div class="m-dropdown__header m--align-center">
+									<div class="m-card-user m-card-user--skin-light">
+										<div class="m-card-user__pic">
+											<h:graphicImage style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab; display: #{loginBean.getTheStatueOfImageLoginMenu()};" value="#{loginBean.imageOfAccountUser}" class="m--img-rounded m--marginless" alt=""/>
+											<h:graphicImage style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab; display: #{loginBean.getTheStatueOfImageMenu()};" name="images/comment-img3.jpg" class="m--img-rounded m--marginless" alt=""/>
+										</div>
+										<div class="m-card-user__details">
+											<span class="m-card-user__name m--font-weight-500">#{loginBean.theUserOfThisAccount.fullName}</span>
+											<a href="" class="m-card-user__email m--font-weight-300 m-link">#{loginBean.theUserOfThisAccount.email}</a>
+										</div>
+									</div>
+								</div>
+								<div class="m-dropdown__body">
+									<div class="m-dropdown__content">
+										<ul class="m-nav m-nav--skin-light">
+										<!--  	
+											<li class="m-nav__item">
+												<a href="?page=profile&amp;demo=demo11" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-profile-1"></i>
+													<span class="m-nav__link-title">  
+														<span class="m-nav__link-wrap">      
+															<span class="m-nav__link-text">My Profile</span>       
+														</span>
+													</span>
+												</a>
+											</li>
+											
+											-->
+											
+											<li class="m-nav__item">
+												<h:commandLink action="#{loginBean.logOut}" style="width:200px" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</h:commandLink>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							
+							
+							
+							
+							
+							<div style="display: #{loginBean.getTheStatueMenuMain()};" class="m-dropdown__inner">
+								
+								<div class="m-dropdown__body">
+									<div class="m-dropdown__content">
+										<ul class="m-nav m-nav--skin-light">
+											
+											
+				
+											<li class="m-nav__item">
+													<p:commandLink action="#{menuBean.goToLink(5)}" style="width:200px" class="m-nav__link">    
+													<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+													<span class="m-nav__link-text">Register</span>
+													</p:commandLink>
+											</li>
+											<li class="m-nav__item">
+													<p:commandLink action="#{menuBean.goToLink(4)}" style="width:200px" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Login</p:commandLink>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							
+							
+							
+							
+						</div>
+						</h:form>
+				</li>
+	       		
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- END nav -->
+    
+
+
+ <!--begin::login form shown-->
+<h:outputScript name="js/header/scripts.bundle.js"/>
  
-  <div id="wrap">
-   
-   
-   
-   
-	
-   <!--Start Header-->
-	
-   <!--End Header-->
-   
-   
 
-	
-	
-   
-
-
-  </div>
-
-
-
-
-
+ 
 </html>
