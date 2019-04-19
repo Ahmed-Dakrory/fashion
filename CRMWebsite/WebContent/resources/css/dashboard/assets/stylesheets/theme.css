@@ -1532,7 +1532,7 @@ html.header-dark .header .input-search .input-group-btn .btn-default {
 }
 
 .sidebar-left .sidebar-header .sidebar-title {
-	color: #465162;
+	color: #84888f;
 	padding: 15px;
 	font-size: 15px;
 	font-size: 1.5rem;
@@ -15301,11 +15301,10 @@ html.dark .invoice table.table > tbody tr > td {
 /* Sign Screens - Wrappers */
 .body-sign {
 	display: table;
-	height: 100vh;
-	margin: 0 auto;
-	max-width: 500px;
-	padding: 0 15px;
-	width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 135%;
 }
 .body-sign .center-sign {
 	display: table-cell;

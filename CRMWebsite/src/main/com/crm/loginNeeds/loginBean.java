@@ -42,11 +42,9 @@ public class loginBean implements Serializable{
 	private user theUserOfThisAccount;
 	private user theUserOfThisRegisteration;
 	private int type;
-	private String imageOfAccountUser;
 	private byte[] imageOfReg;
 	private boolean imageUploaded;
 	
-	private String imageOfAccountUser_reg;
 	private byte[] imageOfReg_reg;
 	private boolean imageUploaded_reg;
 	
@@ -64,20 +62,16 @@ public class loginBean implements Serializable{
 	private String passwordConfirm;
 	@PostConstruct
 	public void init() {
-		imageOfAccountUser="images/comment-img.jpg";
-		imageOfAccountUser_reg="images/comment-img.jpg";
 		isLoggedIn=false;
 		imageUploaded=false;
 		imageUploaded_reg=false;
 		theUserOfThisAccount=new user();
-		setImageDependOnLoginState();
 		//theUserOfThisAccount=userDataFacede.getByEmailAndPassword(emailOfUserLoggedIn, passwordOfUserLoggedIn);
 		listOfUsers=userDataFacede.getAll();
 		
 		
 	}
 	public void emptyFieldsOFRegisteration() {
-		imageOfAccountUser_reg="images/comment-img.jpg";
 		theUserOfThisRegisteration=new user();
 		passwordConfirm="";
 		passwordOfRegisteration="";
@@ -104,13 +98,11 @@ public class loginBean implements Serializable{
 	
 	public String logOut(){
 
-		imageOfAccountUser="images/comment-img.jpg";
 		emailOfUserLoggedIn="";
 		passwordOfUserLoggedIn="";
 		authenticationService.logout();
 		theUserOfThisAccount=new user();
 		isLoggedIn=false;
-		setImageDependOnLoginState();
 		imageUploaded=false;
 		System.out.println("");
 		return "/pages/public/index.xhtml?faces-redirect=true";
@@ -130,7 +122,6 @@ public class loginBean implements Serializable{
 			wrongPassword();
 		}
 		if(isLoggedIn){
-			setImageDependOnLoginState();
 			
 
 			
@@ -144,7 +135,7 @@ public class loginBean implements Serializable{
 			try {
 				if(theUserOfThisAccount.getRole()==0) {
 				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/adminController.xhtml");
+				   .getExternalContext().redirect("/pages/secured/admin/home.xhtml");
 				}else {
 				FacesContext.getCurrentInstance()
 					   .getExternalContext().redirect("/");
@@ -176,32 +167,13 @@ public class loginBean implements Serializable{
    
 	}
 	
-	void setImageDependOnLoginState(){
-		if(isLoggedIn&&theUserOfThisAccount.getImage()!=null&&theUserOfThisAccount.getImage().length!=0){
-			imageOfAccountUser=theUserOfThisAccount.getphoto();
-		}else{
-			
-			imageOfAccountUser="images/comment-img.jpg";
-		}
+	public void updateDataOfUser() {
+		
+		validateUser(theUserOfThisAccount,1);
+		
 	}
 	
-	void setImageDependOnRegisterationImageState(){
-		if(imageUploaded){
-			imageOfAccountUser=theUserOfThisAccount.getphoto();
-		}else{
-			
-			imageOfAccountUser="images/comment-img.jpg";
-		}
-	}
 	
-	void setImageDependOnRegisterationImageState_reg(){
-		if(imageUploaded_reg){
-			imageOfAccountUser_reg=theUserOfThisRegisteration.getphoto();
-		}else{
-			
-			imageOfAccountUser_reg="images/comment-img.jpg";
-		}
-	}
 	public void RegisterNewUser(){
 
 		
@@ -214,12 +186,12 @@ public class loginBean implements Serializable{
 				"})\r\n" + 
 				";");
 		}else {
-		validateUser(theUserOfThisRegisteration);
+		validateUser(theUserOfThisRegisteration,0);
 		
 		}
 	}
 	
-	private void validateUser(user theUserOfThisAccount2) {
+	private void validateUser(user theUserOfThisAccount2,int updateOrNew) {
 		// TODO Auto-generated method stub
 		boolean ok=false;
 
@@ -231,9 +203,12 @@ public class loginBean implements Serializable{
 		
 		if(ok){
 			//PrimeFaces.current().executeScript("document.getElementById(\"fullScreenLoader\").style.display = \"block\";");
-			
-			completeRegisteration();
-
+			if(updateOrNew==0) {
+			completeRegisteration(theUserOfThisAccount2);
+			}else {
+				theUserOfThisAccount2.setPassword(new  Md5PasswordEncoder().encodePassword(passwordOfRegisteration,theUserOfThisAccount2.getEmail()));
+				userDataFacede.adduser(theUserOfThisAccount2);
+			}
 			
 		}else{
 			pleaseCheck();
@@ -252,13 +227,13 @@ public class loginBean implements Serializable{
 	
 	}
 
-	private void completeRegisteration() {
+	private void completeRegisteration(user theUserOfThisAccount2) {
 		// TODO Auto-generated method stub
-		theUserOfThisRegisteration.setPassword(new  Md5PasswordEncoder().encodePassword(passwordOfRegisteration,theUserOfThisRegisteration.getEmail()));
-		theUserOfThisRegisteration.setImage(imageOfReg_reg);
-		theUserOfThisRegisteration.setActive(0);
-		theUserOfThisRegisteration.setRole(1);
-		userDataFacede.adduser(theUserOfThisRegisteration);
+		theUserOfThisAccount2.setPassword(new  Md5PasswordEncoder().encodePassword(passwordOfRegisteration,theUserOfThisAccount2.getEmail()));
+		theUserOfThisAccount2.setImage(imageOfReg_reg);
+		theUserOfThisAccount2.setActive(0);
+		theUserOfThisAccount2.setRole(1);
+		userDataFacede.adduser(theUserOfThisAccount2);
 		
 		
 		try {
@@ -372,7 +347,6 @@ public class loginBean implements Serializable{
 	 
 		theUserOfThisRegisteration=new user();
 		imageUploaded_reg=false;
-		imageOfAccountUser_reg="images/comment-img.jpg";
 
 	}
 	public String getTheStatueOfLoginMenu(){
@@ -382,50 +356,9 @@ public class loginBean implements Serializable{
 		return "none";
 	}
 	
-	public String getTheStatueOfImageMenu(){
-		if(isLoggedIn&&theUserOfThisAccount.getImage()==null){
-			return "block";
-		}else if(isLoggedIn){
-			return "none";
-		}
-		return "inherit";
-	}
 	
-	public String getTheStatueOfImageLoginMenu(){
-		if(isLoggedIn&&theUserOfThisAccount.getImage()==null){
-			return "none";
-		}else if(isLoggedIn){
-			return "inherit";
-		}
-		return "none";
-	}
-	public String imageUploadedVisib(){
-		if(imageUploaded){
-			return "block";
-		}
-		return "none";
-	}
 	
-	public String imageUploadedVisib_reg(){
-		if(imageUploaded_reg){
-			return "block";
-		}
-		return "none";
-	}
 	
-	public String imageUploadedVisibNot(){
-		if(!imageUploaded){
-			return "block";
-		}
-		return "none";
-	}
-	
-	public String imageUploadedVisibNot_reg(){
-		if(!imageUploaded_reg){
-			return "block";
-		}
-		return "none";
-	}
 	
 	public String getTheStatueMenuMain(){
 		if(isLoggedIn){
@@ -437,25 +370,17 @@ public class loginBean implements Serializable{
 	
 	
 	public void previewImage(FileUploadEvent event) {
-		/* FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
-		*/
 		this.imageOfReg = event.getFile().getContents();
 		theUserOfThisAccount.setImage(imageOfReg);
 		imageUploaded=true;
-		setImageDependOnRegisterationImageState();
 		System.out.println("File Uploaded");
 		
 	}
 
 	public void previewImage_reg(FileUploadEvent event) {
-		/* FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
-		*/
 		this.imageOfReg_reg = event.getFile().getContents();
 		theUserOfThisRegisteration.setImage(imageOfReg_reg);
 		imageUploaded_reg=true;
-		setImageDependOnRegisterationImageState_reg();
 		System.out.println("File Uploaded");
 		
 	}
@@ -561,13 +486,6 @@ public class loginBean implements Serializable{
 		this.userDataFacede = userDataFacede;
 	}
 
-	public String getImageOfAccountUser() {
-		return imageOfAccountUser;
-	}
-
-	public void setImageOfAccountUser(String imageOfAccountUser) {
-		this.imageOfAccountUser = imageOfAccountUser;
-	}
 
 	public String getPasswordConfirm() {
 		return passwordConfirm;
@@ -610,12 +528,7 @@ public class loginBean implements Serializable{
 	public void setTheUserOfThisRegisteration(user theUserOfThisRegisteration) {
 		this.theUserOfThisRegisteration = theUserOfThisRegisteration;
 	}
-	public String getImageOfAccountUser_reg() {
-		return imageOfAccountUser_reg;
-	}
-	public void setImageOfAccountUser_reg(String imageOfAccountUser_reg) {
-		this.imageOfAccountUser_reg = imageOfAccountUser_reg;
-	}
+	
 	public byte[] getImageOfReg_reg() {
 		return imageOfReg_reg;
 	}

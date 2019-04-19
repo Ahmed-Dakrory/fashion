@@ -41,8 +41,7 @@
 					        <h:form style="margin-left: 100px;">   
 						<a href="#" class="m-nav__link m-dropdown__toggle">
 							<span class="m-topbar__userpic">
-								<h:graphicImage value="#{loginBean.imageOfAccountUser}" style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab;display: #{loginBean.getTheStatueOfImageLoginMenu()};"  class="m--img-rounded m--marginless m--img-centered" alt=""/>
-								<img src="/CRMWebsite/resources/images/comment-img3.jpg" style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab; display: #{loginBean.getTheStatueOfImageMenu()};"  class="m--img-rounded m--marginless m--img-centered" alt=""/>
+								<h:graphicImage value="#{loginBean.theUserOfThisAccount.getphoto()}" style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab;" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 							</span>
 											
 						</a>
@@ -54,12 +53,11 @@
 							<div style="background: #f3f3f3f7; display: #{loginBean.getTheStatueOfLoginMenu()};    " class="m-dropdown__inner">
 								<div class="m-dropdown__header m--align-center">
 									<div class="m-card-user m-card-user--skin-light">
-										<div class="m-card-user__pic">
-											<h:graphicImage style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab; display: #{loginBean.getTheStatueOfImageLoginMenu()};" value="#{loginBean.imageOfAccountUser}" class="m--img-rounded m--marginless" alt=""/>
-											<img src="/CRMWebsite/resources/images/comment-img3.jpg" style="border-style: solid;border-color: #a5a1a1;border-width: 1px;border-radius: 50%;border-width: 1px;width:60px;height:60px;border-color: #c3abab; display: #{loginBean.getTheStatueOfImageMenu()};"  class="m--img-rounded m--marginless" alt=""/>
-										</div>
+										
 										<div class="m-card-user__details">
 											<span class="m-card-user__name m--font-weight-500">#{loginBean.theUserOfThisAccount.name}</span>
+											<br></br>
+											<br></br>
 											<a href="" class="m-card-user__email m--font-weight-300 m-link">#{loginBean.theUserOfThisAccount.email}</a>
 										</div>
 									</div>
@@ -109,7 +107,7 @@
 													</p:commandLink>
 											</li>
 											<li class="m-nav__item">
-													<p:commandLink action="#{menuBean.goToLink(4)}" style="width:91%" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Login</p:commandLink>
+													<a href="/pages/public/login.xhtml" style="width:91%" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Login</a>
 											</li>
 										</ul>
 									</div>
