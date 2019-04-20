@@ -35,15 +35,7 @@
 	<!-- Specific Page Vendor CSS -->
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css']}" />
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/morris/morris.css']}" />
-    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme.css']}" />
     
-	<!-- Skin CSS -->
-    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/skins/default.css']}" />
-    
-    
-	<!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme-custom.css']}" />
-	
 
 		
     
@@ -53,6 +45,20 @@
 		
 		
 		
+	
+    
+	
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme.css']}" />
+    
+    
+	<!-- Skin CSS -->
+    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/skins/default.css']}" />
+    
+    
+	<!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme-custom.css']}" />
+	
 		
 		
 		
@@ -67,6 +73,9 @@
 
     <link rel="stylesheet" href="#{resource['css:dashboard/style.css']}" />
     
+    <!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/pnotify/pnotify.custom.css']}" />
+	
     
 </h:head>
 
@@ -145,6 +154,11 @@
 		<h:outputScript name="js/dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"/>
+		
+		
+		<!-- Specific Page Vendor -->
+		<h:outputScript name="js/dashboard/assets/vendor/pnotify/pnotify.custom.js"/>
+		
 		
 		<!-- Theme Base, Components and Settings -->
 		<h:outputScript name="js/dashboard/assets/javascripts/theme.js"/>

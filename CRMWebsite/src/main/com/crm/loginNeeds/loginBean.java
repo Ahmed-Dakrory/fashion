@@ -157,6 +157,14 @@ public class loginBean implements Serializable{
 	
    
 	public void wrongPassword(){
+		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+				"			title: 'wrong Credentials!',\r\n" + 
+				"			text: 'Please try Again!',\r\n" + 
+				"			type: 'error',\r\n" + 
+				"			left:\"1%\"\r\n" + 
+				"		});");
+		
+		/*
 		PrimeFaces.current().executeScript("swal({\r\n" + 
 				"  title: \"wrong Credentials!\",\r\n" + 
 				"  text: \"Please try Again!\",\r\n" + 
@@ -164,7 +172,7 @@ public class loginBean implements Serializable{
 				"})\r\n" + 
 				";");
 		
-   
+   */
 	}
 	
 	public void updateDataOfUser() {
@@ -179,12 +187,17 @@ public class loginBean implements Serializable{
 		
 		user u_active =userDataFacede.getByEmail(theUserOfThisRegisteration.getEmail());
 		if(u_active!=null) {
-		PrimeFaces.current().executeScript("swal({\r\n" + 
+		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+				"			title: 'This Account Registered Already!',\r\n" + 
+				"			text: 'Please try again with another account or login',\r\n" + 
+				"			left:\"2%\"\r\n" + 
+				"		});");
+		/*PrimeFaces.current().executeScript("swal({\r\n" + 
 				"  title: \"This Account Registered Already!\",\r\n" + 
 				"  text: \"Please try again with another account or login\",\r\n" + 
 				"  icon: \"warning\",\r\n" + 
 				"})\r\n" + 
-				";");
+				";");*/
 		}else {
 		validateUser(theUserOfThisRegisteration,0);
 		
@@ -196,7 +209,7 @@ public class loginBean implements Serializable{
 		boolean ok=false;
 
 			
-		if(passwordOfRegisteration.equals(passwordConfirm)){
+		if(passwordOfRegisteration.equals(passwordConfirm)&&!passwordOfRegisteration.equals("")&&passwordOfRegisteration!=null){
 			ok=true;
 		}
 		
@@ -208,6 +221,11 @@ public class loginBean implements Serializable{
 			}else {
 				theUserOfThisAccount2.setPassword(new  Md5PasswordEncoder().encodePassword(passwordOfRegisteration,theUserOfThisAccount2.getEmail()));
 				userDataFacede.adduser(theUserOfThisAccount2);
+				PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+						"			title: 'Success',\r\n" + 
+						"			text: 'Your data has been changed.',\r\n" + 
+						"			type: 'success'\r\n" + 
+						"		});");
 			}
 			
 		}else{
@@ -218,12 +236,19 @@ public class loginBean implements Serializable{
 
 	private void pleaseCheck() {
 		// TODO Auto-generated method stub
+		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+				"			title: 'Check this ',\r\n" + 
+				"			text: 'Please Make sure that the Passwords are the same and not empty!',\r\n" + 
+				"			left:\"2%\"\r\n" + 
+				"		});");
+		/*
 		PrimeFaces.current().executeScript("swal({\r\n" + 
 				"  title: \"Check this \",\r\n" + 
 				"  text: \"Please Make sure that the Passwords are the same!\",\r\n" + 
 				"  icon: \"warning\",\r\n" + 
 				"})\r\n" + 
 				";");
+				*/
 	
 	}
 

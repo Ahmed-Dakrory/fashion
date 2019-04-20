@@ -53,10 +53,10 @@ public class asset {
 
 	
 	@Column(name = "boughtFrom")
-	private Integer boughtFrom;
+	private String boughtFrom;
 	
 	@Column(name = "storedIn")
-	private Integer storedIn;
+	private String storedIn;
 		
 
 	@ManyToOne
@@ -96,22 +96,22 @@ public class asset {
 	}
 
 
-	public Integer getBoughtFrom() {
+	public String getBoughtFrom() {
 		return boughtFrom;
 	}
 
 
-	public void setBoughtFrom(Integer boughtFrom) {
+	public void setBoughtFrom(String boughtFrom) {
 		this.boughtFrom = boughtFrom;
 	}
 
 
-	public Integer getStoredIn() {
+	public String getStoredIn() {
 		return storedIn;
 	}
 
 
-	public void setStoredIn(Integer storedIn) {
+	public void setStoredIn(String storedIn) {
 		this.storedIn = storedIn;
 	}
 

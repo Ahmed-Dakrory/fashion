@@ -32,10 +32,28 @@
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css']}" />
     
 
-	<!-- Specific Page Vendor CSS -->
+	<ui:insert name="CssDesign"> 
+		<!-- Specific Page Vendor CSS -->
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css']}" />
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/morris/morris.css']}" />
-    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme.css']}" />
+    		    
+	</ui:insert>
+    
+
+		
+    
+    <!-- Head Libs -->
+		<h:outputScript name="js/dashboard/assets/vendor/modernizr/modernizr.js"/>
+		
+		
+	
+    
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/pnotify/pnotify.custom.css']}" />
+	
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme.css']}" />
+    
     
 	<!-- Skin CSS -->
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/skins/default.css']}" />
@@ -44,12 +62,7 @@
 	<!-- Theme Custom CSS -->
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme-custom.css']}" />
 	
-
-		
     
-    <!-- Head Libs -->
-		<h:outputScript name="js/dashboard/assets/vendor/modernizr/modernizr.js"/>
-		
 </h:head>
 
 
@@ -144,7 +157,7 @@
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li class="nav-active">
-										<a href="index.html">
+										<a href="/pages/secured/admin/home.xhtml">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard</span>
 										</a>
@@ -156,92 +169,15 @@
 											<span>Mailbox</span>
 										</a>
 									</li>
-									<li class="nav-parent">
-										<a>
-											<i class="fa fa-copy" aria-hidden="true"></i>
-											<span>Pages</span>
+									<li >
+										<a href="/pages/secured/admin/assets.xhtml">
+											<i class="fa fa-tasks" aria-hidden="true"></i>
+											<span>Assets</span>
 										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a href="pages-signup.html">
-													 Sign Up
-												</a>
-											</li>
-											<li>
-												<a href="pages-signin.html">
-													 Sign In
-												</a>
-											</li>
-											<li>
-												<a href="pages-recover-password.html">
-													 Recover Password
-												</a>
-											</li>
-											<li>
-												<a href="pages-lock-screen.html">
-													 Locked Screen
-												</a>
-											</li>
-											<li>
-												<a href="pages-user-profile.html">
-													 User Profile
-												</a>
-											</li>
-											<li>
-												<a href="pages-session-timeout.html">
-													 Session Timeout
-												</a>
-											</li>
-											<li>
-												<a href="pages-calendar.html">
-													 Calendar
-												</a>
-											</li>
-											<li>
-												<a href="pages-timeline.html">
-													 Timeline
-												</a>
-											</li>
-											<li>
-												<a href="pages-media-gallery.html">
-													 Media Gallery
-												</a>
-											</li>
-											<li>
-												<a href="pages-invoice.html">
-													 Invoice
-												</a>
-											</li>
-											<li>
-												<a href="pages-blank.html">
-													 Blank Page
-												</a>
-											</li>
-											<li>
-												<a href="pages-404.html">
-													 404
-												</a>
-											</li>
-											<li>
-												<a href="pages-500.html">
-													 500
-												</a>
-											</li>
-											<li>
-												<a href="pages-log-viewer.html">
-													 Log Viewer
-												</a>
-											</li>
-											<li>
-												<a href="pages-search-results.html">
-													 Search Results
-												</a>
-											</li>
-										</ul>
 									</li>
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-tasks" aria-hidden="true"></i>
+											<i class="fa fa-copy" aria-hidden="true"></i>
 											<span>UI Elements</span>
 										</a>
 										<ul class="nav nav-children">
@@ -679,6 +615,12 @@
 		<h:outputScript name="js/dashboard/assets/vendor/magnific-popup/magnific-popup.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/jquery-placeholder/jquery.placeholder.js"/>
 		
+		
+		
+		<ui:insert name="JavaScript"> 
+				    
+		</ui:insert>
+		
 		<!-- Specific Page Vendor -->
 		<h:outputScript name="js/dashboard/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"/>
@@ -706,6 +648,12 @@
 		<h:outputScript name="js/dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"/>
 		
+		
+
+		<!-- Specific Page Vendor -->
+		<h:outputScript name="js/dashboard/assets/vendor/pnotify/pnotify.custom.js"/>
+		
+		
 		<!-- Theme Base, Components and Settings -->
 		<h:outputScript name="js/dashboard/assets/javascripts/theme.js"/>
 		
@@ -714,10 +662,12 @@
 		
 		<!-- Theme Initialization Files -->
 		<h:outputScript name="js/dashboard/assets/javascripts/theme.init.js"/>
-
-
+		
 		<!-- Examples -->
 		<h:outputScript name="js/dashboard/assets/javascripts/dashboard/examples.dashboard.js"/>
+		<h:outputScript name="js/dashboard/assets/javascripts/ui-elements/examples.notifications.js"/>
+		
+		
 </h:body>
 
 </html>
