@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/dashboard.xhtml">
+
+	<ui:define name="title">Shop Login</ui:define>
+	
+	<ui:define name="JavaScript">
+		
+	
+	</ui:define>
+		
+		
+	
+	<ui:define name="CssDesign">
+	
+	 
+	</ui:define>
+	
+	<ui:define name="content">
+		
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Asset Details</h2>
+					
+						<div class="right-wrapper pull-right">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="index.html">
+										<i class="fa fa-home"></i>
+									</a>
+								</li>
+								<li><span>Assets</span></li>
+								<li><span>details</span></li>
+							</ol>
+					
+							<a class="sidebar-right-toggle" href="/pages/secured/admin/assets/assets.xhtml"><i class="fa fa-chevron-left"></i></a>
+						</div>
+					</header>
+
+					<!-- start: page -->
+
+					<section class="panel">
+						<div class="panel-body">
+							<div class="invoice">
+								<header class="clearfix">
+									<div class="row">
+										<div class="col-sm-6 mt-md">
+										<div class="row">
+											<h2 class="h1 mt-none mb-sm text-dark text-bold" style="    margin-left: 2%;">##{assetsBean.selectedAsset.id} #{assetsBean.selectedAsset.expenses_id.name}</h2>
+										</div>
+										
+										<div class="row">
+										<div class="col-md-9">
+											<div class="bill-to" style="padding: 0px 5px;">
+												<p class="h5 mb-xs text-dark text-semibold">Details</p>
+												<address>
+													#{assetsBean.selectedAsset.expenses_id.description}
+												</address>
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Payment Date:</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.date.getTime().toString()}</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Bought by:</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.boughtByUser_id.name}</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Added by:</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.addedByUser_id.name}</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Payment Statues:</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.statues}</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Price: </span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.price} LE</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Quantity: </span>
+													<span class="value">#{assetsBean.selectedAsset.quantity}</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Total Price: </span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.quantity} LE</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Bought From:</span>
+													<span class="value">#{assetsBean.selectedAsset.boughtFrom}</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Stored in:</span>
+													<span class="value">#{assetsBean.selectedAsset.storedIn}</span>
+												</p>
+												
+											</div>
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Payment Date:</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.date.getTime().toString()}</span>
+												</p>
+												
+											</div>
+										</div>
+										</div>
+											</div>
+										<div class="col-sm-6 text-right mt-md mb-md">
+											
+											<div class="ib">
+												<h:graphicImage value="#{assetsBean.selectedAsset.getphoto()}" alt="OKLER Themes" style="    width: 70%;    border-radius: 25px;    border: 1px solid #BFBFBF;    box-shadow: 10px 10px 5px #aaaaaa;"/>
+											</div>
+										</div>
+									</div>
+								</header>
+								<div class="bill-info">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="bill-data text-right">
+												<p class="mb-none" style="text-align: left;padding-bottom: 2%;      font-size: large;    font-family: sans-serif;    font-weight: 550;">
+													<span class="text-dark">Invoice </span>
+												</p>
+												<p class="mb-none" style="text-align: left;padding-bottom: 2%;  ">
+													<h:graphicImage value="#{assetsBean.selectedAsset.getinvoice()}" alt="OKLER Themes" style="    width: 70%;    border-radius: 25px;    border: 1px solid #BFBFBF;    box-shadow: 10px 10px 5px #aaaaaa;"/>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							
+								<div class="table-responsive">
+									<table class="table invoice-items">
+										<thead>
+											<tr class="h4 text-dark">
+												<th id="cell-id"     class="text-semibold">#</th>
+												<th id="cell-item"   class="text-semibold">Item</th>
+												<th id="cell-price"  class="text-center text-semibold">Price</th>
+												<th id="cell-qty"    class="text-center text-semibold">Quantity</th>
+												<th id="cell-total"  class="text-center text-semibold">Total</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>#{assetsBean.selectedAsset.id}</td>
+												<td class="text-semibold text-dark">#{assetsBean.selectedAsset.expenses_id.name}</td>
+												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.price} LE</td>
+												<td class="text-center">#{assetsBean.selectedAsset.quantity}</td>
+												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.quantity} LE</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							
+								<div class="invoice-summary">
+									<div class="row">
+										<div class="col-sm-4 col-sm-offset-8">
+											<table class="table h5 text-dark">
+												<tbody>
+												
+													<tr class="h4">
+														<td colspan="2">Grand Total</td>
+														<td class="text-left">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.quantity} LE</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="text-right mr-lg">
+								<a href="/pages/secured/admin/assets/assets.xhtml" class="btn btn-default">Go back</a>
+							</div>
+						</div>
+					</section>
+
+					<!-- end: page -->
+				</section>		
+				
+				
+				
+	</ui:define>
+	
+		
+	
+</ui:composition>
+</html>

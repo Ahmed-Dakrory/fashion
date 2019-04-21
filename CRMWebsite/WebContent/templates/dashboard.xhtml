@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/font-awesome/css/font-awesome.css']}" />
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/magnific-popup/magnific-popup.css']}" />
     <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/bootstrap-datepicker/css/datepicker3.css']}" />
-    <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css']}" />
     
 
 	<ui:insert name="CssDesign"> 
@@ -170,7 +169,7 @@
 										</a>
 									</li>
 									<li >
-										<a href="/pages/secured/admin/assets.xhtml">
+										<a href="/pages/secured/admin/assets/assets.xhtml">
 											<i class="fa fa-tasks" aria-hidden="true"></i>
 											<span>Assets</span>
 										</a>
@@ -606,7 +605,7 @@
    
    
    	<!-- Vendor -->
-   	
+   
 		<h:outputScript name="js/dashboard/assets/vendor/jquery/jquery.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/bootstrap/js/bootstrap.js"/>
@@ -614,7 +613,9 @@
 		<h:outputScript name="js/dashboard/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/magnific-popup/magnific-popup.js"/>
 		<h:outputScript name="js/dashboard/assets/vendor/jquery-placeholder/jquery.placeholder.js"/>
-		
+		<script>
+		   jQuery.noConflict();
+		 </script>
 		
 		
 		<ui:insert name="JavaScript"> 

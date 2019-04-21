@@ -166,7 +166,7 @@ public class asset {
 
 
 	public String getinvoice() {
-		if(attachedInvoice==null) {
+		if(attachedInvoice!=null) {
 		String imageString= new String(Base64.encodeBase64(attachedInvoice));
 
 		return "data:image/png;base64, "+imageString;
@@ -193,7 +193,7 @@ public class asset {
 
 
 	public String getphoto() {
-		if(image==null) {
+		if(image!=null) {
 		String imageString= new String(Base64.encodeBase64(image));
 
 		return "data:image/png;base64, "+imageString;

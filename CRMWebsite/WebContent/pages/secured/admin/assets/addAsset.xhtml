@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/dashboard.xhtml">
+
+	<ui:define name="title">Shop Login</ui:define>
+	
+	<ui:define name="JavaScript">
+		
+	
+	</ui:define>
+		
+		
+	
+	<ui:define name="CssDesign">
+	
+	 
+	</ui:define>
+	
+	<ui:define name="content">
+		
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Asset Details</h2>
+					
+						<div class="right-wrapper pull-right">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="index.html">
+										<i class="fa fa-home"></i>
+									</a>
+								</li>
+								<li><span>Assets</span></li>
+								<li><span>details</span></li>
+							</ol>
+					
+							<a class="sidebar-right-toggle" href="/pages/secured/admin/assets/assets.xhtml"><i class="fa fa-chevron-left"></i></a>
+						</div>
+					</header>
+
+					<!-- start: page -->
+
+					<section class="panel">
+						<div class="panel-body">
+							<h:form>  
+							   <p:fileUpload fileUploadListener="#{assetsBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
+							                  update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							 
+							    <p:growl id="messages" showDetail="true" />     
+							</h:form>
+							
+							
+							<div class="text-right mr-lg">
+								<a href="/pages/secured/admin/assets/assets.xhtml" class="btn btn-default">Go back</a>
+							</div>
+						</div>
+					</section>
+
+					<!-- end: page -->
+				</section>		
+				
+				
+				
+	</ui:define>
+	
+		
+	
+</ui:composition>
+</html>
