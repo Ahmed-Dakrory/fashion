@@ -341,30 +341,16 @@ public class product {
 	}
 
 
-	public String getStateForImage(int i) {
-		if(i==0) {
-			if(image==null) {
-				return "none"; 
-			}else {
-				return "inherite";
-			}
-		}else {
-			if(image==null) {
-				return "inherite";
-			}else {
-				return "none";
-			}
-		}
-	}
+	
 
 
 	public String getphoto() {
-		if(getImage()==null) {
+		if(getImage()!=null) {
 		String imageString= new String(Base64.encodeBase64(image));
 
 		return "data:image/png;base64, "+imageString;
 		}else {
-			return "images/comment-img2.jpg";
+			return "/resources/images/blankImage.svg";
 		}
 	}
 

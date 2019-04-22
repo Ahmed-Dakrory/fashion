@@ -24,7 +24,145 @@
 	</ui:define>
 	
 	<ui:define name="content">
+	#{assetsBean.refresh()}
+		<style>
+		#formImage{
+			
+		}
 		
+		.squareImage{
+			width: 222px;
+		    height: 222px;
+		    border-radius: 4%;
+		    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+		}
+		.labelH4Column{
+		   margin-top: initial;
+		    font-family: sans-serif;
+		    font-weight: 600;
+		    font-size: 15px;
+		    color: #8f9090;
+		    width: 135%;
+		    float: right;
+		    text-align-last: start;
+		}
+		.selectorColumn{
+			    width: 135%;
+			    border-radius: 3px;
+			    text-align: start;
+			    padding-left: 3%;
+			    height: 36px!important;
+			    box-sizing: border-box;
+			    padding-top: 2%;
+			    border: solid;
+			    border-width: 1px;
+			    margin-bottom: 18%;
+			    color: #777777;
+			    box-shadow: 0px 0px 0px rgba(0,0,0,0.5), inset 0px 1px 1px rgba(0,0,0,0.5);
+		}
+		.inputColumn{
+			width: 135%;
+		    border-radius: 3px;
+		    text-align: start;
+		    padding-left: 3%;
+		    height: 36px;
+		    margin-bottom: 18%;
+		    color: #777777;
+		}
+		.inputColumnSelectOneButton{
+			width: 203%;
+		    border-radius: 3px;
+		    text-align: start;
+		    padding-left: 3%;
+		    height: 41px;
+		    margin-bottom: 13%;
+		    color: #777777;
+		}
+		
+		.ui-buttonset .ui-button {
+		    margin-left: 0;
+		    margin-right: 0;
+		    width: 33%;
+		    height: 82%;
+		    text-align: -webkit-center;
+		    padding-top: 1%;
+		}
+		.DescriptionColumn{
+			width: 135%;
+		    border-radius: 3px;
+		    text-align: start;
+		    padding-left: 3%;
+		    height: 116px;
+		    color: #777777;
+		}
+		
+		.labelH4ColumnTr{
+		 vertical-align: top;
+		}
+		
+		.inputColumnTr{
+		 vertical-align: top;
+		}
+		
+		.firstColMain{
+			padding-right: 193px;
+		}
+		.panel-body2{
+			    background: white;
+			    width: 100%;
+			    border-radius: 11px;
+			 
+		}
+		.classColumn{
+			text-align: -webkit-left;
+		}
+		
+		.classColumn2{
+			text-align: -webkit-left;
+		}
+
+			.buttonAttachIvoice {
+				-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+				-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+				box-shadow:inset 0px 1px 0px 0px #ffffff;
+				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+				background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+				background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+				background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+				background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+				background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+				background-color:#f9f9f9;
+				-moz-border-radius:6px;
+				-webkit-border-radius:6px;
+				border-radius:6px;
+				border:1px solid #dcdcdc;
+				display:inline-block;
+				cursor:pointer;
+				color:#666666;
+				font-family:Arial;
+				font-size:15px;
+				font-weight:bold;
+				padding:6px 24px;
+				text-decoration:none;
+				text-shadow:0px 1px 0px #ffffff;
+			}
+			.buttonAttachIvoice:hover {
+				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+				background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+				background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+				background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+				background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+				background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+				background-color:#e9e9e9;
+			}
+			.buttonAttachIvoice:active {
+				position:relative;
+				top:1px;
+			}
+		
+		</style>
 				<section role="main" class="content-body">
 					<header class="page-header">
 						<h2>Asset Details</h2>
@@ -46,26 +184,141 @@
 
 					<!-- start: page -->
 
-					<section class="panel">
-						<div class="panel-body">
-							<h:form>  
-							   <p:fileUpload fileUploadListener="#{assetsBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
-							                  update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-							 
-							    <p:growl id="messages" showDetail="true" />     
-							</h:form>
-							
-							
-							<div class="text-right mr-lg">
-								<a href="/pages/secured/admin/assets/assets.xhtml" class="btn btn-default">Go back</a>
+						<div class="container panel-body2">
+						<div class="row" style=" margin-bottom: 3%;">
+						<h1 style="margin-top: 3%;    margin-left: 5%;">Assets</h1>
+						</div>
+							<div class="row" style="margin-left: 8%;" >
+							<div >
+							</div>
+								<div class="col-md-4 classColumn">
+									<h:form >
+										<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
+												
+													<h4 class="labelH4Column ">Item Name</h4>
+													<h:inputText class="inputColumn " value="#{assetsBean.addedExpenses.name}"></h:inputText>
+												
+												
+												
+													<h4 class="rowSpaceing labelH4Column ">Quantity</h4>
+													<h:inputText class="inputColumn " value="#{assetsBean.addedAsset.quantity}"></h:inputText>
+												
+												
+													<h4 class="labelH4Column ">Unite Price</h4>
+													<h:inputText class= "inputColumn " value="#{assetsBean.addedExpenses.price}"></h:inputText>
+												
+												
+													<h4 class="labelH4Column ">Description</h4>
+													<h:panelGroup>
+														<p:inputTextarea  class="DescriptionColumn  " value="#{assetsBean.addedExpenses.description}" counter="display" maxlength="200" counterTemplate="{0} characters remaining." autoResize="false"></p:inputTextarea>
+														<div style="width: 135%;">
+															<h:outputText id="display"  style="float: right;"/>
+														</div>
+														
+													</h:panelGroup>
+											</h:panelGrid>
+											
+											
+										</h:form>
+									</div>
+												
+								<div class="col-md-3 classColumn">
+													<h:form id="secondColumnForm">
+										
+											
+														<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
+																
+																<h4 class="labelH4Column ">Bought By</h4>
+																<h:selectOneMenu class="selectorColumn "  value = "#{assetsBean.addedExpenses.boughtByUser_id.id}"> 
+																   <f:selectItems value="#{assetsBean.allUsers}" var="entry"
+																           itemValue="#{entry.id}" itemLabel="#{entry.name}" />
+																</h:selectOneMenu>
+															
+															
+																<h4 class="rowSpaceing labelH4Column ">Payment</h4>
+																<p:selectOneButton  styleClass="inputColumnSelectOneButton "  value = "1"> 
+																   <f:selectItem itemValue = "1" itemLabel = "Billed  " /> 
+																   <f:selectItem itemValue = "2" itemLabel = "+Shares  " />
+																</p:selectOneButton>
+															
+																<h4 class="labelH4Column ">Bought From</h4>
+																<h:inputText class= "inputColumn " value="#{assetsBean.addedAsset.boughtFrom}"></h:inputText>
+															
+															
+																<h4 class="labelH4Column ">Date</h4>
+																<h:inputText readonly="true" id = "datepicker-14"  class= "inputColumn timePicker" ></h:inputText>
+															
+																<h4 class="labelH4Column ">Stored in</h4>
+																<h:inputText class= "inputColumn " value="#{assetsBean.addedAsset.storedIn}"></h:inputText>
+															
+															
+														</h:panelGrid>
+													
+													</h:form>
+												
+										</div>
+								<div class="col-md-2">
+									<h:form id="invoiceForm">
+									<label for="invoiceForm:buttonUploadInvoice_input">
+										<span class="buttonAttachIvoice">attach Invoice</span>
+									</label>
+										<p:fileUpload id="buttonUploadInvoice" fileUploadListener="#{assetsBean.handleInvoiceUpload}" mode="advanced"
+													                  update=":formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+													         
+													    <p:growl id="messages" showDetail="true" />     
+									</h:form>
+								</div>
+								<div class="col-md-3 classColumn2">
+												
+													<h:form id="formImage">  
+													<style>
+															.ui-fileupload-content {
+																   border: #faebd700;
+																    padding: 0px;
+																    margin: 0px;
+																}
+																
+															.ui-fileupload-buttonbar {
+																   visibility: hidden;
+																    height: 0px;
+																    padding: 0px;
+																    margin: 0px;
+																}
+														</style>
+														<label for="formImage:buttonUploadImage_input">
+															<h:graphicImage value="/resources/images/imageEmpty.png" rendered="#{assetsBean.addedAsset.image==null}"  class="squareImage" alt=""/>
+															<h:graphicImage value="#{assetsBean.addedAsset.getphoto()}" rendered="#{assetsBean.addedAsset.image!=null}"  class="squareImage" alt=""/>
+														</label>
+														
+													    <p:fileUpload id="buttonUploadImage" fileUploadListener="#{assetsBean.handleImageUpload}" mode="advanced"
+													                  update=":formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+													         
+													    <p:growl id="messages" showDetail="true" />        
+													</h:form>
+								</div>
+							</div>
+						
+						<div class="row" style="    margin-bottom: 2%;" >
+							<div class="text-right mr-lg" style="    margin-right: 7%!important;">
+								<a href="/pages/secured/admin/assets/assets.xhtml" class="btn btn-default">Add Asset</a>
+							</div>
 							</div>
 						</div>
-					</section>
-
+															
 					<!-- end: page -->
+					
+					
+					
+      
 				</section>		
 				
-				
+				<script>
+							
+							$(function() {
+								$( ".timePicker" ).datepicker();
+					         });
+						
+					</script>	
 				
 	</ui:define>
 	

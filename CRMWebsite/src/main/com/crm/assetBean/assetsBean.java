@@ -10,11 +10,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 import main.com.crm.asset.asset;
 import main.com.crm.asset.assetAppServiceImpl;
+import main.com.crm.expense.expenses;
+import main.com.crm.loginNeeds.user;
+import main.com.crm.loginNeeds.userAppServiceImpl;
 
 
 @ManagedBean(name = "assetsBean")
@@ -34,18 +37,29 @@ public class assetsBean implements Serializable{
 	 
 
 	private asset selectedAsset;
-	private UploadedFile file;
-	 
+	
+	
+	
+
+	private expenses addedExpenses;
+	private asset addedAsset;
+	
+	@ManagedProperty(value = "#{userFacadeImpl}")
+	private userAppServiceImpl userDataFacede; 
+	private List<user> allUsers;
+	
+	
 	@PostConstruct
 	public void init() {
+		addedExpenses=new expenses();
+		addedAsset=new asset();
 		refresh();
 		
 	}
 	
 	public void refresh(){
+		allUsers=userDataFacede.getAll();
 		listOfAssets=assetDataFacede.getAll();
-		System.out.println("Ahmed Dakrory: "+listOfAssets.size());
-		System.out.println("Ahmed Dakrory: "+listOfAssets.get(0).getId());
 	}
 
 	
@@ -62,27 +76,32 @@ public class assetsBean implements Serializable{
 	
 	
 	 
-	    public UploadedFile getFile() {
-	        return file;
-	    }
-	 
-	    public void setFile(UploadedFile file) {
-	        this.file = file;
-	    }
 	     
-	    public void upload() {
-	        if(file != null) {
-	            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-	            FacesContext.getCurrentInstance().addMessage(null, message);
-	        }
-	    }
+	    
 	     
-	    public void handleFileUpload(FileUploadEvent event) {
-	        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
-	    }
+	public void handleImageUpload(FileUploadEvent event) {
+
+		addedAsset.setImage(event.getFile().getContents());
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 	
+	public void handleInvoiceUpload(FileUploadEvent event) {
+
+		addedAsset.setAttachedInvoice(event.getFile().getContents());
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 	
+	public void addNewAsset() {
+		addedAsset.setExpenses_id(addedExpenses);
+		assetDataFacede.addasset(addedAsset);
+		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+				"			title: 'Success',\r\n" + 
+				"			text: 'New asset has been added.',\r\n" + 
+				"			type: 'success'\r\n" + 
+				"		});");
+	}
 	
 	
 	
@@ -113,6 +132,38 @@ public class assetsBean implements Serializable{
 
 	public void setSelectedAsset(asset selectedAsset) {
 		this.selectedAsset = selectedAsset;
+	}
+
+	public asset getAddedAsset() {
+		return addedAsset;
+	}
+
+	public void setAddedAsset(asset addedAsset) {
+		this.addedAsset = addedAsset;
+	}
+
+	public userAppServiceImpl getUserDataFacede() {
+		return userDataFacede;
+	}
+
+	public void setUserDataFacede(userAppServiceImpl userDataFacede) {
+		this.userDataFacede = userDataFacede;
+	}
+
+	public List<user> getAllUsers() {
+		return allUsers;
+	}
+
+	public void setAllUsers(List<user> allUsers) {
+		this.allUsers = allUsers;
+	}
+
+	public expenses getAddedExpenses() {
+		return addedExpenses;
+	}
+
+	public void setAddedExpenses(expenses addedExpenses) {
+		this.addedExpenses = addedExpenses;
 	}
 	
 	

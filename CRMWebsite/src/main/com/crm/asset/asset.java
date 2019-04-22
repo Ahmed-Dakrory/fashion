@@ -148,22 +148,7 @@ public class asset {
 	}
 
 
-	public String getStateForInvoice(int i) {
-		if(i==0) {
-			if(attachedInvoice==null) {
-				return "none"; 
-			}else {
-				return "inherite";
-			}
-		}else {
-			if(image==null) {
-				return "inherite";
-			}else {
-				return "none";
-			}
-		}
-	}
-
+	
 
 	public String getinvoice() {
 		if(attachedInvoice!=null) {
@@ -171,25 +156,11 @@ public class asset {
 
 		return "data:image/png;base64, "+imageString;
 		}else {
-			return "images/comment-img3.jpg";
+			return "/resources/images/blankImage.svg";
 		}
 	}
 
-	public String getStateForImage(int i) {
-		if(i==0) {
-			if(image==null) {
-				return "none"; 
-			}else {
-				return "inherite";
-			}
-		}else {
-			if(image==null) {
-				return "inherite";
-			}else {
-				return "none";
-			}
-		}
-	}
+	
 
 
 	public String getphoto() {
@@ -198,7 +169,7 @@ public class asset {
 
 		return "data:image/png;base64, "+imageString;
 		}else {
-			return "images/comment-img2.jpg";
+			return "/resources/images/blankImage.svg";
 		}
 	}
 
