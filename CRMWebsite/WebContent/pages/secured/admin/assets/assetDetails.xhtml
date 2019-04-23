@@ -73,15 +73,24 @@
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
-													<span class="text-dark">Bought by:</span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.boughtByUser_id.name}</span>
+													<span class="text-dark">Bought by:
+																<h:form>
+																	<p:commandButton class="linkButton" value="#{assetsBean.selectedAsset.expenses_id.boughtByUser_id.name}" action="#{generalBean.showUser(assetsBean.selectedAsset.expenses_id.boughtByUser_id.id)}"></p:commandButton>
+																</h:form>
+													</span>
+													
+																
+													
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
-													<span class="text-dark">Added by:</span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.addedByUser_id.name}</span>
+													<span class="text-dark">Added by:
+															<h:form>
+																	<p:commandButton class="linkButton" value="#{assetsBean.selectedAsset.expenses_id.addedByUser_id.name}" action="#{generalBean.showUser(assetsBean.selectedAsset.expenses_id.addedByUser_id.id)}"></p:commandButton>
+															</h:form>
+													</span>
 												</p>
 												
 											</div>

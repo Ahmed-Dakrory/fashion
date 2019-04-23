@@ -59,6 +59,8 @@
 							<a class="sidebar-right-toggle" href="/pages/secured/admin/home.xhtml"><i class="fa fa-chevron-left"></i></a>
 						</div>
 					</header>
+					
+						
 					<div class="row">
 						<div class="col-md-6 col-lg-12 col-xl-6">
 								<section class="panel">
@@ -94,8 +96,17 @@
 											<td class="center hidden-phone">#{data.quantity*data.expenses_id.price} LE</td>
 											<td class="center hidden-phone">#{data.boughtFrom}</td>
 											<td class="center hidden-phone">#{data.storedIn}</td>
-											<td class="center hidden-phone">#{data.expenses_id.addedByUser_id.name}</td>
-											<td class="center hidden-phone">#{data.expenses_id.boughtByUser_id.name}</td>
+											<td class="center hidden-phone">
+											<h:form>
+												<p:commandButton class="linkButton" value="#{data.expenses_id.addedByUser_id.name}" action="#{generalBean.showUser(data.expenses_id.addedByUser_id.id)}"></p:commandButton>
+											</h:form>
+											 
+											</td>
+											<td class="center hidden-phone">
+											<h:form>
+												<p:commandButton class="linkButton" value="#{data.expenses_id.boughtByUser_id.name}" action="#{generalBean.showUser(data.expenses_id.boughtByUser_id.id)}"></p:commandButton>
+											</h:form>
+											</td>
 											<td class="center hidden-phone">#{data.expenses_id.date.getTime().toString()}</td>
 											<td class="center hidden-phone">#{data.expenses_id.statues}</td>
 											<td class="center hidden-phone">
@@ -222,9 +233,9 @@
 							</div>
 						</div>
 					</div>
+					
 					<!-- end: page -->
 				</section>
-				
 				
 				
 				
