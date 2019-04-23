@@ -183,7 +183,7 @@
 					</header>
 
 					<!-- start: page -->
-
+					<h:form id="mainForm">
 						<div class="container panel-body2">
 						<div class="row" style=" margin-bottom: 3%;">
 						<h1 style="margin-top: 3%;    margin-left: 5%;">Assets</h1>
@@ -192,20 +192,20 @@
 							<div >
 							</div>
 								<div class="col-md-4 classColumn">
-									<h:form >
+									<div >
 										<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
 												
 													<h4 class="labelH4Column ">Item Name</h4>
-													<h:inputText class="inputColumn " value="#{assetsBean.addedExpenses.name}"></h:inputText>
+													<p:inputText class="inputColumn " value="#{assetsBean.addedExpenses.name}"></p:inputText>
 												
 												
 												
 													<h4 class="rowSpaceing labelH4Column ">Quantity</h4>
-													<h:inputText class="inputColumn " value="#{assetsBean.addedAsset.quantity}"></h:inputText>
+													<p:inputNumber inputStyleClass="inputColumn"  value="#{assetsBean.addedAsset.quantity}"></p:inputNumber>
 												
 												
 													<h4 class="labelH4Column ">Unite Price</h4>
-													<h:inputText class= "inputColumn " value="#{assetsBean.addedExpenses.price}"></h:inputText>
+													<p:inputNumber inputStyleClass="inputColumn"  value="#{assetsBean.addedExpenses.price}"></p:inputNumber>
 												
 												
 													<h4 class="labelH4Column ">Description</h4>
@@ -219,11 +219,11 @@
 											</h:panelGrid>
 											
 											
-										</h:form>
+										</div>
 									</div>
 												
 								<div class="col-md-3 classColumn">
-													<h:form id="secondColumnForm">
+													<div id="secondColumnForm">
 										
 											
 														<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
@@ -236,34 +236,34 @@
 															
 															
 																<h4 class="rowSpaceing labelH4Column ">Payment</h4>
-																<p:selectOneButton  styleClass="inputColumnSelectOneButton "  value = "1"> 
-																   <f:selectItem itemValue = "1" itemLabel = "Billed  " /> 
-																   <f:selectItem itemValue = "2" itemLabel = "+Shares  " />
+																<p:selectOneButton  styleClass="inputColumnSelectOneButton "  value = "#{assetsBean.paymentAddingMethod}"> 
+																   <f:selectItem itemValue = "2" itemLabel = "Billed  " /> 
+																   <f:selectItem itemValue = "1" itemLabel = "+Shares  " />
 																</p:selectOneButton>
 															
 																<h4 class="labelH4Column ">Bought From</h4>
-																<h:inputText class= "inputColumn " value="#{assetsBean.addedAsset.boughtFrom}"></h:inputText>
+																<p:inputText class= "inputColumn " value="#{assetsBean.addedAsset.boughtFrom}"></p:inputText>
 															
 															
 																<h4 class="labelH4Column ">Date</h4>
-																<h:inputText readonly="true" id = "datepicker-14"  class= "inputColumn timePicker" ></h:inputText>
+																<p:inputText  value="#{assetsBean.dateString}" class= "inputColumn timePicker" ></p:inputText>
 															
 																<h4 class="labelH4Column ">Stored in</h4>
-																<h:inputText class= "inputColumn " value="#{assetsBean.addedAsset.storedIn}"></h:inputText>
+																<p:inputText class= "inputColumn " value="#{assetsBean.addedAsset.storedIn}"></p:inputText>
 															
 															
 														</h:panelGrid>
 													
-													</h:form>
+													</div>
 												
 										</div>
 								<div class="col-md-2">
 									<h:form id="invoiceForm">
-									<label for="invoiceForm:buttonUploadInvoice_input">
+									<label for="mainForm:invoiceForm:buttonUploadInvoice_input">
 										<span class="buttonAttachIvoice">attach Invoice</span>
 									</label>
 										<p:fileUpload id="buttonUploadInvoice" fileUploadListener="#{assetsBean.handleInvoiceUpload}" mode="advanced"
-													                  update=":formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+													                  update=":mainForm:formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 													         
 													    <p:growl id="messages" showDetail="true" />     
 									</h:form>
@@ -285,13 +285,13 @@
 																    margin: 0px;
 																}
 														</style>
-														<label for="formImage:buttonUploadImage_input">
+														<label for="mainForm:formImage:buttonUploadImage_input">
 															<h:graphicImage value="/resources/images/imageEmpty.png" rendered="#{assetsBean.addedAsset.image==null}"  class="squareImage" alt=""/>
 															<h:graphicImage value="#{assetsBean.addedAsset.getphoto()}" rendered="#{assetsBean.addedAsset.image!=null}"  class="squareImage" alt=""/>
 														</label>
 														
 													    <p:fileUpload id="buttonUploadImage" fileUploadListener="#{assetsBean.handleImageUpload}" mode="advanced"
-													                  update=":formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+													                  update=":mainForm:formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 													         
 													    <p:growl id="messages" showDetail="true" />        
 													</h:form>
@@ -300,11 +300,11 @@
 						
 						<div class="row" style="    margin-bottom: 2%;" >
 							<div class="text-right mr-lg" style="    margin-right: 7%!important;">
-								<a href="/pages/secured/admin/assets/assets.xhtml" class="btn btn-default">Add Asset</a>
+								<h:commandButton value="Add Asset" action="#{assetsBean.addNewAsset()}" class="btn btn-default"></h:commandButton>
 							</div>
 							</div>
 						</div>
-															
+					</h:form>								
 					<!-- end: page -->
 					
 					
@@ -313,10 +313,29 @@
 				</section>		
 				
 				<script>
+				$(function() {
+					$('.timePicker').datepicker({
+					    dateFormat: 'yy-dd-mm',
+					    onSelect: function(datetext){
+
+					        var d = new Date(); // for now
+
+					        var h = d.getHours();
+					        h = (h &lt; 10) ? ("0" + h) : h ;
+
+					        var m = d.getMinutes();
+					        m = (m &lt; 10) ? ("0" + m) : m ;
+
+					        var s = d.getSeconds();
+					        s = (s &lt; 10) ? ("0" + s) : s ;
+
+					        datetext = datetext + " " + h + ":" + m + ":" + s;
+
+					        $('.timePicker').val(datetext);
+					    }
+					});
+					});
 							
-							$(function() {
-								$( ".timePicker" ).datepicker();
-					         });
 						
 					</script>	
 				
