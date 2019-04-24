@@ -40,7 +40,7 @@
 	
 	<ui:define name="content">
 	
-	#{assetsBean.refresh()}
+	#{rawMaterialBean.refresh()}
 		
 		<section role="main" class="content-body">
 					<header class="page-header">
@@ -53,7 +53,7 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Assets</span></li>
+								<li><span>rawMaterials</span></li>
 							</ol>
 					
 							<a class="sidebar-right-toggle" href="/pages/secured/admin/home.xhtml"><i class="fa fa-chevron-left"></i></a>
@@ -70,7 +70,7 @@
 									<a href="#" class="fa fa-times"></a>
 								</div>
 						
-								<h2 class="panel-title">All Assets</h2>
+								<h2 class="panel-title">All Raw Materials</h2>
 							</header>
 							<div class="panel-body">
 								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
@@ -89,7 +89,7 @@
 										</tr>
 									</thead>
 									<tbody>
-									<ui:repeat var="data" value="#{assetsBean.listOfAssets}">
+									<ui:repeat var="data" value="#{rawMaterialBean.listOfrawMaterials}">
 										<tr class="gradeX">
 											<td>#{data.id}</td>
 											<td>#{data.expenses_id.name}</td>
@@ -111,7 +111,7 @@
 											<td class="center hidden-phone">#{data.expenses_id.statues}</td>
 											<td class="center hidden-phone">
 											<h:form>
-												<h:commandButton value="More" class="mb-xs mt-xs mr-xs btn btn-default" action="#{assetsBean.selectAsset(data.id)}"></h:commandButton>
+												<h:commandButton value="More" class="mb-xs mt-xs mr-xs btn btn-default" action="#{rawMaterialBean.selectrawMaterial(data.id)}"></h:commandButton>
 											</h:form>
 											</td> 
 										</tr>
@@ -123,7 +123,7 @@
 							
 							<h:form>
 								<div class="text-right mr-lg" style="    margin-top: 2%!important;">
-									<h:commandButton value="Add New Asset" action="#{assetsBean.goToAddNewAsset()}" class="btn btn-default"></h:commandButton>
+									<h:commandButton value="Add New Raw Material" action="#{rawMaterialBean.goToAddNewrawMaterial()}" class="btn btn-default"></h:commandButton>
 								</div>
 							</h:form>
 							</div>

@@ -1,4 +1,4 @@
-package main.com.crm.assetBean;
+package main.com.crm.rawMaterialBean;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,28 +17,28 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
-import main.com.crm.asset.asset;
-import main.com.crm.asset.assetAppServiceImpl;
+import main.com.crm.rawMaterial.rawMaterial;
+import main.com.crm.rawMaterial.rawMaterialAppServiceImpl;
 import main.com.crm.expense.expenses;
 import main.com.crm.expense.expensesAppServiceImpl;
 import main.com.crm.loginNeeds.user;
 import main.com.crm.loginNeeds.userAppServiceImpl;
 
 
-@ManagedBean(name = "assetsBean")
+@ManagedBean(name = "rawMaterialBean")
 @SessionScoped
-public class assetsBean implements Serializable{
+public class rawMaterialBean implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 655527256791420301L;
 
-	private List<asset> listOfAssets;
+	private List<rawMaterial> listOfrawMaterials;
 	
 
-	@ManagedProperty(value = "#{assetFacadeImpl}")
-	private assetAppServiceImpl assetDataFacede; 
+	@ManagedProperty(value = "#{rawMaterialFacadeImpl}")
+	private rawMaterialAppServiceImpl rawMaterialDataFacede; 
 	
 	@ManagedProperty(value = "#{expensesFacadeImpl}")
 	private expensesAppServiceImpl expensesDataFacede; 
@@ -47,15 +47,16 @@ public class assetsBean implements Serializable{
 	private main.com.crm.loginNeeds.loginBean loginBean;
 	
 	
-	private asset selectedAsset;
+	private rawMaterial selectedrawMaterial;
 	
 	
 	
 
 	private expenses addedExpenses;
-	private asset addedAsset;
+	private rawMaterial addedrawMaterial;
 	private String dateString;
 	private int paymentAddingMethod;
+	private int unit;
 	
 	@ManagedProperty(value = "#{userFacadeImpl}")
 	private userAppServiceImpl userDataFacede; 
@@ -65,26 +66,27 @@ public class assetsBean implements Serializable{
 	@PostConstruct
 	public void init() {
 		addedExpenses=new expenses();
-		addedAsset=new asset();
+		addedrawMaterial=new rawMaterial();
 		addedExpenses.setAddedByUser_id(new user());
 		addedExpenses.setBoughtByUser_id(new user());
-		addedAsset.setExpenses_id(addedExpenses);
+		addedrawMaterial.setExpenses_id(addedExpenses);
 		paymentAddingMethod=1;
+		unit=1;
 		refresh();
 		
 	}
 	
 	public void refresh(){
 		allUsers=userDataFacede.getAll();
-		listOfAssets=assetDataFacede.getAll();
+		listOfrawMaterials=rawMaterialDataFacede.getAll();
 	}
 
 	
-	public void selectAsset(int assetId) {
-		selectedAsset=assetDataFacede.getById(assetId);
+	public void selectrawMaterial(int rawMaterialId) {
+		selectedrawMaterial=rawMaterialDataFacede.getById(rawMaterialId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/assetDetails.xhtml");
+			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterialDetails.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,30 +100,30 @@ public class assetsBean implements Serializable{
 	     
 	public void handleImageUpload(FileUploadEvent event) {
 
-		addedAsset.setImage(event.getFile().getContents());
+		addedrawMaterial.setImage(event.getFile().getContents());
         FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 	
 	public void handleInvoiceUpload(FileUploadEvent event) {
 
-		addedAsset.setAttachedInvoice(event.getFile().getContents());
+		addedrawMaterial.setAttachedInvoice(event.getFile().getContents());
         FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-	public void goToAddNewAsset() {
+	public void goToAddNewrawMaterial() {
 		
 		addedExpenses=new expenses();
-		addedAsset=new asset();
+		addedrawMaterial=new rawMaterial();
 		addedExpenses.setAddedByUser_id(new user());
 		addedExpenses.setBoughtByUser_id(new user());
-		addedAsset.setExpenses_id(addedExpenses);
+		addedrawMaterial.setExpenses_id(addedExpenses);
 		paymentAddingMethod=1;
+		unit=1;
 		dateString=null;
-		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/addAsset.xhtml");
+			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/addrawMaterial.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,7 +131,7 @@ public class assetsBean implements Serializable{
 		
 	}
 	
-	public void addNewAsset() {
+	public void addNewrawMaterial() {
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM HH:mm:ss"); 
 		try {
 			if(dateString!=null) {
@@ -145,17 +147,18 @@ public class assetsBean implements Serializable{
 		addedExpenses.setStatues(1);
 		addedExpenses.setAddedByUser_id(loginBean.getTheUserOfThisAccount());
 		expensesDataFacede.addexpenses(addedExpenses);
-		addedAsset.setExpenses_id(addedExpenses);
-		assetDataFacede.addasset(addedAsset);
+		addedrawMaterial.setUnit(unit);
+		addedrawMaterial.setExpenses_id(addedExpenses);
+		rawMaterialDataFacede.addrawMaterial(addedrawMaterial);
 		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
 				"			title: 'Success',\r\n" + 
-				"			text: 'New asset has been added.',\r\n" + 
+				"			text: 'New rawMaterial has been added.',\r\n" + 
 				"			type: 'success'\r\n" + 
 				"		});");
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/assets.xhtml");
+			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterials.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -165,40 +168,42 @@ public class assetsBean implements Serializable{
 	
 	
 	
-	public List<asset> getListOfAssets() {
-		return listOfAssets;
+	public List<rawMaterial> getListOfrawMaterials() {
+		return listOfrawMaterials;
 	}
 
-	public void setListOfAssets(List<asset> listOfAssets) {
-		this.listOfAssets = listOfAssets;
+	public void setListOfrawMaterials(List<rawMaterial> listOfrawMaterials) {
+		this.listOfrawMaterials = listOfrawMaterials;
 	}
 
-	public assetAppServiceImpl getAssetDataFacede() {
-		return assetDataFacede;
+	
+
+	public rawMaterialAppServiceImpl getRawMaterialDataFacede() {
+		return rawMaterialDataFacede;
 	}
 
-	public void setAssetDataFacede(assetAppServiceImpl assetDataFacede) {
-		this.assetDataFacede = assetDataFacede;
+	public void setRawMaterialDataFacede(rawMaterialAppServiceImpl rawMaterialDataFacede) {
+		this.rawMaterialDataFacede = rawMaterialDataFacede;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public asset getSelectedAsset() {
-		return selectedAsset;
+	public rawMaterial getSelectedrawMaterial() {
+		return selectedrawMaterial;
 	}
 
-	public void setSelectedAsset(asset selectedAsset) {
-		this.selectedAsset = selectedAsset;
+	public void setSelectedrawMaterial(rawMaterial selectedrawMaterial) {
+		this.selectedrawMaterial = selectedrawMaterial;
 	}
 
-	public asset getAddedAsset() {
-		return addedAsset;
+	public rawMaterial getAddedrawMaterial() {
+		return addedrawMaterial;
 	}
 
-	public void setAddedAsset(asset addedAsset) {
-		this.addedAsset = addedAsset;
+	public void setAddedrawMaterial(rawMaterial addedrawMaterial) {
+		this.addedrawMaterial = addedrawMaterial;
 	}
 
 	public userAppServiceImpl getUserDataFacede() {
@@ -255,6 +260,14 @@ public class assetsBean implements Serializable{
 
 	public void setLoginBean(main.com.crm.loginNeeds.loginBean loginBean) {
 		this.loginBean = loginBean;
+	}
+
+	public int getUnit() {
+		return unit;
+	}
+
+	public void setUnit(int unit) {
+		this.unit = unit;
 	}
 	
 	

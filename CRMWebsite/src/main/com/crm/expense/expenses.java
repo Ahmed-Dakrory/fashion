@@ -55,6 +55,8 @@ public class expenses {
 	@Column(name = "price")
 	private Integer price;
 	
+	@Column(name = "quantity")
+	private Integer quantity;
 
 	@ManyToOne
 	@JoinColumn(name = "addedByUser_id")
@@ -149,6 +151,16 @@ public class expenses {
 
 	public void setBoughtByUser_id(user boughtByUser_id) {
 		this.boughtByUser_id = boughtByUser_id;
+	}
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 

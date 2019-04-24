@@ -27,7 +27,7 @@
 		
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Asset Details</h2>
+						<h2>rawMaterial Details</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -36,11 +36,11 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Assets</span></li>
+								<li><span>rawMaterials</span></li>
 								<li><span>details</span></li>
 							</ol>
 					
-							<a class="sidebar-right-toggle" href="/pages/secured/admin/assets/assets.xhtml"><i class="fa fa-chevron-left"></i></a>
+							<a class="sidebar-right-toggle" href="/pages/secured/admin/rawMaterial/rawMaterials.xhtml"><i class="fa fa-chevron-left"></i></a>
 						</div>
 					</header>
 
@@ -53,7 +53,7 @@
 									<div class="row">
 										<div class="col-sm-6 mt-md">
 										<div class="row">
-											<h2 class="h1 mt-none mb-sm text-dark text-bold" style="    margin-left: 2%;">##{assetsBean.selectedAsset.id} #{assetsBean.selectedAsset.expenses_id.name}</h2>
+											<h2 class="h1 mt-none mb-sm text-dark text-bold" style="    margin-left: 2%;">##{rawMaterialBean.selectedrawMaterial.id} #{rawMaterialBean.selectedrawMaterial.expenses_id.name}</h2>
 										</div>
 										
 										<div class="row">
@@ -61,13 +61,13 @@
 											<div class="bill-to" style="padding: 0px 5px;">
 												<p class="h5 mb-xs text-dark text-semibold">Details</p>
 												<address>
-													#{assetsBean.selectedAsset.expenses_id.description}
+													#{rawMaterialBean.selectedrawMaterial.expenses_id.description}
 												</address>
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Payment Date:</span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.date.getTime().toString()}</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.expenses_id.date.getTime().toString()}</span>
 												</p>
 												
 											</div>
@@ -75,7 +75,7 @@
 												<p class="mb-none">
 													<span class="text-dark">Bought by:
 																<h:form>
-																	<p:commandButton class="linkButton" value="#{assetsBean.selectedAsset.expenses_id.boughtByUser_id.name}" action="#{generalBean.showUser(assetsBean.selectedAsset.expenses_id.boughtByUser_id.id)}"></p:commandButton>
+																	<p:commandButton class="linkButton" value="#{rawMaterialBean.selectedrawMaterial.expenses_id.boughtByUser_id.name}" action="#{generalBean.showUser(rawMaterialBean.selectedrawMaterial.expenses_id.boughtByUser_id.id)}"></p:commandButton>
 																</h:form>
 													</span>
 													
@@ -88,7 +88,7 @@
 												<p class="mb-none">
 													<span class="text-dark">Added by:
 															<h:form>
-																	<p:commandButton class="linkButton" value="#{assetsBean.selectedAsset.expenses_id.addedByUser_id.name}" action="#{generalBean.showUser(assetsBean.selectedAsset.expenses_id.addedByUser_id.id)}"></p:commandButton>
+																	<p:commandButton class="linkButton" value="#{rawMaterialBean.selectedrawMaterial.expenses_id.addedByUser_id.name}" action="#{generalBean.showUser(rawMaterialBean.selectedrawMaterial.expenses_id.addedByUser_id.id)}"></p:commandButton>
 															</h:form>
 													</span>
 												</p>
@@ -97,49 +97,49 @@
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Payment Statues:</span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.statues}</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.expenses_id.statues}</span>
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Price: </span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.price} LE</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.expenses_id.price} LE</span>
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Quantity: </span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.quantity}</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.expenses_id.quantity}</span>
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Total Price: </span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.expenses_id.quantity} LE</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.expenses_id.price*rawMaterialBean.selectedrawMaterial.expenses_id.quantity} LE</span>
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Bought From:</span>
-													<span class="value">#{assetsBean.selectedAsset.boughtFrom}</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.boughtFrom}</span>
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Stored in:</span>
-													<span class="value">#{assetsBean.selectedAsset.storedIn}</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.storedIn}</span>
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Payment Date:</span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.date.getTime().toString()}</span>
+													<span class="value">#{rawMaterialBean.selectedrawMaterial.expenses_id.date.getTime().toString()}</span>
 												</p>
 												
 											</div>
@@ -149,7 +149,7 @@
 										<div class="col-sm-6 text-right mt-md mb-md">
 											
 											<div class="ib">
-												<h:graphicImage value="#{assetsBean.selectedAsset.getphoto()}" alt="OKLER Themes" style="    width: 70%;    border-radius: 25px;    border: 1px solid #BFBFBF;    box-shadow: 10px 10px 5px #aaaaaa;"/>
+												<h:graphicImage value="#{rawMaterialBean.selectedrawMaterial.getphoto()}" alt="OKLER Themes" style="    width: 70%;    border-radius: 25px;    border: 1px solid #BFBFBF;    box-shadow: 10px 10px 5px #aaaaaa;"/>
 											</div>
 										</div>
 									</div>
@@ -162,7 +162,7 @@
 													<span class="text-dark">Invoice </span>
 												</p>
 												<p class="mb-none" style="text-align: left;padding-bottom: 2%;  ">
-													<h:graphicImage value="#{assetsBean.selectedAsset.getinvoice()}" alt="OKLER Themes" style="    width: 70%;    border-radius: 25px;    border: 1px solid #BFBFBF;    box-shadow: 10px 10px 5px #aaaaaa;"/>
+													<h:graphicImage value="#{rawMaterialBean.selectedrawMaterial.getinvoice()}" alt="OKLER Themes" style="    width: 70%;    border-radius: 25px;    border: 1px solid #BFBFBF;    box-shadow: 10px 10px 5px #aaaaaa;"/>
 												</p>
 											</div>
 										</div>
@@ -182,11 +182,11 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>#{assetsBean.selectedAsset.id}</td>
-												<td class="text-semibold text-dark">#{assetsBean.selectedAsset.expenses_id.name}</td>
-												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.price} LE</td>
-												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.quantity}</td>
-												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.expenses_id.quantity} LE</td>
+												<td>#{rawMaterialBean.selectedrawMaterial.id}</td>
+												<td class="text-semibold text-dark">#{rawMaterialBean.selectedrawMaterial.expenses_id.name}</td>
+												<td class="text-center">#{rawMaterialBean.selectedrawMaterial.expenses_id.price} LE</td>
+												<td class="text-center">#{rawMaterialBean.selectedrawMaterial.expenses_id.quantity}</td>
+												<td class="text-center">#{rawMaterialBean.selectedrawMaterial.expenses_id.price*rawMaterialBean.selectedrawMaterial.expenses_id.quantity} LE</td>
 											</tr>
 										</tbody>
 									</table>
@@ -200,7 +200,7 @@
 												
 													<tr class="h4">
 														<td colspan="2">Grand Total</td>
-														<td class="text-left">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.expenses_id.quantity} LE</td>
+														<td class="text-left">#{rawMaterialBean.selectedrawMaterial.expenses_id.price*rawMaterialBean.selectedrawMaterial.expenses_id.quantity} LE</td>
 													</tr>
 												</tbody>
 											</table>
@@ -210,7 +210,7 @@
 							</div>
 
 							<div class="text-right mr-lg">
-								<a href="/pages/secured/admin/assets/assets.xhtml" class="btn btn-default">Go back</a>
+								<a href="/pages/secured/admin/rawMaterial/rawMaterials.xhtml" class="btn btn-default">Go back</a>
 							</div>
 						</div>
 					</section>

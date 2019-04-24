@@ -24,7 +24,7 @@
 	</ui:define>
 	
 	<ui:define name="content">
-	#{assetsBean.refresh()}
+	#{expensesBean.refresh()}
 	#{generalBean.refresh()}
 		<style>
 		#formImage{
@@ -166,7 +166,7 @@
 		</style>
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Asset Details</h2>
+						<h2>Expenses Details</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -175,11 +175,11 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Assets</span></li>
+								<li><span>Expenses</span></li>
 								<li><span>details</span></li>
 							</ol>
 					
-							<a class="sidebar-right-toggle" href="/pages/secured/admin/assets/assets.xhtml"><i class="fa fa-chevron-left"></i></a>
+							<a class="sidebar-right-toggle" href="/pages/secured/admin/expenses/expenses.xhtml"><i class="fa fa-chevron-left"></i></a>
 						</div>
 					</header>
 
@@ -187,7 +187,7 @@
 					<h:form id="mainForm">
 						<div class="container panel-body2">
 						<div class="row" style=" margin-bottom: 3%;">
-						<h1 style="margin-top: 3%;    margin-left: 5%;">Assets</h1>
+						<h1 style="margin-top: 3%;    margin-left: 5%;">Expensess</h1>
 						</div>
 							<div class="row" style="margin-left: 8%;" >
 							<div >
@@ -197,21 +197,23 @@
 										<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
 												
 													<h4 class="labelH4Column ">Item Name</h4>
-													<p:inputText required="true" class="inputColumn " value="#{assetsBean.addedExpenses.name}"></p:inputText>
+													<p:inputText required="true" class="inputColumn " value="#{expensesBean.addedExpenses.name}"></p:inputText>
 												
+													<h4 class="rowSpaceing labelH4Column ">State</h4>
+													<p:selectOneButton  styleClass="inputColumnSelectOneButton "  value = "#{expensesBean.payedOrNot}"> 
+														<f:selectItem itemValue = "1" itemLabel = "Paid" /> 
+														<f:selectItem itemValue = "2" itemLabel = "Payable" />
+													</p:selectOneButton>
 												
+													
 												
-													<h4 class="rowSpaceing labelH4Column ">Quantity</h4>
-													<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{assetsBean.addedAsset.expenses_id.quantity}"></p:inputNumber>
-												
-												
-													<h4 class="labelH4Column ">Unite Price</h4>
-													<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{assetsBean.addedExpenses.price}"></p:inputNumber>
+													<h4 class="labelH4Column ">Price</h4>
+													<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{expensesBean.addedExpenses.price}"></p:inputNumber>
 												
 												
 													<h4 class="labelH4Column ">Description</h4>
 													<h:panelGroup>
-														<p:inputTextarea required="true"  class="DescriptionColumn  " value="#{assetsBean.addedExpenses.description}" counter="display" maxlength="200" counterTemplate="{0} characters remaining." autoResize="false"></p:inputTextarea>
+														<p:inputTextarea required="true"  class="DescriptionColumn  " value="#{expensesBean.addedExpenses.description}" counter="display" maxlength="200" counterTemplate="{0} characters remaining." autoResize="false"></p:inputTextarea>
 														<div style="width: 135%;">
 															<h:outputText id="display"  style="float: right;"/>
 														</div>
@@ -229,79 +231,41 @@
 											
 														<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
 																
+																
 																<h4 class="labelH4Column ">Bought By</h4>
-																<h:selectOneMenu class="selectorColumn "  value = "#{assetsBean.addedExpenses.boughtByUser_id.id}"> 
+																<h:selectOneMenu class="selectorColumn "  value = "#{expensesBean.addedExpenses.boughtByUser_id.id}"> 
 																   <f:selectItems value="#{generalBean.allUsers}" var="entry"
 																           itemValue="#{entry.id}" itemLabel="#{entry.name}" />
 																</h:selectOneMenu>
 															
-															
+																<h4 class="rowSpaceing labelH4Column ">Quantity</h4>
+																<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{expensesBean.addedExpenses.quantity}"></p:inputNumber>
+												
+												
 																<h4 class="rowSpaceing labelH4Column ">Payment</h4>
-																<p:selectOneButton  styleClass="inputColumnSelectOneButton "  value = "#{assetsBean.paymentAddingMethod}"> 
+																<p:selectOneButton  styleClass="inputColumnSelectOneButton "  value = "#{expensesBean.paymentAddingMethod}"> 
 																   <f:selectItem itemValue = "1" itemLabel = "Billed  " /> 
 																   <f:selectItem itemValue = "2" itemLabel = "+Shares  " />
 																</p:selectOneButton>
 															
-																<h4 class="labelH4Column ">Bought From</h4>
-																<p:inputText required="true" class= "inputColumn " value="#{assetsBean.addedAsset.boughtFrom}"></p:inputText>
-															
 															
 																<h4 class="labelH4Column ">Date</h4>
-																<p:inputText required="true"  value="#{assetsBean.dateString}" class= "inputColumn timePicker" ></p:inputText>
+																<p:inputText required="true"  value="#{expensesBean.dateString}" class= "inputColumn timePicker" ></p:inputText>
 															
-																<h4 class="labelH4Column ">Stored in</h4>
-																<p:inputText required="true" class= "inputColumn " value="#{assetsBean.addedAsset.storedIn}"></p:inputText>
-															
+																
 															
 														</h:panelGrid>
 													
 													</div>
 												
 										</div>
-								<div class="col-md-2">
-									<h:form id="invoiceForm">
-									<label for="mainForm:invoiceForm:buttonUploadInvoice_input">
-										<span class="buttonAttachIvoice">attach Invoice</span>
-									</label>
-										<p:fileUpload id="buttonUploadInvoice" fileUploadListener="#{assetsBean.handleInvoiceUpload}" mode="advanced"
-													                  update=":mainForm:formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-													         
-													    <p:growl id="messages" showDetail="true" />     
-									</h:form>
-								</div>
-								<div class="col-md-3 classColumn2">
-												
-													<h:form id="formImage">  
-													<style>
-															.ui-fileupload-content {
-																   border: #faebd700;
-																    padding: 0px;
-																    margin: 0px;
-																}
-																
-															.ui-fileupload-buttonbar {
-																   visibility: hidden;
-																    height: 0px;
-																    padding: 0px;
-																    margin: 0px;
-																}
-														</style>
-														<label for="mainForm:formImage:buttonUploadImage_input">
-															<h:graphicImage value="/resources/images/imageEmpty.png" rendered="#{assetsBean.addedAsset.image==null}"  class="squareImage" alt=""/>
-															<h:graphicImage value="#{assetsBean.addedAsset.getphoto()}" rendered="#{assetsBean.addedAsset.image!=null}"  class="squareImage" alt=""/>
-														</label>
-														
-													    <p:fileUpload id="buttonUploadImage" fileUploadListener="#{assetsBean.handleImageUpload}" mode="advanced"
-													                  update=":mainForm:formImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-													         
-													    <p:growl id="messages" showDetail="true" />        
-													</h:form>
-								</div>
+								
+								
 							</div>
 						
 						<div class="row" style="    margin-bottom: 2%;" >
 							<div class="text-right mr-lg" style="    margin-right: 7%!important;">
-								<h:commandButton value="Add Asset" action="#{assetsBean.addNewAsset()}" class="btn btn-default"></h:commandButton>
+								<h:commandButton value="Add Expense" action="#{expensesBean.addNewExpenses()}" class="btn btn-default"></h:commandButton>
 							</div>
 							</div>
 						</div>

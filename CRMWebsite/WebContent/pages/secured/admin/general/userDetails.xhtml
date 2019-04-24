@@ -6,6 +6,11 @@
     <h:head>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<style>
+		body{
+		margin: 0;
+	    width: -webkit-fill-available;
+	    background: whitesmoke;
+		}
 		.card {
 		  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 		  max-width: 100%;
@@ -51,7 +56,7 @@
 		
 		
 		<div class="card">
-			<h:graphicImage value="#{generalBean.selectedUser.getphoto()}" alt="John" style="    height: 315px;width:100%"/>
+			<h:graphicImage value="#{generalBean.selectedUser.getphoto()}" alt="John" style="    height: 323px;width:100%"/>
 		  
 		  <h1>#{generalBean.selectedUser.name}</h1>
 		  <p class="title">Admin</p>
@@ -61,7 +66,7 @@
 		   
 		  </div>
 			  <p>
-				  <h:form >
+				  <h:form style="    width: 99%;    margin-left: 0.5%;">
 					  <p:commandButton class="finishButton" value="Return" action="#{generalBean.doSomethingAndCloseDialog1()}"/>
 				  </h:form>
 			  </p>

@@ -2,6 +2,7 @@ package main.com.crm.generalBean;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -42,6 +43,8 @@ public class generalBean implements Serializable{
 	
 	private user selectedUser;
 	
+	private List<user> allUsers;
+	
 	@PostConstruct
 	public void init() {
 		
@@ -50,7 +53,7 @@ public class generalBean implements Serializable{
 	}
 	
 	public void refresh(){
-		
+		allUsers=userDataFacede.getAll();
 	}
 
 
@@ -58,11 +61,11 @@ public class generalBean implements Serializable{
 		selectedUser=userDataFacede.getById(idUser);
 		Map<String,Object> options = new HashMap<String, Object>();
 	    options.put("modal", true);
-        options.put("width", 400);
+        options.put("width", 375);
         options.put("height", 550);
         options.put("contentWidth", "100%");
         options.put("contentHeight", "100%");
-        options.put("background", "#ffdead00");
+        options.put("background", "#00ffff00");
 	    PrimeFaces.current().dialog().openDynamic("/pages/secured/admin/general/userDetails", options, null);
 		
 	}
@@ -98,6 +101,14 @@ public class generalBean implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<user> getAllUsers() {
+		return allUsers;
+	}
+
+	public void setAllUsers(List<user> allUsers) {
+		this.allUsers = allUsers;
 	}
 	
 	

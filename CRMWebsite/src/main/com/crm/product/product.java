@@ -56,6 +56,9 @@ public class product {
 	@Column(name = "quantity")
 	private Integer quantity;
 	
+	@Column(name = "quantityAvailable")
+	private Integer quantityAvailable;
+	
 	
 	@Column(name = "newOrReproduced")
 	private Integer newOrReproduced;
@@ -322,6 +325,22 @@ public class product {
 
 	public void setDate(Calendar date) {
 		this.date = date;
+	}
+
+
+
+
+
+	public Integer getQuantityAvailable() {
+		return quantityAvailable;
+	}
+
+
+
+
+
+	public void setQuantityAvailable(Integer quantityAvailable) {
+		this.quantityAvailable = quantityAvailable;
 	}
 
 

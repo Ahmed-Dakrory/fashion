@@ -48,9 +48,7 @@ public class asset {
 	private Integer id;
 
 
-	@Column(name = "quantity")
-	private Integer quantity;
-
+	
 	
 	@Column(name = "boughtFrom")
 	private String boughtFrom;
@@ -85,15 +83,6 @@ public class asset {
 		this.id = id;
 	}
 
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
 
 
 	public String getBoughtFrom() {

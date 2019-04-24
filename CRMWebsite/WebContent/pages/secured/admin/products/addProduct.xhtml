@@ -162,11 +162,14 @@
 				position:relative;
 				top:1px;
 			}
-		
+			#loaderDiv{
+			    width: initial;
+			    text-align: center;
+			}
 		</style>
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Asset Details</h2>
+						<h2>Produce Details</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -175,11 +178,11 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Assets</span></li>
+								<li><span>Produce</span></li>
 								<li><span>details</span></li>
 							</ol>
 					
-							<a class="sidebar-right-toggle" href="/pages/secured/admin/assets/assets.xhtml"><i class="fa fa-chevron-left"></i></a>
+							<a class="sidebar-right-toggle" href="/pages/secured/admin/products/products.xhtml"><i class="fa fa-chevron-left"></i></a>
 						</div>
 					</header>
 
@@ -187,7 +190,19 @@
 					<h:form id="mainForm">
 						<div class="container panel-body2">
 						<div class="row" style=" margin-bottom: 3%;">
-						<h1 style="margin-top: 3%;    margin-left: 5%;">Assets</h1>
+						<h1 style="margin-top: 3%;    margin-left: 5%;">Produce</h1>
+						<div id="loaderDiv">
+							<h:graphicImage value="/resources/images/loaderContainer.png"  />
+							<h:graphicImage id="start1" value="/resources/images/startOfLoading.png" style="position: relative;left: -73.2%;top: -3px;z-index: 1;"/>
+							<h:graphicImage id="start2" value="/resources/images/startOfLoading.png" style="position: relative;left: -74.2%;top: -3px;z-index: 1;"/>
+							<h:graphicImage id="step1" value="/resources/images/stepLoader.png" style="position: relative;left: 10.5%;top: -83px;z-index: 1;height: fit-content;"/>
+							<h:outputLabel style="position:absolute;top: 25%;left: 20%;z-index: 3;font-size: 39px;" value="step one"></h:outputLabel>
+							<h:graphicImage id="step2" value="/resources/images/stepLoader.png" style="position: relative;left: -1.5%;top: -83px;z-index: 1;width: 46%;height: fit-content;padding-top: 0.1%;padding-bottom: 0.03%;"/>
+							<h:graphicImage id="step3" value="/resources/images/stepLoader.png" style="position: relative;left: -9%;top: -83px;height: fit-content;z-index: 1;padding-bottom: 0.09%;padding-top: 0.15%;"/>
+							<h:graphicImage id="end1" value="/resources/images/startOfLoading.png" style="position: relative;left: -13.8%;top: -81px;z-index: 1;height: fit-content;padding-top: 0.1%;padding-bottom: 0.23%;"/>
+							<h:graphicImage id="end2" value="/resources/images/startOfLoading.png" style="position: relative;left: -17.6%;top: -83px;z-index: 1;height: fit-content;padding-top: 0.12%;padding-bottom: 0.25%;"/>
+							
+						</div>
 						</div>
 							<div class="row" style="margin-left: 8%;" >
 							<div >
