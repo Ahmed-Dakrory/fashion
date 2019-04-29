@@ -90,6 +90,19 @@ public class productMaterialsRepositoryImpl implements productMaterialsRepositor
 			 return null;
 		 }
 	}
+
+	@Override
+	public List<productMaterials> getAllProductMaterialsWithProductId(int id) {
+		 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("productMaterials.getByProductId").setInteger("id",id);
+
+		 @SuppressWarnings("unchecked")
+		List<productMaterials> results=query.list();
+		 if(results.size()!=0){
+			 return results;
+		 }else{
+			 return null;
+		 }
+	}
 	
 
 }

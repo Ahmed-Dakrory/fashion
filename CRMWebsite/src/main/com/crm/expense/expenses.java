@@ -33,6 +33,15 @@ import main.com.crm.loginNeeds.user;
 	query = "from expenses d where d.id = :id"
 			)
 	
+	,
+	@NamedQuery(name="expenses.getAllExceptType",
+	query = "from expenses d where d.type != :type"
+			)
+	,
+	@NamedQuery(name="expenses.getAllForTypeBetweenDateAndRole",
+	query = "from expenses d where d.date > :dateLower and d.date < :dateHigher and d.type = :type "
+			)
+	
 	
 	
 })
@@ -52,8 +61,8 @@ public class expenses {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "price")
-	private Integer price;
+	@Column(name = "pricePerUnit")
+	private Float pricePerUnit;
 	
 	@Column(name = "quantity")
 	private Integer quantity;
@@ -62,8 +71,41 @@ public class expenses {
 	@JoinColumn(name = "addedByUser_id")
 	private user addedByUser_id;
 	
+
+	public static int PAYED=1;
+	public static int REGARD_AS_SHARE=2;
+	/*
+	 * pay or addTo shares
+	 */
+	@Column(name = "payedOrAddToShares")
+	private Integer payedOrAddToShares;
+	
+	
+	/*
+	 * pay or regard as payable(not payed)
+	 */
+
+	public static int STATUE_PAYED=1;
+	public static int STATUE_REGARD_AS_PAyABLE=2;
+	
 	@Column(name = "statues")
 	private Integer statues;
+	
+	
+	/*
+	 * 0 for normal expenses
+	 * 1 for assets
+	 * 2 for raw material
+	 * 
+	 */
+	
+
+	public static int TYPE_NORMAL_EXPENSES=0;
+	public static int TYPE_ASSETS=1;
+	public static int TYPE_RAW_MATERIAL=2;
+	
+	@Column(name = "type")
+	private Integer type;
 	
 	@Column(name = "date")
 	private Calendar date;
@@ -104,13 +146,15 @@ public class expenses {
 	}
 
 
-	public Integer getPrice() {
-		return price;
+	
+
+	public Float getPricePerUnit() {
+		return pricePerUnit;
 	}
 
 
-	public void setPrice(Integer price) {
-		this.price = price;
+	public void setPricePerUnit(Float pricePerUnit) {
+		this.pricePerUnit = pricePerUnit;
 	}
 
 
@@ -164,8 +208,43 @@ public class expenses {
 	}
 
 
+	public Integer getType() {
+		return type;
+	}
+
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+
+	public Integer getPayedOrAddToShares() {
+		return payedOrAddToShares;
+	}
+
+
+	public void setPayedOrAddToShares(Integer payedOrAddToShares) {
+		this.payedOrAddToShares = payedOrAddToShares;
+	}
+
+
+	public String getTypeString() {
+		if(type==expenses.TYPE_ASSETS) {
+			return "Assets";
+		}else if(type==expenses.TYPE_NORMAL_EXPENSES) {
+			return "Normal Expenses";
+		}else {
+			return "Raw Material";
+		}
+	}
 	
-	
+	public String getStatuesString() {
+		if(statues==1) {
+			return "payed";
+		}else {
+			return "payable";
+		}
+	}
 	
 
 }

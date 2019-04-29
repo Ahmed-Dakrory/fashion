@@ -15,5 +15,5 @@ public interface rawMaterialRepository {
 	public List<rawMaterial> getAll();
 	public rawMaterial addrawMaterial(rawMaterial data);
 	public rawMaterial getById(int id);
-	public boolean delete(rawMaterial data);
+	public boolean delete(rawMaterial data) throws Exception;
 }

@@ -23,6 +23,8 @@ import main.com.crm.expense.expenses;
 import main.com.crm.expense.expensesAppServiceImpl;
 import main.com.crm.loginNeeds.user;
 import main.com.crm.loginNeeds.userAppServiceImpl;
+import main.com.crm.moneyBox.moneybox;
+import main.com.crm.moneyBox.moneyboxAppServiceImpl;
 
 
 @ManagedBean(name = "rawMaterialBean")
@@ -42,6 +44,9 @@ public class rawMaterialBean implements Serializable{
 	
 	@ManagedProperty(value = "#{expensesFacadeImpl}")
 	private expensesAppServiceImpl expensesDataFacede; 
+	
+	@ManagedProperty(value = "#{moneyboxFacadeImpl}")
+	private moneyboxAppServiceImpl moneyboxDataFacede; 
 	 
 	@ManagedProperty(value = "#{loginBean}")
 	private main.com.crm.loginNeeds.loginBean loginBean;
@@ -77,7 +82,7 @@ public class rawMaterialBean implements Serializable{
 	}
 	
 	public void refresh(){
-		allUsers=userDataFacede.getAll();
+		allUsers=userDataFacede.getAllWithRole(user.ROLE_SHAREHOLDER);
 		listOfrawMaterials=rawMaterialDataFacede.getAll();
 	}
 
@@ -86,7 +91,7 @@ public class rawMaterialBean implements Serializable{
 		selectedrawMaterial=rawMaterialDataFacede.getById(rawMaterialId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterialDetails.xhtml");
+			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterialDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,7 +99,40 @@ public class rawMaterialBean implements Serializable{
 	}
 	
 	
-	 
+	 public void deleteRawMaterial(int idRaw) {
+		 rawMaterial rM=rawMaterialDataFacede.getById(idRaw);
+		 
+		 try {
+			rawMaterialDataFacede.delete(rM);
+			expensesDataFacede.delete(rM.getExpenses_id());
+			moneybox mB=moneyboxDataFacede.getByUserId(rM.getExpenses_id().getBoughtByUser_id().getId());
+			if(rM.getExpenses_id().getStatues()==1) {
+				// he pay this amount so we need retrieve it
+				if(rM.getExpenses_id().getPayedOrAddToShares()==1) {
+					//Payed directly
+					mB.setMoneyRemains(mB.getMoneyRemains()+(rM.getExpenses_id().getPricePerUnit()*rM.getExpenses_id().getQuantity()));
+					
+				}else {
+					//Payed as shares
+					mB.setTotalMoney(mB.getTotalMoney()-(rM.getExpenses_id().getPricePerUnit()*rM.getExpenses_id().getQuantity()));
+					
+				}
+			}else {
+				// pay as payable
+				mB.setTotalMoney(mB.getTotalMoney()-(rM.getExpenses_id().getPricePerUnit()*rM.getExpenses_id().getQuantity()));
+				mB.setPayable(mB.getPayable()-(rM.getExpenses_id().getPricePerUnit()*rM.getExpenses_id().getQuantity()));
+			}
+			moneyboxDataFacede.addmoneybox(mB);
+		} catch (Exception e) {
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Problem!',\r\n" + 
+					"			text: 'Cannot delete this material, some products related to it!',\r\n" + 
+					"			type: 'error',\r\n" + 
+					"			left:\"1%\"\r\n" + 
+					"		});");
+		}
+		 
+	 }
 	     
 	    
 	     
@@ -118,12 +156,13 @@ public class rawMaterialBean implements Serializable{
 		addedExpenses.setAddedByUser_id(new user());
 		addedExpenses.setBoughtByUser_id(new user());
 		addedrawMaterial.setExpenses_id(addedExpenses);
+		addedrawMaterial.setAvailableQuantity(addedrawMaterial.getExpenses_id().getQuantity());
 		paymentAddingMethod=1;
 		unit=1;
 		dateString=null;
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/addrawMaterial.xhtml");
+			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/addrawMaterial.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,6 +171,7 @@ public class rawMaterialBean implements Serializable{
 	}
 	
 	public void addNewrawMaterial() {
+		
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM HH:mm:ss"); 
 		try {
 			if(dateString!=null) {
@@ -145,24 +185,71 @@ public class rawMaterialBean implements Serializable{
 			e.printStackTrace();
 		}  
 		addedExpenses.setStatues(1);
+		addedExpenses.setType(2);
+		addedExpenses.setPayedOrAddToShares(paymentAddingMethod);
 		addedExpenses.setAddedByUser_id(loginBean.getTheUserOfThisAccount());
-		expensesDataFacede.addexpenses(addedExpenses);
 		addedrawMaterial.setUnit(unit);
 		addedrawMaterial.setExpenses_id(addedExpenses);
-		rawMaterialDataFacede.addrawMaterial(addedrawMaterial);
-		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
-				"			title: 'Success',\r\n" + 
-				"			text: 'New rawMaterial has been added.',\r\n" + 
-				"			type: 'success'\r\n" + 
-				"		});");
+		addedrawMaterial.setAvailableQuantity(addedrawMaterial.getExpenses_id().getQuantity());
 		
-		try {
-			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterials.xhtml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		
+		moneybox mB=moneyboxDataFacede.getByUserId(addedExpenses.getBoughtByUser_id().getId());
+		
+		if(paymentAddingMethod==1) {
+			//Billed method
+			if(mB.getMoneyRemains()>(addedrawMaterial.getExpenses_id().getPricePerUnit()*addedrawMaterial.getExpenses_id().getQuantity())) {
+				mB.setMoneyRemains(mB.getMoneyRemains()-(addedrawMaterial.getExpenses_id().getPricePerUnit()*addedrawMaterial.getExpenses_id().getQuantity()));
+				
+				expensesDataFacede.addexpenses(addedExpenses);
+				rawMaterialDataFacede.addrawMaterial(addedrawMaterial);
+				
+				moneyboxDataFacede.addmoneybox(mB);
+				PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+						"			title: 'Success',\r\n" + 
+						"			text: 'New rawMaterial has been added.',\r\n" + 
+						"			type: 'success'\r\n" + 
+						"		});");
+				
+				try {
+					FacesContext.getCurrentInstance()
+					   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterials.jsf");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+						"			title: 'Problem!',\r\n" + 
+						"			text: 'The user moneybox has no sufficient Money!',\r\n" + 
+						"			type: 'error',\r\n" + 
+						"			left:\"1%\"\r\n" + 
+						"		});");
+			}
+		}else if(paymentAddingMethod==2){
+			//Add to Shared method
+			mB.setTotalMoney(mB.getTotalMoney()+(addedrawMaterial.getExpenses_id().getPricePerUnit()*addedrawMaterial.getExpenses_id().getQuantity()));
+			
+			expensesDataFacede.addexpenses(addedExpenses);
+			rawMaterialDataFacede.addrawMaterial(addedrawMaterial);
+			
+			moneyboxDataFacede.addmoneybox(mB);
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Success',\r\n" + 
+					"			text: 'New rawMaterial has been added.',\r\n" + 
+					"			type: 'success'\r\n" + 
+					"		});");
+			
+			try {
+				FacesContext.getCurrentInstance()
+				   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterials.jsf");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		
 	}
 	
 	
@@ -268,6 +355,14 @@ public class rawMaterialBean implements Serializable{
 
 	public void setUnit(int unit) {
 		this.unit = unit;
+	}
+
+	public moneyboxAppServiceImpl getMoneyboxDataFacede() {
+		return moneyboxDataFacede;
+	}
+
+	public void setMoneyboxDataFacede(moneyboxAppServiceImpl moneyboxDataFacede) {
+		this.moneyboxDataFacede = moneyboxDataFacede;
 	}
 	
 	

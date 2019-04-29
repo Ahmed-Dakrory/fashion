@@ -90,6 +90,20 @@ public class moneyboxRepositoryImpl implements moneyboxRepository{
 			 return null;
 		 }
 	}
+
+	@Override
+	public moneybox getByUserId(int id) {
+		// TODO Auto-generated method stub
+				 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("moneybox.getByUserId").setInteger("id",id);
+
+				 @SuppressWarnings("unchecked")
+				List<moneybox> results=query.list();
+				 if(results.size()!=0){
+					 return results.get(0);
+				 }else{
+					 return null;
+				 }
+	}
 	
 
 }

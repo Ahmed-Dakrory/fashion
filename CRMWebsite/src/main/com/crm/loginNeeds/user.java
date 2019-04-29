@@ -36,6 +36,11 @@ import org.hibernate.annotations.NamedQuery;
 			)
 	
 	,
+	@NamedQuery(name="user.getAllWithRole",
+	query = "from user d where d.role = :role"
+			)
+	
+	,
 	@NamedQuery(name="user.getByMailAndPassword",
 	query = "from user d where d.email = :email and d.password = :password and active = :active"
 			)
@@ -66,6 +71,12 @@ public class user {
 	@Column(name = "phone")
 	private String phone;
 	
+	@Column(name = "address")
+	private String address;
+
+	public static int ROLE_ADMIN=0;
+	public static int ROLE_SHAREHOLDER=1;
+	public static int ROLE_CUSTOMER=2;
 
 	@Column(name = "role")
 	private Integer role;
@@ -150,6 +161,21 @@ public class user {
 	}
 
 
+	
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
 
 
 	public Integer getRole() {
@@ -192,7 +218,15 @@ public class user {
 	}
 
 
-
+	public String getRoleString() {
+		if(role==0) {
+			return "Admin";
+		}else if(role==1) {
+			return "Shareholder";
+		}else {
+			return "Customer";
+		}
+	}
 
 	public String getphoto() {
 		if(getImage()!=null) {

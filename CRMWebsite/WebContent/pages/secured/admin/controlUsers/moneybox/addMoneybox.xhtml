@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/dashboard.xhtml">
+
+	<ui:define name="title">Shop Login</ui:define>
+	
+	<ui:define name="JavaScript">
+		
+	
+	</ui:define>
+		
+		
+	
+	<ui:define name="CssDesign">
+	
+	 <link rel="stylesheet" href="#{resource['css:dashboard/addingNewObject.css']}" />
+	 
+	</ui:define>
+	
+	<ui:define name="content">
+	#{moneyboxBean.refresh()}
+	#{generalBean.refresh()}
+		
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Moneybox Details</h2>
+					
+						<div class="right-wrapper pull-right">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="index.html">
+										<i class="fa fa-home"></i>
+									</a>
+								</li>
+								<li><span>Moneybox</span></li>
+								<li><span>details</span></li>
+							</ol>
+					
+							<a class="sidebar-right-toggle" href="/pages/secured/admin/controlUsers/moneybox/moneybox.jsf"><i class="fa fa-chevron-left"></i></a>
+						</div>
+					</header>
+
+					<!-- start: page -->
+					<h:form id="mainForm">
+						<div class="container panel-body2">
+						<div class="row" style=" margin-bottom: 3%;">
+						<h1 style="margin-top: 3%;    margin-left: 5%;">Moneyboxs</h1>
+						</div>
+							<div class="row" style="margin-left: 8%;" >
+							<div >
+							</div>
+								<div class="col-md-5 classColumn">
+									<div >
+										<h:panelGrid class="tableItSelfDiv" columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
+												
+													
+													<h4 class="labelH4Column ">User Account</h4>
+													<h:selectOneMenu class="selectorColumn "  value = "#{moneyboxBean.userId}"> 
+													   <f:selectItems value="#{generalBean.allUsers}" var="entry"
+													          itemValue="#{entry.id}" itemLabel="#{entry.name}" />
+													</h:selectOneMenu>
+												
+													<h4 class="labelH4Column ">Total Money</h4>
+													<p:inputNumber required="true" inputStyleClass="inputColumn " value="#{moneyboxBean.addedMoneybox.totalMoney}"></p:inputNumber>
+												
+												
+													<h4 class="labelH4Column ">Money Remains</h4>
+													<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{moneyboxBean.addedMoneybox.moneyRemains}"></p:inputNumber>
+												
+													<h4 class="labelH4Column ">Payables</h4>
+													<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{moneyboxBean.addedMoneybox.payable}"></p:inputNumber>
+												
+												
+													
+											</h:panelGrid>
+											
+											
+										</div>
+									</div>
+												
+								<div class="col-md-5 classColumn">
+													<div id="secondColumnForm">
+										
+											
+														
+													</div>
+												
+										</div>
+								
+								
+							</div>
+						
+						<div class="row" style="    margin-bottom: 2%;" >
+							<div class="text-right mr-lg" style="    margin-right: 7%!important;">
+								<h:commandButton value="Add Shareholder" action="#{moneyboxBean.addNewMoneybox()}" class="btn btn-default"></h:commandButton>
+							</div>
+							</div>
+						</div>
+					</h:form>								
+					<!-- end: page -->
+					
+					
+					
+      
+				</section>		
+				
+				<script>
+				$(function() {
+					$('.timePicker').datepicker({
+					    dateFormat: 'yy-dd-mm',
+					    onSelect: function(datetext){
+
+					        var d = new Date(); // for now
+
+					        var h = d.getHours();
+					        h = (h &lt; 10) ? ("0" + h) : h ;
+
+					        var m = d.getMinutes();
+					        m = (m &lt; 10) ? ("0" + m) : m ;
+
+					        var s = d.getSeconds();
+					        s = (s &lt; 10) ? ("0" + s) : s ;
+
+					        datetext = datetext + " " + h + ":" + m + ":" + s;
+
+					        $('.timePicker').val(datetext);
+					    }
+					});
+					});
+							
+						
+					</script>	
+				
+	</ui:define>
+	
+		
+	
+</ui:composition>
+</html>

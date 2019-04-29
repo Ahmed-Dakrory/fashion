@@ -134,4 +134,17 @@ public class userRepositoryImpl implements userRepository{
 		 }
 	}
 
+	@Override
+	public List<user> getAllWithRole(int role) {
+		 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("user.getAllWithRole").setInteger("role", role);
+
+		 @SuppressWarnings("unchecked")
+		List<user> results=query.list();
+		 if(results.size()!=0){
+			 return results;
+		 }else{
+			 return null;
+		 }
+	}
+
 }

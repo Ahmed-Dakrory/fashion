@@ -104,7 +104,7 @@
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Price: </span>
-													<span class="value">#{expensesBean.selectedExpenses.price} LE</span>
+													<span class="value">#{expensesBean.selectedExpenses.pricePerUnit} LE</span>
 												</p>
 												
 											</div>
@@ -140,9 +140,9 @@
 											<tr>
 												<td>#{expensesBean.selectedExpenses.id}</td>
 												<td class="text-semibold text-dark">#{expensesBean.selectedExpenses.name}</td>
-												<td class="text-center">#{expensesBean.selectedExpenses.price} LE</td>
+												<td class="text-center">#{expensesBean.selectedExpenses.pricePerUnit} LE</td>
 												<td class="text-center">#{expensesBean.selectedExpenses.quantity}</td>
-												<td class="text-center">#{expensesBean.selectedExpenses.price*expensesBean.selectedExpenses.quantity} LE</td>
+												<td class="text-center">#{expensesBean.selectedExpenses.pricePerUnit*expensesBean.selectedExpenses.quantity} LE</td>
 											</tr>
 										</tbody>
 									</table>
@@ -156,7 +156,7 @@
 												
 													<tr class="h4">
 														<td colspan="2">Grand Total</td>
-														<td class="text-left">#{expensesBean.selectedExpenses.price*expensesBean.selectedExpenses.quantity} LE</td>
+														<td class="text-left">#{expensesBean.selectedExpenses.pricePerUnit*expensesBean.selectedExpenses.quantity} LE</td>
 													</tr>
 												</tbody>
 											</table>

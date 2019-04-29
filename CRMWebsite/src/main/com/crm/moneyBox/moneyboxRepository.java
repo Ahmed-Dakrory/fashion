@@ -15,5 +15,6 @@ public interface moneyboxRepository {
 	public List<moneybox> getAll();
 	public moneybox addmoneybox(moneybox data);
 	public moneybox getById(int id);
+	public moneybox getByUserId(int id);
 	public boolean delete(moneybox data);
 }

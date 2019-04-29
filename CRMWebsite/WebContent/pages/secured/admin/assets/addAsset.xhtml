@@ -21,149 +21,14 @@
 	<ui:define name="CssDesign">
 	
 	 
+	 <link rel="stylesheet" href="#{resource['css:dashboard/addingNewObject.css']}" />
 	</ui:define>
 	
 	<ui:define name="content">
+   
 	#{assetsBean.refresh()}
 	#{generalBean.refresh()}
-		<style>
-		#formImage{
-			
-		}
 		
-		.squareImage{
-			width: 222px;
-		    height: 222px;
-		    border-radius: 4%;
-		    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
-		}
-		.labelH4Column{
-		   margin-top: initial;
-		    font-family: sans-serif;
-		    font-weight: 600;
-		    font-size: 15px;
-		    color: #8f9090;
-		    width: 135%;
-		    float: right;
-		    text-align-last: start;
-		}
-		.selectorColumn{
-			    width: 135%;
-			    border-radius: 3px;
-			    text-align: start;
-			    padding-left: 3%;
-			    height: 36px!important;
-			    box-sizing: border-box;
-			    padding-top: 2%;
-			    border: solid;
-			    border-width: 1px;
-			    margin-bottom: 18%;
-			    color: #777777;
-			    box-shadow: 0px 0px 0px rgba(0,0,0,0.5), inset 0px 1px 1px rgba(0,0,0,0.5);
-		}
-		.inputColumn{
-			width: 135%;
-		    border-radius: 3px;
-		    text-align: start;
-		    padding-left: 3%;
-		    height: 36px;
-		    margin-bottom: 18%;
-		    color: #777777;
-		}
-		.inputColumnSelectOneButton{
-			width: 203%;
-		    border-radius: 3px;
-		    text-align: start;
-		    padding-left: 3%;
-		    height: 41px;
-		    margin-bottom: 13%;
-		    color: #777777;
-		}
-		
-		.ui-buttonset .ui-button {
-		    margin-left: 0;
-		    margin-right: 0;
-		    width: 33%;
-		    height: 82%;
-		    text-align: -webkit-center;
-		    padding-top: 1%;
-		}
-		.DescriptionColumn{
-			width: 135%;
-		    border-radius: 3px;
-		    text-align: start;
-		    padding-left: 3%;
-		    height: 116px;
-		    color: #777777;
-		}
-		
-		.labelH4ColumnTr{
-		 vertical-align: top;
-		}
-		
-		.inputColumnTr{
-		 vertical-align: top;
-		}
-		
-		.firstColMain{
-			padding-right: 193px;
-		}
-		.panel-body2{
-			    background: white;
-			    width: 100%;
-			    border-radius: 11px;
-			 
-		}
-		.classColumn{
-			text-align: -webkit-left;
-		}
-		
-		.classColumn2{
-			text-align: -webkit-left;
-		}
-
-			.buttonAttachIvoice {
-				-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-				-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-				box-shadow:inset 0px 1px 0px 0px #ffffff;
-				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-				background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-				background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-				background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-				background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-				background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
-				background-color:#f9f9f9;
-				-moz-border-radius:6px;
-				-webkit-border-radius:6px;
-				border-radius:6px;
-				border:1px solid #dcdcdc;
-				display:inline-block;
-				cursor:pointer;
-				color:#666666;
-				font-family:Arial;
-				font-size:15px;
-				font-weight:bold;
-				padding:6px 24px;
-				text-decoration:none;
-				text-shadow:0px 1px 0px #ffffff;
-			}
-			.buttonAttachIvoice:hover {
-				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-				background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-				background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-				background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-				background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-				background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
-				background-color:#e9e9e9;
-			}
-			.buttonAttachIvoice:active {
-				position:relative;
-				top:1px;
-			}
-		
-		</style>
 				<section role="main" class="content-body">
 					<header class="page-header">
 						<h2>Asset Details</h2>
@@ -189,12 +54,12 @@
 						<div class="row" style=" margin-bottom: 3%;">
 						<h1 style="margin-top: 3%;    margin-left: 5%;">Assets</h1>
 						</div>
-							<div class="row" style="margin-left: 8%;" >
+							<div class="row" style="margin-left: 4%;" >
 							<div >
 							</div>
-								<div class="col-md-4 classColumn">
+								<div class="col-md-3 classColumn">
 									<div >
-										<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
+										<h:panelGrid class="tableItSelfDiv" columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
 												
 													<h4 class="labelH4Column ">Item Name</h4>
 													<p:inputText required="true" class="inputColumn " value="#{assetsBean.addedExpenses.name}"></p:inputText>
@@ -206,13 +71,13 @@
 												
 												
 													<h4 class="labelH4Column ">Unite Price</h4>
-													<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{assetsBean.addedExpenses.price}"></p:inputNumber>
+													<p:inputNumber required="true" inputStyleClass="inputColumn"  value="#{assetsBean.addedExpenses.pricePerUnit}"></p:inputNumber>
 												
 												
 													<h4 class="labelH4Column ">Description</h4>
 													<h:panelGroup>
 														<p:inputTextarea required="true"  class="DescriptionColumn  " value="#{assetsBean.addedExpenses.description}" counter="display" maxlength="200" counterTemplate="{0} characters remaining." autoResize="false"></p:inputTextarea>
-														<div style="width: 135%;">
+														<div style="width: 100%;">
 															<h:outputText id="display"  style="float: right;"/>
 														</div>
 														
@@ -224,14 +89,13 @@
 									</div>
 												
 								<div class="col-md-3 classColumn">
-													<div id="secondColumnForm">
-										
+													
 											
-														<h:panelGrid columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
+														<h:panelGrid class="tableItSelfDiv" columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
 																
 																<h4 class="labelH4Column ">Bought By</h4>
 																<h:selectOneMenu class="selectorColumn "  value = "#{assetsBean.addedExpenses.boughtByUser_id.id}"> 
-																   <f:selectItems value="#{generalBean.allUsers}" var="entry"
+																   <f:selectItems value="#{assetsBean.allUsers}" var="entry"
 																           itemValue="#{entry.id}" itemLabel="#{entry.name}" />
 																</h:selectOneMenu>
 															
@@ -255,10 +119,9 @@
 															
 														</h:panelGrid>
 													
-													</div>
 												
 										</div>
-								<div class="col-md-2">
+								<div class="col-md-3 classColumn">
 									<h:form id="invoiceForm">
 									<label for="mainForm:invoiceForm:buttonUploadInvoice_input">
 										<span class="buttonAttachIvoice">attach Invoice</span>
@@ -269,7 +132,7 @@
 													    <p:growl id="messages" showDetail="true" />     
 									</h:form>
 								</div>
-								<div class="col-md-3 classColumn2">
+								<div class="col-md-2 classColumn2">
 												
 													<h:form id="formImage">  
 													<style>

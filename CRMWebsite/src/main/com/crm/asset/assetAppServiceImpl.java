@@ -54,7 +54,7 @@ public class assetAppServiceImpl implements IassetAppService{
 
 
 	@Override
-	public boolean delete(asset data) {
+	public boolean delete(asset data)throws Exception {
 		// TODO Auto-generated method stub
 		try{
 			assetDataRepository.delete(data);
@@ -62,8 +62,7 @@ public class assetAppServiceImpl implements IassetAppService{
 			}
 			catch(Exception ex)
 			{
-				ex.printStackTrace();
-				return false;
+				throw ex;
 			}
 	}
 

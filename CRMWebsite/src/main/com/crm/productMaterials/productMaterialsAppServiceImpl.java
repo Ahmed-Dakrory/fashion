@@ -81,6 +81,22 @@ public class productMaterialsAppServiceImpl implements IproductMaterialsAppServi
 				return null;
 			}
 	}
+
+
+
+	@Override
+	public List<productMaterials> getAllProductMaterialsWithProductId(int id) {
+		try{
+			List<productMaterials> course=productMaterialsDataRepository.getAllProductMaterialsWithProductId(id);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
 	
 
 	

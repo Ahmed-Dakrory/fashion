@@ -23,6 +23,8 @@ import main.com.crm.expense.expenses;
 import main.com.crm.expense.expensesAppServiceImpl;
 import main.com.crm.loginNeeds.user;
 import main.com.crm.loginNeeds.userAppServiceImpl;
+import main.com.crm.moneyBox.moneybox;
+import main.com.crm.moneyBox.moneyboxAppServiceImpl;
 
 
 @ManagedBean(name = "assetsBean")
@@ -46,6 +48,9 @@ public class assetsBean implements Serializable{
 	@ManagedProperty(value = "#{loginBean}")
 	private main.com.crm.loginNeeds.loginBean loginBean;
 	
+
+	@ManagedProperty(value = "#{moneyboxFacadeImpl}")
+	private moneyboxAppServiceImpl moneyboxDataFacede; 
 	
 	private asset selectedAsset;
 	
@@ -75,7 +80,7 @@ public class assetsBean implements Serializable{
 	}
 	
 	public void refresh(){
-		allUsers=userDataFacede.getAll();
+		allUsers=userDataFacede.getAllWithRole(user.ROLE_SHAREHOLDER);
 		listOfAssets=assetDataFacede.getAll();
 	}
 
@@ -84,7 +89,7 @@ public class assetsBean implements Serializable{
 		selectedAsset=assetDataFacede.getById(assetId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/assetDetails.xhtml");
+			   .getExternalContext().redirect("/pages/secured/admin/assets/assetDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,7 +97,41 @@ public class assetsBean implements Serializable{
 	}
 	
 	
-	 
+	public void deleteAsset(int idAsset) {
+		 asset aSt=assetDataFacede.getById(idAsset);
+		 
+		 try {
+			assetDataFacede.delete(aSt);
+			expensesDataFacede.delete(aSt.getExpenses_id());
+			
+			moneybox mB=moneyboxDataFacede.getByUserId(aSt.getExpenses_id().getBoughtByUser_id().getId());
+			if(aSt.getExpenses_id().getStatues()==1) {
+				// he pay this amount so we need retrieve it
+				if(aSt.getExpenses_id().getPayedOrAddToShares()==1) {
+					//Payed directly
+					mB.setMoneyRemains(mB.getMoneyRemains()+(aSt.getExpenses_id().getPricePerUnit()*aSt.getExpenses_id().getQuantity()));
+					
+				}else {
+					//Payed as shares
+					mB.setTotalMoney(mB.getTotalMoney()-(aSt.getExpenses_id().getPricePerUnit()*aSt.getExpenses_id().getQuantity()));
+					
+				}
+			}else {
+				// pay as payable
+				mB.setTotalMoney(mB.getTotalMoney()-(aSt.getExpenses_id().getPricePerUnit()*aSt.getExpenses_id().getQuantity()));
+				mB.setPayable(mB.getPayable()-(aSt.getExpenses_id().getPricePerUnit()*aSt.getExpenses_id().getQuantity()));
+			}
+			moneyboxDataFacede.addmoneybox(mB);
+		} catch (Exception e) {
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Problem!',\r\n" + 
+					"			text: 'Cannot delete this asset!',\r\n" + 
+					"			type: 'error',\r\n" + 
+					"			left:\"1%\"\r\n" + 
+					"		});");
+		}
+		 
+	 }
 	     
 	    
 	     
@@ -121,7 +160,7 @@ public class assetsBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/addAsset.xhtml");
+			   .getExternalContext().redirect("/pages/secured/admin/assets/addAsset.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,23 +182,67 @@ public class assetsBean implements Serializable{
 			e.printStackTrace();
 		}  
 		addedExpenses.setStatues(1);
+		addedExpenses.setType(1);
+		addedExpenses.setPayedOrAddToShares(paymentAddingMethod);
 		addedExpenses.setAddedByUser_id(loginBean.getTheUserOfThisAccount());
-		expensesDataFacede.addexpenses(addedExpenses);
 		addedAsset.setExpenses_id(addedExpenses);
-		assetDataFacede.addasset(addedAsset);
-		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
-				"			title: 'Success',\r\n" + 
-				"			text: 'New asset has been added.',\r\n" + 
-				"			type: 'success'\r\n" + 
-				"		});");
 		
-		try {
-			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/assets.xhtml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		
+		
+		moneybox mB=moneyboxDataFacede.getByUserId(addedExpenses.getBoughtByUser_id().getId());
+		if(paymentAddingMethod==1) {
+			//Billed method
+			if(mB.getMoneyRemains()>(addedAsset.getExpenses_id().getPricePerUnit()*addedAsset.getExpenses_id().getQuantity())) {
+				
+			mB.setMoneyRemains(mB.getMoneyRemains()-(addedAsset.getExpenses_id().getPricePerUnit()*addedAsset.getExpenses_id().getQuantity()));
+			expensesDataFacede.addexpenses(addedExpenses);
+			assetDataFacede.addasset(addedAsset);
+			moneyboxDataFacede.addmoneybox(mB);
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Success',\r\n" + 
+					"			text: 'New asset has been added.',\r\n" + 
+					"			type: 'success'\r\n" + 
+					"		});");
+			
+			try {
+				FacesContext.getCurrentInstance()
+				   .getExternalContext().redirect("/pages/secured/admin/assets/assets.jsf");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}else {
+				PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+						"			title: 'Problem!',\r\n" + 
+						"			text: 'The user moneybox has no sufficient Money!',\r\n" + 
+						"			type: 'error',\r\n" + 
+						"			left:\"1%\"\r\n" + 
+						"		});");
+			}
+			
+		}else if(paymentAddingMethod==2){
+			//Add to Shared method
+			mB.setTotalMoney(mB.getTotalMoney()+(addedAsset.getExpenses_id().getPricePerUnit()*addedAsset.getExpenses_id().getQuantity()));
+			expensesDataFacede.addexpenses(addedExpenses);
+			assetDataFacede.addasset(addedAsset);
+			moneyboxDataFacede.addmoneybox(mB);
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Success',\r\n" + 
+					"			text: 'New asset has been added.',\r\n" + 
+					"			type: 'success'\r\n" + 
+					"		});");
+			
+			try {
+				FacesContext.getCurrentInstance()
+				   .getExternalContext().redirect("/pages/secured/admin/assets/assets.jsf");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		
 	}
 	
 	
@@ -255,6 +338,14 @@ public class assetsBean implements Serializable{
 
 	public void setLoginBean(main.com.crm.loginNeeds.loginBean loginBean) {
 		this.loginBean = loginBean;
+	}
+
+	public moneyboxAppServiceImpl getMoneyboxDataFacede() {
+		return moneyboxDataFacede;
+	}
+
+	public void setMoneyboxDataFacede(moneyboxAppServiceImpl moneyboxDataFacede) {
+		this.moneyboxDataFacede = moneyboxDataFacede;
 	}
 	
 	

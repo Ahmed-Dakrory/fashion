@@ -12,6 +12,7 @@ import java.util.List;
 public interface IuserAppService {
 
 	public List<user> getAll();
+	public List<user> getAllWithRole(int role);
 	public user adduser(user data);
 	public user getById(int id);
 	public user getByEmail(String email);

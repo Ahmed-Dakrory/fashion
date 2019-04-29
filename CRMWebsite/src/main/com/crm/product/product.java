@@ -67,20 +67,18 @@ public class product {
 	@Column(name = "forGender")
 	private Integer forGender;
 	
-	@Column(name = "suppliesCostPerUnit")
-	private Integer suppliesCostPerUnit;
+	@Column(name = "rawMaterialCostTotal")
+	private Float rawMaterialCostTotal;
 	
-	@Column(name = "productionCostPerUnit")
-	private Integer productionCostPerUnit;
-	
-	@Column(name = "overHeadCostPerUnit")
-	private Integer overHeadCostPerUnit;
 	
 	@Column(name = "recommendedmarkUp")
-	private Integer recommendedmarkUp;
+	private Float recommendedmarkUp;
 	
 	@Column(name = "recommendedSalePrice")
-	private Integer recommendedSalePrice;
+	private Float recommendedSalePrice;
+	
+	@Column(name = "description")
+	private String description;
 	
 
 	@ManyToOne
@@ -203,82 +201,6 @@ public class product {
 
 
 
-	public Integer getSuppliesCostPerUnit() {
-		return suppliesCostPerUnit;
-	}
-
-
-
-
-
-	public void setSuppliesCostPerUnit(Integer suppliesCostPerUnit) {
-		this.suppliesCostPerUnit = suppliesCostPerUnit;
-	}
-
-
-
-
-
-	public Integer getProductionCostPerUnit() {
-		return productionCostPerUnit;
-	}
-
-
-
-
-
-	public void setProductionCostPerUnit(Integer productionCostPerUnit) {
-		this.productionCostPerUnit = productionCostPerUnit;
-	}
-
-
-
-
-
-	public Integer getOverHeadCostPerUnit() {
-		return overHeadCostPerUnit;
-	}
-
-
-
-
-
-	public void setOverHeadCostPerUnit(Integer overHeadCostPerUnit) {
-		this.overHeadCostPerUnit = overHeadCostPerUnit;
-	}
-
-
-
-
-
-	public Integer getRecommendedmarkUp() {
-		return recommendedmarkUp;
-	}
-
-
-
-
-
-	public void setRecommendedmarkUp(Integer recommendedmarkUp) {
-		this.recommendedmarkUp = recommendedmarkUp;
-	}
-
-
-
-
-
-	public Integer getRecommendedSalePrice() {
-		return recommendedSalePrice;
-	}
-
-
-
-
-
-	public void setRecommendedSalePrice(Integer recommendedSalePrice) {
-		this.recommendedSalePrice = recommendedSalePrice;
-	}
-
 
 
 
@@ -347,6 +269,78 @@ public class product {
 
 
 
+	
+
+
+
+
+
+
+
+	public Float getRawMaterialCostTotal() {
+		return rawMaterialCostTotal;
+	}
+
+
+
+
+
+	public void setRawMaterialCostTotal(Float rawMaterialCostTotal) {
+		this.rawMaterialCostTotal = rawMaterialCostTotal;
+	}
+
+
+
+
+
+	public Float getRecommendedmarkUp() {
+		return recommendedmarkUp;
+	}
+
+
+
+
+
+	public void setRecommendedmarkUp(Float recommendedmarkUp) {
+		this.recommendedmarkUp = recommendedmarkUp;
+	}
+
+
+
+
+
+	public Float getRecommendedSalePrice() {
+		return recommendedSalePrice;
+	}
+
+
+
+
+
+	public void setRecommendedSalePrice(Float recommendedSalePrice) {
+		this.recommendedSalePrice = recommendedSalePrice;
+	}
+
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+
+
 	public byte[] getImage() {
 		return image;
 	}
@@ -360,7 +354,58 @@ public class product {
 	}
 
 
+	public static int SIZE_SMALL=1;
+	public static int SIZE_MEDUIM=2;
+	public static int SIZE_LARGE=3;
+	public static int SIZE_X_LARGE=4;
+	public static int SIZE_XX_LARGE=5;
+	public static int SIZE_XXX_LARGE=6;
+	public static int SIZE_XXXX_LARGE=7;
+	public String getSizeString() {
+		if(size==1) {
+			return "S";
+		}else if(size==2) {
+			return "M";
+		}else if(size==3) {
+			return "L";
+		}else if(size==4) {
+			return "XL";
+		}else if(size==5) {
+			return "XXL";
+		}else if(size==6) {
+			return "XXXL";
+		}else {
+			return "XXXXL";
+		}
+	}
 	
+
+	public static int GENDER_MALE=1;
+	public static int GENDER_FEMALE=2;
+	public static int GENDER_MALE_YOUNG=3;
+	public static int GENDER_FEMALE_YOUNG=4;
+	public String getForGenderString() {
+		if(size==1) {
+			return "Male";
+		}else if(size==2) {
+			return "Female";
+		}else if(size==3) {
+			return "Male young";
+		}else {
+			return "Female young";
+		}
+	}
+	
+
+	public static int NEW_TYPE=1;
+	public static int REPRODUCED_TYPE=2;
+	public String getNewOrReproducedString() {
+		if(newOrReproduced==1) {
+			return "New";
+		}else  {
+			return "Reproduced";
+		}
+	}
 
 
 	public String getphoto() {

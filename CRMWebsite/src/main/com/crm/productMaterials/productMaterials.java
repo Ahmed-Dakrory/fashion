@@ -31,6 +31,10 @@ import main.com.crm.rawMaterial.rawMaterial;
 	@NamedQuery(name="productMaterials.getById",
 	query = "from productMaterials d where d.id = :id"
 			)
+	,
+	@NamedQuery(name="productMaterials.getByProductId",
+	query = "from productMaterials d where d.product_id.id = :id"
+			)
 	
 	
 	
@@ -57,6 +61,9 @@ public class productMaterials {
 	private rawMaterial rawMaterial_id;
 
 
+	@Column(name = "quantityUsedByThisProduct")
+	private Integer quantityUsedByThisProduct;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -85,7 +92,18 @@ public class productMaterials {
 	public void setRawMaterial_id(rawMaterial rawMaterial_id) {
 		this.rawMaterial_id = rawMaterial_id;
 	}
+
+
+	public Integer getQuantityUsedByThisProduct() {
+		return quantityUsedByThisProduct;
+	}
+
+
+	public void setQuantityUsedByThisProduct(Integer quantityUsedByThisProduct) {
+		this.quantityUsedByThisProduct = quantityUsedByThisProduct;
+	}
 	
 
+	
 	
 }

@@ -97,14 +97,14 @@
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Payment Statues:</span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.statues}</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.getStatuesString()}</span>
 												</p>
 												
 											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Price: </span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.price} LE</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.pricePerUnit} LE</span>
 												</p>
 												
 											</div>
@@ -118,7 +118,7 @@
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Total Price: </span>
-													<span class="value">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.expenses_id.quantity} LE</span>
+													<span class="value">#{assetsBean.selectedAsset.expenses_id.pricePerUnit*assetsBean.selectedAsset.expenses_id.quantity} LE</span>
 												</p>
 												
 											</div>
@@ -184,9 +184,9 @@
 											<tr>
 												<td>#{assetsBean.selectedAsset.id}</td>
 												<td class="text-semibold text-dark">#{assetsBean.selectedAsset.expenses_id.name}</td>
-												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.price} LE</td>
+												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.pricePerUnit} LE</td>
 												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.quantity}</td>
-												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.expenses_id.quantity} LE</td>
+												<td class="text-center">#{assetsBean.selectedAsset.expenses_id.pricePerUnit*assetsBean.selectedAsset.expenses_id.quantity} LE</td>
 											</tr>
 										</tbody>
 									</table>
@@ -200,7 +200,7 @@
 												
 													<tr class="h4">
 														<td colspan="2">Grand Total</td>
-														<td class="text-left">#{assetsBean.selectedAsset.expenses_id.price*assetsBean.selectedAsset.expenses_id.quantity} LE</td>
+														<td class="text-left">#{assetsBean.selectedAsset.expenses_id.pricePerUnit*assetsBean.selectedAsset.expenses_id.quantity} LE</td>
 													</tr>
 												</tbody>
 											</table>

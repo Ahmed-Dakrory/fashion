@@ -93,7 +93,7 @@
 										<tr class="gradeX">
 											<td>#{data.id}</td>
 											<td>#{data.expenses_id.name}</td>
-											<td class="center hidden-phone">#{data.expenses_id.quantity*data.expenses_id.price} LE</td>
+											<td class="center hidden-phone">#{data.expenses_id.quantity*data.expenses_id.pricePerUnit} LE</td>
 											<td class="center hidden-phone">#{data.boughtFrom}</td>
 											<td class="center hidden-phone">#{data.storedIn}</td>
 											<td class="center hidden-phone">
@@ -108,10 +108,12 @@
 											</h:form>
 											</td>
 											<td class="center hidden-phone">#{data.expenses_id.date.getTime().toString()}</td>
-											<td class="center hidden-phone">#{data.expenses_id.statues}</td>
+											<td class="center hidden-phone">#{data.expenses_id.getStatuesString()}</td>
 											<td class="center hidden-phone">
 											<h:form>
-												<h:commandButton value="More" class="mb-xs mt-xs mr-xs btn btn-default" action="#{rawMaterialBean.selectrawMaterial(data.id)}"></h:commandButton>
+												<h:commandLink style="font-size: 17px;" class="fa  fa-file-text-o mb-xs mt-xs mr-xs " action="#{rawMaterialBean.selectrawMaterial(data.id)}"/>
+												<h:commandLink style="font-size: 17px;" class="fa  fa-trash-o mb-xs mt-xs mr-xs " action="#{rawMaterialBean.deleteRawMaterial(data.id)}"/>
+												
 											</h:form>
 											</td> 
 										</tr>

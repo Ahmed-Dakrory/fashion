@@ -130,6 +130,22 @@ public class userAppServiceImpl implements IuserAppService{
 				return null;
 			}
 	}
+
+
+
+	@Override
+	public List<user> getAllWithRole(int role) {
+		try{
+			List<user> course=userDataRepository.getAllWithRole(role);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
 	
 }
 		

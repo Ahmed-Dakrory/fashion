@@ -62,7 +62,7 @@ public class rawMaterialRepositoryImpl implements rawMaterialRepository{
 
 	
 	@Override
-	public boolean delete(rawMaterial data) {
+	public boolean delete(rawMaterial data)throws Exception {
 		// TODO Auto-generated method stub
 		try {
 			session = sessionFactory.openSession();
@@ -72,8 +72,7 @@ public class rawMaterialRepositoryImpl implements rawMaterialRepository{
 			session.close();
 			return true;
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
+			throw ex;
 		}
 	}
 

@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
-import main.com.crm.customer.customer;
 import main.com.crm.loginNeeds.user;
 import main.com.crm.product.product;
 
@@ -49,8 +48,8 @@ public class sale {
 	private Integer id;
 
 	
-	@Column(name = "price")
-	private String price;
+	@Column(name = "priceTotal")
+	private Float priceTotal;
 	
 	@Column(name = "quantity")
 	private Integer quantity;
@@ -66,7 +65,7 @@ public class sale {
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
-	private customer customer_id;
+	private user customer_id;
 	
 	
 	@Column(name = "date")
@@ -88,13 +87,15 @@ public class sale {
 	}
 
 
-	public String getPrice() {
-		return price;
+	
+
+	public Float getPriceTotal() {
+		return priceTotal;
 	}
 
 
-	public void setPrice(String price) {
-		this.price = price;
+	public void setPriceTotal(Float priceTotal) {
+		this.priceTotal = priceTotal;
 	}
 
 
@@ -118,12 +119,12 @@ public class sale {
 	}
 
 
-	public customer getCustomer_id() {
+	public user getCustomer_id() {
 		return customer_id;
 	}
 
 
-	public void setCustomer_id(customer customer_id) {
+	public void setCustomer_id(user customer_id) {
 		this.customer_id = customer_id;
 	}
 
@@ -159,7 +160,13 @@ public class sale {
 
 
 	
-	
+	public String getTypeString() {
+		if(type==1) {
+			return "Cash";
+		}else {
+			return "Ration";
+		}
+	}
 	
 
 }

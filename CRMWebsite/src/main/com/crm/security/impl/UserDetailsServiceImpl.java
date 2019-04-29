@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 			user dao = userDataRepository.getByEmail(username);
 			UserDetails user;
-			if(dao.getRole()==0) {
+			if(dao.getRole()==main.com.crm.loginNeeds.user.ROLE_SHAREHOLDER) {
 				Collection<GrantedAuthority> studentAuthorities = new ArrayList<GrantedAuthority>();
 				studentAuthorities.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
 				user = new User(dao.getEmail(), dao.getPassword(), true,

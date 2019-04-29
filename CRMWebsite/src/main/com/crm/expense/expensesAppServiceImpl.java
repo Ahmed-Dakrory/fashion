@@ -7,6 +7,7 @@ package main.com.crm.expense;
 
 
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class expensesAppServiceImpl implements IexpensesAppService{
 
 
 	@Override
-	public boolean delete(expenses data) {
+	public boolean delete(expenses data)throws Exception {
 		// TODO Auto-generated method stub
 		try{
 			expensesDataRepository.delete(data);
@@ -62,8 +63,7 @@ public class expensesAppServiceImpl implements IexpensesAppService{
 			}
 			catch(Exception ex)
 			{
-				ex.printStackTrace();
-				return false;
+				throw ex;
 			}
 	}
 
@@ -74,6 +74,38 @@ public class expensesAppServiceImpl implements IexpensesAppService{
 			expenses so=expensesDataRepository.getById(id);
 			
 			return so;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
+
+
+
+	@Override
+	public List<expenses> getAllExceptType(int type) {
+		try{
+			List<expenses> course=expensesDataRepository.getAllExceptType(type);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
+
+
+
+	@Override
+	public List<expenses> getAllForTypeBetweenDateAndRole(Calendar calLower, Calendar calHigher, int expensesType) {
+		try{
+			List<expenses> course=expensesDataRepository.getAllForTypeBetweenDateAndRole(calLower, calHigher, expensesType);
+			
+			return course;
 			}
 			catch(Exception ex)
 			{

@@ -33,6 +33,14 @@ import main.com.crm.sale.sale;
 	query = "from salePayment d where d.id = :id"
 			)
 	
+	,
+	@NamedQuery(name="salePayment.getBySaleId",
+	query = "from salePayment d where d.sale_id.id = :id"
+			)
+	,
+	@NamedQuery(name="salePayment.getAllBetweenDateAndStatue",
+	query = "from salePayment d where d.dateEnd > :dateLower and d.dateEnd < :dateHigher and d.payedOrNot = :statue"
+			)
 	
 	
 })
@@ -48,7 +56,11 @@ public class salePayment {
 
 	
 	@Column(name = "amount")
-	private Integer amount;
+	private Float amount;
+	
+	
+	public static int PAYED=1;
+	public static int NOT_PAYED=2;
 	
 	@Column(name = "payedOrNot")
 	private Integer payedOrNot;
@@ -73,12 +85,12 @@ public class salePayment {
 	}
 
 
-	public Integer getAmount() {
+	public Float getAmount() {
 		return amount;
 	}
 
 
-	public void setAmount(Integer amount) {
+	public void setAmount(Float amount) {
 		this.amount = amount;
 	}
 
@@ -113,7 +125,13 @@ public class salePayment {
 	}
 	
 	
-	
+	public String getPayedOrNotString() {
+		if(payedOrNot==1) {
+			return "Payed";
+		}else {
+			return "Not payed";
+		}
+	}
 	
 
 }

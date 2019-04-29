@@ -30,6 +30,10 @@ import main.com.crm.loginNeeds.user;
 	@NamedQuery(name="moneybox.getById",
 	query = "from moneybox d where d.id = :id"
 			)
+	,
+	@NamedQuery(name="moneybox.getByUserId",
+	query = "from moneybox d where d.user_id.id = :id"
+			)
 	
 	
 	
@@ -45,10 +49,13 @@ public class moneybox {
 	private Integer id;
 
 	@Column(name = "totalMoney")
-	private Integer totalMoney;
+	private Float totalMoney;
 	
 	@Column(name = "moneyRemains")
-	private Integer moneyRemains;
+	private Float moneyRemains;
+	
+	@Column(name = "payable")
+	private Float payable;
 	
 	
 	@ManyToOne
@@ -65,24 +72,36 @@ public class moneybox {
 		this.id = id;
 	}
 
+	
 
-	public Integer getTotalMoney() {
+
+	public Float getTotalMoney() {
 		return totalMoney;
 	}
 
 
-	public void setTotalMoney(Integer totalMoney) {
+	public void setTotalMoney(Float totalMoney) {
 		this.totalMoney = totalMoney;
 	}
 
 
-	public Integer getMoneyRemains() {
+	public Float getMoneyRemains() {
 		return moneyRemains;
 	}
 
 
-	public void setMoneyRemains(Integer moneyRemains) {
+	public void setMoneyRemains(Float moneyRemains) {
 		this.moneyRemains = moneyRemains;
+	}
+
+
+	public Float getPayable() {
+		return payable;
+	}
+
+
+	public void setPayable(Float payable) {
+		this.payable = payable;
 	}
 
 

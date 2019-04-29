@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:tp="http://java.sun.com/jsf/composite/elements">
+	
+	<div class="row">
+		<div class="col-md-13 classColumn3">
+		<div class="row">
+			<h4 class="col-sm-2 control-label" style="    padding-right: 3%;">Product</h4>
+		</div>
+		<div class="row">
+			<div class="col-md-13">
+				<p:selectOneButton styleClass=" rowObjectAlone"  value = "#{productsBean.newOrReproduced}"> 
+					<f:ajax render="@form"></f:ajax>
+					<f:selectItem itemValue = "1" itemLabel = "New  " /> 
+					<f:selectItem itemValue = "2" itemLabel = "Reproduced" />
+				</p:selectOneButton>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-6 classColumn">
+		<h:panelGroup rendered="#{productsBean.newOrReproduced==1}">
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productName">Item Name</label>
+			<div class="col-sm-9">
+				<tp:inputDynamic id="productName" name="product-name" classStyle="inputColumn2 " type="text" required="true" beanValue="#{productsBean.addedProducts.name}"/>	
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productSize">Size</label>
+			<div class="col-sm-9">
+				<h:selectOneMenu class="selectorColumn2 " value="#{productsBean.addedProducts.size}"> 
+					<f:selectItem itemValue="1" itemLabel=" S"/>
+					<f:selectItem itemValue="2" itemLabel=" M"/>
+					<f:selectItem itemValue="3" itemLabel=" L"/>
+					<f:selectItem itemValue="4" itemLabel=" Xl"/>
+					<f:selectItem itemValue="5" itemLabel=" XXl"/>
+					<f:selectItem itemValue="6" itemLabel=" XXXl"/>
+					<f:selectItem itemValue="7" itemLabel=" XXXXl"/>
+				</h:selectOneMenu>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productGender">For which Type</label>
+			<div class="col-sm-9">
+				<h:selectOneMenu class="selectorColumn2 " value="#{productsBean.addedProducts.forGender}"> 
+					<f:selectItem itemValue="1" itemLabel=" Male"/>
+					<f:selectItem itemValue="2" itemLabel=" Female"/>
+					<f:selectItem itemValue="3" itemLabel=" Young male"/>
+					<f:selectItem itemValue="4" itemLabel=" Young female"/>
+				</h:selectOneMenu>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productDescription">Description</label>
+			<div class="col-sm-9">
+				<h:panelGroup>
+					<p:inputTextarea name="description" class="DescriptionColumn " value="#{productsBean.addedProducts.description}" counter="mainForm:display" maxlength="200" counterTemplate="{0} characters remaining." autoResize="false"></p:inputTextarea>
+					<div style="width: 100%;">
+						<h:outputText id="display"  style="float: right;"/>
+					</div>
+				</h:panelGroup>
+			</div>
+		</div>
+		</h:panelGroup>		
+		
+		
+		<h:panelGroup rendered="#{productsBean.newOrReproduced==2}">
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productNameFromList">Choose product</label>
+			<div class="col-sm-9">
+				<h:selectOneMenu class="selectorColumn " value="#{productsBean.reProducedProductId}"> 
+				<f:selectItems value="#{productsBean.listOfProducts}" var="entry" itemValue="#{entry.id}" itemLabel="##{entry.id} #{entry.name} " />
+				</h:selectOneMenu>
+			</div>
+		</div>
+		</h:panelGroup>		
+		</div>
+		
+		
+		<div class="col-md-3 classColumn4">
+			 <h:panelGroup id="labelForImage" rendered="#{assetsBean.paymentAddingMethod==1}">
+					<style>
+					.ui-fileupload-content {
+						border: #faebd700;
+						padding: 0px;
+						margin: 0px;
+					}
+																
+					.ui-fileupload-buttonbar {
+						visibility: hidden;
+						height: 0px;
+						padding: 0px;
+						margin: 0px;
+						}
+					</style>
+					<label  for="mainForm:buttonUploadImage_input">
+							<h:graphicImage value="/resources/images/imageEmpty.png" rendered="#{productsBean.addedProducts.image==null}"  class="squareImage" alt=""/>
+							<h:graphicImage value="#{productsBean.addedProducts.getphoto()}" rendered="#{productsBean.addedProducts.image!=null}"  class="squareImage" alt=""/>
+					</label>
+			<p:fileUpload id="buttonUploadImage" fileUploadListener="#{productsBean.handleImageUpload}" mode="advanced"
+						update=":mainForm:labelForImage" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+			<p:growl id="messages" showDetail="true" />        
+		</h:panelGroup>
+	</div>
+								
+	</div>										
+													
+												
+												
+											
+																		
+					<!-- end: page -->
+
+		
+		
+</html>

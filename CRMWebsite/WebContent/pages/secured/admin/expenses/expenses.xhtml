@@ -101,10 +101,11 @@
 											</h:form>
 											</td>
 											<td class="center hidden-phone">#{data.date.getTime().toString()}</td>
-											<td class="center hidden-phone">#{data.statues}</td>
+											<td class="center hidden-phone">#{data.getStatuesString()}</td>
 											<td class="center hidden-phone">
 											<h:form>
-												<h:commandButton value="More" class="mb-xs mt-xs mr-xs btn btn-default" action="#{expensesBean.selectExpenses(data.id)}"></h:commandButton>
+												<h:commandLink style="font-size: 17px;" class="fa fa-file-text-o mb-xs mt-xs mr-xs " action="#{expensesBean.selectExpenses(data.id)}"/>
+												<h:commandLink style="font-size: 17px;" class="fa fa-trash-o mb-xs mt-xs mr-xs " action="#{expensesBean.deleteExpenses(data.id)}"/>
 											</h:form>
 											</td> 
 										</tr>

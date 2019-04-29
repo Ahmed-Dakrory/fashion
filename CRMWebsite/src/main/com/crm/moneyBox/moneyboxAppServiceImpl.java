@@ -81,6 +81,23 @@ public class moneyboxAppServiceImpl implements ImoneyboxAppService{
 				return null;
 			}
 	}
+
+
+
+	@Override
+	public moneybox getByUserId(int id) {
+		// TODO Auto-generated method stub
+				try{
+					moneybox so=moneyboxDataRepository.getByUserId(id);
+					
+					return so;
+					}
+					catch(Exception ex)
+					{
+						ex.printStackTrace();
+						return null;
+					}
+	}
 	
 
 	

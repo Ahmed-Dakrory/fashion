@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="id"/>
+	<composite:attribute name="type"/>
+	<composite:attribute name="required"/>
+	<composite:attribute name="readonly"/>
+	<composite:attribute name="name"/>
+	<composite:attribute name="minlength"/>
+	<composite:attribute name="beanValue"/>
+	<composite:attribute name="classStyle"/>
+	<composite:attribute name="onclick"/>
+	<composite:attribute name="writeEvent"/>
+</composite:interface>
+
+<composite:implementation>
+		
+	<input  type="#{cc.attrs.type}" onclick="#{cc.attrs.onclick}" readonly="#{cc.attrs.readonly}" class="#{cc.attrs.classStyle} " name="#{cc.attrs.name}" id="#{cc.attrs.id}w4-inputDynamicJ" required="#{cc.attrs.required}" minlength="#{cc.attrs.minlength}"/>
+	<h:inputText style="display:none;"  id="w4-inputDynamicJValue" value="#{cc.attrs.beanValue}"/>
+														
+	
+	<script>
+	document.getElementById("#{cc.attrs.id}w4-inputDynamicJ").value="#{cc.attrs.beanValue}";
+			
+	document.getElementById("#{cc.attrs.id}w4-inputDynamicJ").addEventListener('input',function(evt){
+		document.getElementById("mainForm:#{cc.attrs.id}:w4-inputDynamicJValue").value=document.getElementById("#{cc.attrs.id}w4-inputDynamicJ").value;
+		#{cc.attrs.writeEvent}
+		
+	});
+	</script>
+</composite:implementation>
+</html>

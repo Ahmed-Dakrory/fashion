@@ -3,6 +3,7 @@
  */
 package main.com.crm.expense;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -62,7 +63,7 @@ public class expensesRepositoryImpl implements expensesRepository{
 
 	
 	@Override
-	public boolean delete(expenses data) {
+	public boolean delete(expenses data)throws Exception {
 		// TODO Auto-generated method stub
 		try {
 			session = sessionFactory.openSession();
@@ -72,8 +73,7 @@ public class expensesRepositoryImpl implements expensesRepository{
 			session.close();
 			return true;
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
+			throw ex;
 		}
 	}
 
@@ -86,6 +86,32 @@ public class expensesRepositoryImpl implements expensesRepository{
 		List<expenses> results=query.list();
 		 if(results.size()!=0){
 			 return results.get(0);
+		 }else{
+			 return null;
+		 }
+	}
+
+	@Override
+	public List<expenses> getAllExceptType(int type) {
+		 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("expenses.getAllExceptType").setInteger("type", type);
+
+		 @SuppressWarnings("unchecked")
+		List<expenses> results=query.list();
+		 if(results.size()!=0){
+			 return results;
+		 }else{
+			 return null;
+		 }
+	}
+
+	@Override
+	public List<expenses> getAllForTypeBetweenDateAndRole(Calendar calLower, Calendar calHigher, int expensesType) {
+		 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("expenses.getAllForTypeBetweenDateAndRole").setInteger("type", expensesType).setCalendar("dateLower", calLower).setCalendar("dateHigher", calHigher);
+
+		 @SuppressWarnings("unchecked")
+		List<expenses> results=query.list();
+		 if(results.size()!=0){
+			 return results;
 		 }else{
 			 return null;
 		 }

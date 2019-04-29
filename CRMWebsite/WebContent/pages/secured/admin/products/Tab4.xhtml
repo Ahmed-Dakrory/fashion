@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:tp="http://java.sun.com/jsf/composite/elements">
+	<p:remoteCommand action="#{productsBean.addNewMaterial}" update="mainForm:tableOfRawMaterials mainForm:costPanal" name="addNewRawMaterial" ></p:remoteCommand>
+	<div class="row">
+		<div class="col-md-13 classColumn3">
+		<div class="row">
+			<h4 class="col-sm-3 control-label" style="      margin-bottom: 3%;  padding-right: 3%;">Select Raw Material</h4>
+		</div>
+		
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-9 classColumn">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<label style="float: right;" class=" control-label" for="productRawMaterial">Select Raw Material</label>
+			</div>
+			<div class="col-sm-4">
+			<h:form>
+				<h:selectOneMenu class="selectorColumn "  value="#{productsBean.selectedRawMaterialId}"> 
+				<f:selectItems value="#{rawMaterialBean.listOfrawMaterials}" var="entry" itemValue="#{entry.id}" itemLabel="##{entry.id} #{entry.expenses_id.name}  #{entry.expenses_id.pricePerUnit} " />
+				</h:selectOneMenu>
+			</h:form>
+			</div>
+			<div class="col-sm-1">
+				<label style="float: right;" class=" control-label" >Quantity </label>
+			</div>
+			<div class="col-sm-2">
+				<p:inputNumber inputStyle="float: right; width:100%;" value="#{productsBean.quantityOfRawMaterialsUsedByProduct}"></p:inputNumber>
+			</div>
+			<div class="col-sm-1">
+				<label    class="PlusButton2" onclick="addNewRawMaterial();">+</label>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row" >
+							
+							<h:panelGroup id="tableOfRawMaterials" class="panel-body">
+								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+									<thead>
+										<tr>
+											<th>Item</th>
+											<th class="hidden-phone">My QTY</th>
+											<th class="hidden-phone">Available QTY</th>
+											<th class="hidden-phone">Price per unit</th>
+											<th class="hidden-phone">Added By</th>
+											<th class="hidden-phone">More</th>
+										</tr>
+									</thead>
+									<tbody>
+									<ui:repeat varStatus="state" var="data" value="#{productsBean.listOfSelectedRawMaterials}">
+										<tr class="gradeX">
+											<td style="width: 16%;">
+													<h:panelGrid class="itemDiv" columns="2">
+													
+														<h:graphicImage class="imageItem" value="#{data.rawMaterial_id.getphoto()}"/>
+														<h:outputLabel value="#{data.rawMaterial_id.expenses_id.name}"/>
+													
+													</h:panelGrid>
+													
+											</td>
+											<td class="center hidden-phone">#{data.quantityUsedByThisProduct}</td>
+											<td class="center hidden-phone">#{data.rawMaterial_id.availableQuantity}</td>
+											<td class="center hidden-phone">#{data.rawMaterial_id.expenses_id.pricePerUnit}</td>
+											<td class="center hidden-phone">
+											
+												<p:commandLink class="linkButton" value="#{data.rawMaterial_id.expenses_id.boughtByUser_id.name}" action="#{generalBean.showUser(data.rawMaterial_id.expenses_id.boughtByUser_id.id)}"></p:commandLink>
+											
+											 
+											</td>
+											
+											<td class="center hidden-phone">
+											
+												<p:commandLink value="Delete" update="mainForm:tableOfRawMaterials mainForm:costPanal" class="mb-xs mt-xs mr-xs btn btn-default" action="#{productsBean.deleteRawMaterial(state.index)}"></p:commandLink>
+											
+											</td> 
+										</tr>
+									</ui:repeat>
+										
+										
+									</tbody>
+								</table>
+							
+							
+							</h:panelGroup>
+		
+	</div>						
+	</div>										
+													
+												
+												
+											
+																		
+					<!-- end: page -->
+				
+
+		
+		
+</html>

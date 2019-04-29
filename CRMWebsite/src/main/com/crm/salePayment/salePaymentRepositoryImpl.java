@@ -3,6 +3,7 @@
  */
 package main.com.crm.salePayment;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -86,6 +87,33 @@ public class salePaymentRepositoryImpl implements salePaymentRepository{
 		List<salePayment> results=query.list();
 		 if(results.size()!=0){
 			 return results.get(0);
+		 }else{
+			 return null;
+		 }
+	}
+
+	@Override
+	public List<salePayment> getBySaleId(int saleId) {
+		 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("salePayment.getBySaleId").setInteger("id",saleId);
+
+		 @SuppressWarnings("unchecked")
+		List<salePayment> results=query.list();
+		 if(results.size()!=0){
+			 return results;
+		 }else{
+			 return null;
+		 }
+	}
+
+	@Override
+	public List<salePayment> getAllBetweenDateAndStatue(Calendar dateLower, Calendar dateHigher, int statue) {
+		 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("salePayment.getAllBetweenDateAndStatue")
+				 .setCalendar("dateLower", dateLower).setCalendar("dateHigher", dateHigher).setInteger("statue", statue);
+
+		 @SuppressWarnings("unchecked")
+		List<salePayment> results=query.list();
+		 if(results.size()!=0){
+			 return results;
 		 }else{
 			 return null;
 		 }

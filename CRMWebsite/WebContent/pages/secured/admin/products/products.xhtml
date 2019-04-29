@@ -126,7 +126,8 @@
 											
 											<td class="center hidden-phone">
 											<h:form>
-												<h:commandButton value="More" class="mb-xs mt-xs mr-xs btn btn-default" action="#{productsBean.selectProducts(data.id)}"></h:commandButton>
+												<h:commandLink style="font-size: 21px;" class="col-md-1 fa  fa-file-text-o mb-xs mt-xs mr-xs" action="#{productsBean.selectProducts(data.id)}"/>
+												<h:commandLink style="font-size: 21px;" class="col-md-1 fa  fa-trash-o mb-xs mt-xs mr-xs" action="#{productsBean.deleteProduct(data.id)}"/>
 											</h:form>
 											</td> 
 										</tr>

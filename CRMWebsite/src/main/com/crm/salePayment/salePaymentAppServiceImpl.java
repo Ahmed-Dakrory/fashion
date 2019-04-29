@@ -7,6 +7,7 @@ package main.com.crm.salePayment;
 
 
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,38 @@ public class salePaymentAppServiceImpl implements IsalePaymentAppService{
 			salePayment so=salePaymentDataRepository.getById(id);
 			
 			return so;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
+
+
+
+	@Override
+	public List<salePayment> getBySaleId(int saleId) {
+		try{
+			List<salePayment> course=salePaymentDataRepository.getBySaleId(saleId);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
+
+
+
+	@Override
+	public List<salePayment> getAllBetweenDateAndStatue(Calendar dateLower, Calendar dateHigher, int statue) {
+		try{
+			List<salePayment> course=salePaymentDataRepository.getAllBetweenDateAndStatue(dateLower, dateHigher, statue);
+			
+			return course;
 			}
 			catch(Exception ex)
 			{

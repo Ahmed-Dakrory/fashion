@@ -51,6 +51,9 @@ public class rawMaterial {
 	@Column(name = "unit")
 	private Integer unit;
 	
+	@Column(name = "availableQuantity")
+	private Integer availableQuantity;
+	
 	@Column(name = "boughtFrom")
 	private String boughtFrom;
 	
@@ -147,23 +150,25 @@ public class rawMaterial {
 	}
 
 
-	public String getStateForInvoice(int i) {
-		if(i==0) {
-			if(attachedInvoice==null) {
-				return "none"; 
-			}else {
-				return "inherite";
-			}
-		}else {
-			if(image==null) {
-				return "inherite";
-			}else {
-				return "none";
-			}
-		}
+	
+
+	public Integer getAvailableQuantity() {
+		return availableQuantity;
 	}
 
 
+	public void setAvailableQuantity(Integer availableQuantity) {
+		this.availableQuantity = availableQuantity;
+	}
+
+
+	public String getUnitString() {
+		if(unit==1) {
+			return "m";
+		}else {
+			return "Piece";
+		}
+	}
 	public String getinvoice() {
 		if(attachedInvoice!=null) {
 		String imageString= new String(Base64.encodeBase64(attachedInvoice));

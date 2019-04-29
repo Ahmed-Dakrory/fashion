@@ -62,7 +62,7 @@ public class assetRepositoryImpl implements assetRepository{
 
 	
 	@Override
-	public boolean delete(asset data) {
+	public boolean delete(asset data)throws Exception {
 		// TODO Auto-generated method stub
 		try {
 			session = sessionFactory.openSession();
@@ -72,8 +72,7 @@ public class assetRepositoryImpl implements assetRepository{
 			session.close();
 			return true;
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
+			throw ex;
 		}
 	}
 

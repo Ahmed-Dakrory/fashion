@@ -54,7 +54,7 @@ public class rawMaterialAppServiceImpl implements IrawMaterialAppService{
 
 
 	@Override
-	public boolean delete(rawMaterial data) {
+	public boolean delete(rawMaterial data) throws Exception {
 		// TODO Auto-generated method stub
 		try{
 			rawMaterialDataRepository.delete(data);
@@ -62,8 +62,7 @@ public class rawMaterialAppServiceImpl implements IrawMaterialAppService{
 			}
 			catch(Exception ex)
 			{
-				ex.printStackTrace();
-				return false;
+				throw ex;
 			}
 	}
 

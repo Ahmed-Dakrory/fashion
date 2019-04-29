@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:tp="http://java.sun.com/jsf/composite/elements">
+	
+	<p:remoteCommand update="mainForm:costPanal" name="updateValues" action="#{productsBean.updateThetotalCostOfRawMaterials}"></p:remoteCommand>
+	<div class="row">
+		<div class="col-md-13 classColumn3">
+		<div class="row">
+			<h4 class="col-sm-2 control-label" style="    padding-right: 3%;">Product</h4>
+		</div>
+		
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-6 classColumn">
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productProducedBy">Produced By</label>
+			<div class="col-sm-9">
+				<tp:inputDynamic id="productProducedBy" name="product-ProducedBy" classStyle="inputColumn2 " type="text" required="true" beanValue="#{productsBean.addedProducts.producedBy}"/>	
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productDate">Date</label>
+			<div class="col-sm-9">
+				<h:inputText id="productDate" name="product-Date" class="inputColumn2 timePicker"  value="#{productsBean.dateString}"/>	
+			</div>
+		</div>
+		<script>
+				
+				$(function() {
+					$('.timePicker').datepicker({
+					    dateFormat: 'yy-dd-mm',
+					    onSelect: function(datetext){
+
+					        var d = new Date(); // for now
+
+					        var h = d.getHours();
+					        h = (h &lt; 10) ? ("0" + h) : h ;
+
+					        var m = d.getMinutes();
+					        m = (m &lt; 10) ? ("0" + m) : m ;
+
+					        var s = d.getSeconds();
+					        s = (s &lt; 10) ? ("0" + s) : s ;
+
+					        datetext = datetext + " " + h + ":" + m + ":" + s;
+
+					        $('.timePicker').val(datetext);
+					    }
+					});
+					});
+							
+						
+					</script>	
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="productquantity">Quantity</label>
+			<div class="col-sm-9">
+				<tp:inputDynamic3 writeEvent="updateValues();" id="productquantity" name="product-quantity" classStyle="inputColumn2 " type="number" required="true"  beanValue="#{productsBean.addedProducts.quantity}"/>	
+			</div>
+		</div>	
+		
+		
+		
+		</div>
+								
+	</div>										
+													
+												
+												
+											
+																		
+					<!-- end: page -->
+				
+
+		
+		
+</html>

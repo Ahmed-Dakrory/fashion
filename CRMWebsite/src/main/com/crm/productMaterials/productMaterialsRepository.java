@@ -13,6 +13,7 @@ import java.util.List;
 public interface productMaterialsRepository {
 
 	public List<productMaterials> getAll();
+	public List<productMaterials> getAllProductMaterialsWithProductId(int id);
 	public productMaterials addproductMaterials(productMaterials data);
 	public productMaterials getById(int id);
 	public boolean delete(productMaterials data);
