@@ -24,6 +24,8 @@ import main.com.crm.loginNeeds.user;
 import main.com.crm.loginNeeds.userAppServiceImpl;
 import main.com.crm.moneyBox.moneybox;
 import main.com.crm.moneyBox.moneyboxAppServiceImpl;
+import main.com.crm.product.product;
+import main.com.crm.product.productAppServiceImpl;
 import main.com.crm.salePayment.salePayment;
 import main.com.crm.salePayment.salePaymentAppServiceImpl;
 
@@ -63,6 +65,11 @@ public class generalBean implements Serializable{
 	@ManagedProperty(value = "#{salePaymentFacadeImpl}")
 	private salePaymentAppServiceImpl salePaymentDataFacede; 
 	
+
+	@ManagedProperty(value = "#{productFacadeImpl}")
+	private productAppServiceImpl productDataFacede; 
+	
+	private List<product> newProducts;
 	
 	private user selectedUser;
 	
@@ -82,6 +89,8 @@ public class generalBean implements Serializable{
 	
 	private moneybox myMoneyBox;
 	private Float percentageRemainingMoney;
+	private Float percentageMyProfitThisMonth;
+	private Float percentageMyProfitOverSelected;
 	
 	private String word;
 	
@@ -108,15 +117,31 @@ public class generalBean implements Serializable{
 	}
 	
 	public void refresh(){
+		newProducts=productDataFacede.getLastNProducts(6);
+		System.out.println("Ahmed Dakrory: "+newProducts.size());
 		allUsers=userDataFacede.getAll();
 		allmoneybox=moneyboxDataFacede.getAll();
+		if(loginBean.getTheUserOfThisAccount().getId()!=null) {
 		myMoneyBox=moneyboxDataFacede.getByUserId(loginBean.getTheUserOfThisAccount().getId());
 		percentageRemainingMoney=(myMoneyBox.getTotalMoney()-myMoneyBox.getMoneyRemains())/myMoneyBox.getTotalMoney()*100;
 
-		
+		}
 
 		updateProfitOfThisMonth();		
-		
+
+		if(loginBean.getTheUserOfThisAccount().getId()!=null) {
+		percentageMyProfitThisMonth=updateMyPercentOfProfit(totalProfitThisMonth);
+		}
+	}
+
+	private Float updateMyPercentOfProfit(Float totalProfitThisMonth2) {
+
+		Float myMoney=myMoneyBox.getTotalMoney();
+		Float totalMoney=(float) 0;
+		for(int i=0;i<allmoneybox.size();i++) {
+			totalMoney+=allmoneybox.get(i).getTotalMoney();
+		}
+		return (myMoney/totalMoney)*totalProfitThisMonth2;
 	}
 
 	public void getTheRangeOfDates() {
@@ -189,6 +214,8 @@ public class generalBean implements Serializable{
 			}
 		}
 		totalProfitChoosen=totalPaymentsChoosen-totalExpensesChoosen;
+
+		percentageMyProfitOverSelected=updateMyPercentOfProfit(totalProfitChoosen);
 	}
 
 	
@@ -237,6 +264,8 @@ public class generalBean implements Serializable{
 			}
 		}
 		totalProfitThisMonth=totalPaymentsThisMonth-totalExpensesThisMonth;
+		
+		
 	}
 
 	
@@ -488,6 +517,38 @@ public class generalBean implements Serializable{
 
 	public void setTotalExpensesChoosen(Float totalExpensesChoosen) {
 		this.totalExpensesChoosen = totalExpensesChoosen;
+	}
+
+	public Float getPercentageMyProfitThisMonth() {
+		return percentageMyProfitThisMonth;
+	}
+
+	public void setPercentageMyProfitThisMonth(Float percentageMyProfitThisMonth) {
+		this.percentageMyProfitThisMonth = percentageMyProfitThisMonth;
+	}
+
+	public Float getPercentageMyProfitOverSelected() {
+		return percentageMyProfitOverSelected;
+	}
+
+	public void setPercentageMyProfitOverSelected(Float percentageMyProfitOverSelected) {
+		this.percentageMyProfitOverSelected = percentageMyProfitOverSelected;
+	}
+
+	public productAppServiceImpl getProductDataFacede() {
+		return productDataFacede;
+	}
+
+	public void setProductDataFacede(productAppServiceImpl productDataFacede) {
+		this.productDataFacede = productDataFacede;
+	}
+
+	public List<product> getNewProducts() {
+		return newProducts;
+	}
+
+	public void setNewProducts(List<product> newProducts) {
+		this.newProducts = newProducts;
 	}
 
 	

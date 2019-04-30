@@ -11,7 +11,12 @@
     <!-- Basic -->
 		<meta charset="UTF-8"/>
 
-		<title>Dashboard | JSOFT Themes | JSOFT-Admin</title>
+ 		
+		<title>
+			<ui:insert name="title"> 
+			    on Shop Dashboard 
+			</ui:insert>
+		</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="JSOFT Admin - Responsive HTML5 Template"/>
 		<meta name="author" content="JSOFT.net"/>
@@ -151,7 +156,7 @@
 							</figure>
 							<div class="profile-info" data-lock-name="#{loginBean.theUserOfThisAccount.name}" data-lock-email="#{loginBean.theUserOfThisAccount.email}">
 								<span class="name">#{loginBean.theUserOfThisAccount.name}</span>
-								<span class="role">administrator</span>
+								<span class="role">#{loginBean.theUserOfThisAccount.getRoleString()}</span>
 							</div>
 			
 							<i class="fa custom-caret"></i>
@@ -165,9 +170,7 @@
 								<li>
 									<a role="menuitem" tabindex="-1" href="/pages/secured/admin/pages-user-profile.jsf"><i class="fa fa-user"></i> My Profile</a>
 								</li>
-								<li>
-									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
-								</li>
+								
 								<li>
 									<h:commandLink action="#{loginBean.logOut}" role="menuitem" tabindex="-1"><i class="fa fa-power-off"></i> Logout</h:commandLink>
 								</li>

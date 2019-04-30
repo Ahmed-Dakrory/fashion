@@ -12,10 +12,15 @@
 	<ui:define name="title">Shop Login</ui:define>
 
 	<ui:define name="content">
+	 <style>
+	 .input-group-icon input.form-control:first-child, .input-group-icon input.form-control:last-child, .input-search input.form-control:first-child, .input-search input.form-control:last-child{
 	 
+	 font-size:19px;
+	 }
+	 </style>
 		
 		
-			<div class="body-sign center-sign">
+			<div class="body-sign center-sign" style="    width: 150%;">
 				<a href="/" class="logo pull-left">
 					<img src="#{resource['images:logo.png']}" height="54" alt="Porto Admin" />
 				</a>
@@ -81,7 +86,10 @@
 					</div>
 				</div>
 
-				<p class="text-center text-muted mt-md mb-md">&copy; Copyright 2018. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+				 <p class="text-center text-muted mt-md mb-md"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+ </p>
+			
 			</div>
 		
 		<!-- end: page -->

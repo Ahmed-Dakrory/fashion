@@ -83,6 +83,22 @@ public class productAppServiceImpl implements IproductAppService{
 			}
 	}
 
+
+
+	@Override
+	public List<product> getLastNProducts(int n) {
+		try{
+			List<product> course=productDataRepository.getLastNProducts(n);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
+
 	
 }
 		

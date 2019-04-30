@@ -91,5 +91,19 @@ public class productRepositoryImpl implements productRepository{
 		 }
 	}
 
+	@Override
+	public List<product> getLastNProducts(int n) {
+		 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("product.getLastNProducts");
+
+		 query.setMaxResults(n);
+		 @SuppressWarnings("unchecked")
+		List<product> results=query.list();
+		 if(results.size()!=0){
+			 return results;
+		 }else{
+			 return null;
+		 }
+	}
+
 
 }

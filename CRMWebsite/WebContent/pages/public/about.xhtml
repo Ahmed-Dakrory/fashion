@@ -9,81 +9,118 @@
 
 <ui:composition template="/templates/main_template.xhtml">
 
-	<ui:define name="title">Zewail About</ui:define>
+	<ui:define name="title">About on fashion</ui:define>
 
 
 	<ui:define name="content"> 
-
-	<style>
-	.boxOFChoose{
-	  padding: 3%;
-    position: relative;
-}
-.headText{
-text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
-    color: #444444;
-    font-family: serif;
-    font-size: 50px;
-}
-
-.background{
-filter: blur(9px);
-    width: 100%;
-    background-image: url(/javax.faces.resource/images/main.png.xhtml);
-    height: 69%;
-    position: absolute;
-    z-index: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-h3 {
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 35px;
-    color: aliceblue;
-    font-family: -webkit-body;
-}
-	</style>
-   <!--Start Content-->
-   <div class="background"></div>
-   <div class="main-content boxOFChoose">
-   <div class="headText">Outreach &amp; Engagement</div>
-   
-    <div class="container" style="margin: 4%;">
-    
-<h3>Who We Are</h3>
-
-
-<p><span style="    color: rgb(241, 237, 237);
-    font-family: -webkit-pictograph;">We help learners around the region achieve more. We support students, teachers, entities, corporates and institutions through a lifetime of learning by providing them with world-class content &amp; mentor in the most relevant, engaging and flexible formats.</span></p><p></p>
-
-</div>
-  
-  <div class="main-content" style="margin: 4%;">
-    
-<h3>Vision</h3>
-<p style="text-align: center;    color: rgb(241, 237, 237);
-    font-family: -webkit-pictograph;">To be the preeminent service provider in Egypt for lifelong learning products and career related services.</p>
-
-
+	
+	
+	  <section class="home-slider owl-carousel ftco-degree-bg">
+      <div class="slider-item bread-wrap" style="background-image: url('#{resource['images:racks/bg_1.jpg']}');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row slider-text justify-content-center align-items-center">
+            <div class="col-md-10 col-sm-12 ftco-animate mb-4 text-center">
+              <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>About</span></p>
+              <h1 class="mb-3 bread">About Us</h1>
+            </div>
+          </div>
         </div>
-        
-        <div class="container" style="margin: 4%;">
+      </div>
+    </section>
+	
+	
+	
+		 <section class="ftco-section-2 ftco-degree-bg">
+      <div class="container d-flex">
+        <div class="section-2-blocks-wrapper row d-flex">
+          <div class="img col-sm-12 col-lg-6 order-last" style="background-image: url('#{resource['images:racks/about.jpg']}');">
+          </div>
+          <div class="text col-lg-6 order-first ftco-animate">
+            <div class="text-inner align-self-start">
+              <h3 class="heading">Welcome to On fashion</h3>
+              <p>Shop On fashion range of womens and mens clothing for the latest fashion trends you can totally do your thing in, with 100s of new styles landing every day!</p>
+
+              <p>Discover the latest fashion and trends in menswear and womenswear at On fashion. Shop this season's collection of clothes, accessories, beauty and more.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-counter ftco-degree-bg" id="section-counter">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Our achievements</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="500">0</strong>
+                <span>Products</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="3000933">0</strong>
+                <span>Profits last year</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="200">0</strong>
+                <span>Stock Exchange</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="ftco-section testimony-section ftco-degree-bg">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">founders</span>
+            <h2>Our main founders of on fashion</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+             
+             
+             <ui:repeat var="var" value="#{generalBean.allmoneybox}">
+             	 <div class="item text-center">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-4" >
+                  	<h:graphicImage value="#{var.user_id.getphoto()}" style="    border-radius: inherit;" alt="new" />
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="name">#{var.user_id.name}</p>
+                  </div>
+                </div>
+              </div>
+             </ui:repeat>
+             
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     
-<h3>Mission </h3>
-
-
-<p><span style="    color: rgb(241, 237, 237);
-    font-family: -webkit-pictograph;">The Outreach and Engagement (O&amp;E) is established to be the umbrella under which Life Long Learning services and STEM training for teachers and K12 students can be offered by Zewail City. 
-The O&amp;E will be part of the interface of Zewail City with the Egyptian Community. Through the enablement of the O&amp;E, different training and services offerings from the academic programs and research institutes can be offered to the community.
-</span></p>
-</div>
-           </div>
-   <!--End Content-->
-   
-<h:outputScript name="js/jquery.js"/>   
-
 	</ui:define>
 	
 	

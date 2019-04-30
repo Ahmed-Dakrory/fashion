@@ -36,6 +36,11 @@ import main.com.crm.loginNeeds.user;
 	query = "from product d where d.id = :id"
 			)
 	
+	,
+	@NamedQuery(name="product.getLastNProducts",
+	query = "from product d order by d.date desc"
+			)
+	
 })
 
 @Entity
