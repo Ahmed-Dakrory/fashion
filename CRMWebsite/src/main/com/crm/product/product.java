@@ -102,7 +102,25 @@ public class product {
 	private byte[] image;
 
 	
+	@Column(name = "lastUpdate")
+	private Calendar lastUpdate;
+
 	
+
+	public Calendar getLastUpdate() {
+		return lastUpdate;
+	}
+
+
+
+
+
+	public void setLastUpdate(Calendar lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+
+
+
 
 
 	public Integer getId() {

@@ -27,7 +27,7 @@
             <li class="nav-item"><a href="/pages/public/about.jsf" class="nav-link">About</a></li>
             
             <li class="nav-item"><a href="/pages/public/contactUs.jsf" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="/pages/secured/admin/home.jsf" class="nav-link">Dashboard</a></li>
+            <li class="nav-item" style="#{(loginBean.theUserOfThisAccount.role==0||loginBean.theUserOfThisAccount.role==1)?'':'display:none;'}"><a href="/pages/secured/admin/home.jsf" class="nav-link">Dashboard</a></li>
             
             
           <li class="d-none d-lg-block d-xl-block m-nav__item m-topbar__user-profile m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click" aria-expanded="true" >
@@ -94,9 +94,8 @@
 											
 				
 											<li class="m-nav__item">
-													<p:commandLink action="#{menuBean.goToLink(5)}" style="width:200px" class="m-nav__link">    
+													<p:commandLink style="width:200px" class="m-nav__link">    
 													<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-													<span class="m-nav__link-text">Register</span>
 													</p:commandLink>
 											</li>
 											<li class="m-nav__item">

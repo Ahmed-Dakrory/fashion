@@ -81,6 +81,22 @@ public class saleAppServiceImpl implements IsaleAppService{
 				return null;
 			}
 	}
+
+
+
+	@Override
+	public List<sale> getAllProductById(int idProduct) {
+		try{
+			List<sale> course=saleDataRepository.getAllProductById(idProduct);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
 	
 
 	

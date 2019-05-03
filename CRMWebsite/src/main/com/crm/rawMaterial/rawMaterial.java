@@ -1,6 +1,8 @@
 package main.com.crm.rawMaterial;
 
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -74,6 +76,22 @@ public class rawMaterial {
 	@Lob
 	private byte[] attachedInvoice;
 
+	@Column(name = "lastUpdate")
+	private Calendar lastUpdate;
+
+	
+
+	public Calendar getLastUpdate() {
+		return lastUpdate;
+	}
+
+
+
+
+
+	public void setLastUpdate(Calendar lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 
 
 

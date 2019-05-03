@@ -44,9 +44,7 @@
 		<sec:form-login login-page="/pages/public/login.xhtml" authentication-failure-url="/pages/errors/403.html"
 			default-target-url="/pages/public/index.xhtml" />
 		<sec:intercept-url pattern="/pages/secured/admin/**"
-			access="ROLE_ADMIN" />
-		<sec:intercept-url pattern="/pages/secured/user/**"
-			access="ROLE_USER,ROLE_ADMIN" />
+			access="ROLE_ADMIN,ROLE_SHAREHOLDER" />
 			
 	<sec:custom-filter ref="profileCustomFilter" after="LAST"  />
 	

@@ -47,6 +47,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			UserDetails user;
 			if(dao.getRole()==main.com.crm.loginNeeds.user.ROLE_SHAREHOLDER) {
 				Collection<GrantedAuthority> studentAuthorities = new ArrayList<GrantedAuthority>();
+				studentAuthorities.add(new GrantedAuthorityImpl("ROLE_SHAREHOLDER"));
+				user = new User(dao.getEmail(), dao.getPassword(), true,
+						true, true, true, studentAuthorities);
+			}else if(dao.getRole()==main.com.crm.loginNeeds.user.ROLE_ADMIN) {
+				Collection<GrantedAuthority> studentAuthorities = new ArrayList<GrantedAuthority>();
 				studentAuthorities.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
 				user = new User(dao.getEmail(), dao.getPassword(), true,
 						true, true, true, studentAuthorities);

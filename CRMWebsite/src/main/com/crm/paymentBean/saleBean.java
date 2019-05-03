@@ -135,7 +135,19 @@ public class saleBean implements Serializable{
 	
 	
 	 
-	     
+	public void delete(int paymentId) {
+		sale deletedSale=saleDataFacede.getById(paymentId);
+		product productReturnQTY=productDataFacede.getById(deletedSale.getProduct_id().getId());
+		
+		productReturnQTY.setQuantityAvailable(productReturnQTY.getQuantityAvailable()+deletedSale.getQuantity());
+		productDataFacede.addproduct(productReturnQTY);
+		
+		List<salePayment> allDeletedDetails=salePaymentDataFacede.getBySaleId(paymentId);
+		for(int i=0;i<allDeletedDetails.size();i++) {
+			salePaymentDataFacede.delete(allDeletedDetails.get(i));
+		}
+		saleDataFacede.delete(deletedSale);
+	}
 	    
 	     
 	

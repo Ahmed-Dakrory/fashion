@@ -75,6 +75,23 @@ public class salePayment {
 	private Calendar dateEnd;
 
 
+	@Column(name = "lastUpdate")
+	private Calendar lastUpdate;
+
+	
+
+	public Calendar getLastUpdate() {
+		return lastUpdate;
+	}
+
+
+
+
+
+	public void setLastUpdate(Calendar lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

@@ -3,6 +3,7 @@
  */
 package main.com.crm.productMaterials;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -31,7 +32,7 @@ public class productMaterialsRepositoryImpl implements productMaterialsRepositor
 	@Override
 	public productMaterials addproductMaterials(productMaterials data) {
 		try{
-			System.out.println("Ahmed OKKKKKKKKKKKKKK");
+			data.setLastUpdate(Calendar.getInstance());
 			session = sessionFactory.openSession();
 			Transaction tx1 = session.beginTransaction();
 			session.saveOrUpdate(data);

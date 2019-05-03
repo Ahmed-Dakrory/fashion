@@ -206,7 +206,7 @@
 											<span>Dashboard</span>
 										</a>
 									</li>
-									<li class="nav-parent">
+									<li class="nav-parent" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none':''}">
 										<a>
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
 											<span>Manage Users Accounts</span>
@@ -265,7 +265,6 @@
 									
 									<li >
 										<a href="/pages/secured/admin/profits/profits.jsf">
-											<span class="pull-right label label-primary">#{assetsBean.listOfAssets.size()}</span>
 											<i class="fa fa-tasks" aria-hidden="true"></i>
 											<span>Profits</span>
 										</a>
@@ -277,7 +276,7 @@
 											<span>Payments</span>
 										</a>
 										<ul class="nav nav-children">
-											<li>
+											<li style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none':''}">
 												<a href="/pages/secured/admin/payment/addPayment.jsf">
 													 Add payment
 												</a>

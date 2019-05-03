@@ -55,7 +55,7 @@ public class productAppServiceImpl implements IproductAppService{
 
 
 	@Override
-	public boolean delete(product data) {
+	public boolean delete(product data) throws Exception{
 		// TODO Auto-generated method stub
 		try{
 			productDataRepository.delete(data);
@@ -63,8 +63,7 @@ public class productAppServiceImpl implements IproductAppService{
 			}
 			catch(Exception ex)
 			{
-				ex.printStackTrace();
-				return false;
+				throw ex;
 			}
 	}
 

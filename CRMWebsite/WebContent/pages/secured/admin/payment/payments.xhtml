@@ -116,7 +116,8 @@
 											
 											<td class="center hidden-phone">
 											<h:form>
-												<h:commandButton value="More" class="mb-xs mt-xs mr-xs btn btn-default" action="#{saleBean.selectPayments(data.id)}"></h:commandButton>
+												<h:commandLink style="font-size: 17px;" class="fa fa-file-text-o mb-xs mt-xs mr-xs " action="#{saleBean.selectPayments(data.id)}"></h:commandLink>
+												<h:commandLink style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''} font-size: 17px;" class="fa fa-trash-o mb-xs mt-xs mr-xs " action="#{saleBean.delete(data.id)}"></h:commandLink>
 											</h:form>
 											</td>
 											 
@@ -129,7 +130,7 @@
 							
 							<h:form>
 								<div class="text-right mr-lg" style="    margin-top: 2%!important;">
-									<h:commandButton value="Add New Payment" action="#{saleBean.goToAddNewSale}" class="btn btn-default"></h:commandButton>
+									<h:commandButton value="Add New Payment" action="#{saleBean.goToAddNewSale}" class="btn btn-default" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''}"></h:commandButton>
 								</div>
 							</h:form>
 							</div>

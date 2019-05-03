@@ -82,6 +82,37 @@
 												</p>
 												
 											</div>
+											
+											<div class="bill-to" style="padding: 2px 5px;">
+												<p class="mb-none">
+													<span class="text-dark">Material used by this product
+														<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Name</th>
+											<th class="hidden-phone">QTY used by this product</th>
+											<th class="hidden-phone">QTY Available</th>
+										</tr>
+									</thead>
+									<tbody>
+									<ui:repeat var="data" value="#{productsBean.selectedProductMaterials}">
+										<tr class="gradeX">
+											<td>#{data.rawMaterial_id.id}</td>
+											<td>#{data.rawMaterial_id.expenses_id.name}</td>
+											<td>#{data.quantityUsedByThisProduct}</td>
+											<td>#{data.rawMaterial_id.availableQuantity}</td>
+											
+										</tr>
+									</ui:repeat>
+										
+										
+									</tbody>
+								</table>
+													</span>
+												</p>
+												
+											</div>
 											<div class="bill-to" style="padding: 2px 5px;">
 												<p class="mb-none">
 													<span class="text-dark">Size:</span>

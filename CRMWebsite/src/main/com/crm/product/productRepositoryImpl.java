@@ -3,6 +3,7 @@
  */
 package main.com.crm.product;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -31,7 +32,7 @@ public class productRepositoryImpl implements productRepository{
 	@Override
 	public product addproduct(product data) {
 		try{
-			System.out.println("Ahmed OKKKKKKKKKKKKKK");
+			data.setLastUpdate(Calendar.getInstance());
 			session = sessionFactory.openSession();
 			Transaction tx1 = session.beginTransaction();
 			session.saveOrUpdate(data);
@@ -62,7 +63,7 @@ public class productRepositoryImpl implements productRepository{
 
 	
 	@Override
-	public boolean delete(product data) {
+	public boolean delete(product data)throws Exception {
 		// TODO Auto-generated method stub
 		try {
 			session = sessionFactory.openSession();
@@ -72,8 +73,7 @@ public class productRepositoryImpl implements productRepository{
 			session.close();
 			return true;
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
+			throw ex;
 		}
 	}
 

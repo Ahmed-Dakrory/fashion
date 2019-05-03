@@ -59,7 +59,7 @@
 			<h:graphicImage value="#{generalBean.selectedUser.getphoto()}" alt="John" style="    height: 323px;width:100%"/>
 		  
 		  <h1>#{generalBean.selectedUser.name}</h1>
-		  <p class="title">Admin</p>
+		  <p class="title">#{generalBean.selectedUser.getRoleString()}</p>
 		  <div style="margin: 24px 0;">
 		    <a href="#"><i class="fa fa-envelope-square"></i><span style="    margin-left: 4%;    font-size: initial;    font-family: initial;">#{generalBean.selectedUser.email}</span></a>
 		    

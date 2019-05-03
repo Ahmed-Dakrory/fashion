@@ -24,6 +24,8 @@ import main.com.crm.productMaterials.productMaterials;
 import main.com.crm.productMaterials.productMaterialsAppServiceImpl;
 import main.com.crm.rawMaterial.rawMaterial;
 import main.com.crm.rawMaterial.rawMaterialAppServiceImpl;
+import main.com.crm.sale.sale;
+import main.com.crm.sale.saleAppServiceImpl;
 import main.com.crm.loginNeeds.user;
 
 
@@ -43,6 +45,10 @@ public class productsBean implements Serializable{
 	private productAppServiceImpl productDataFacede; 
 	
 
+	@ManagedProperty(value = "#{saleFacadeImpl}")
+	private saleAppServiceImpl saleDataFacede; 
+	
+
 	@ManagedProperty(value = "#{rawMaterialFacadeImpl}")
 	private rawMaterialAppServiceImpl rawMaterialDataFacede; 
 	
@@ -54,6 +60,7 @@ public class productsBean implements Serializable{
 	
 	
 	private product selectedProducts;
+	private List<productMaterials> selectedProductMaterials;
 	
 	
 	
@@ -91,6 +98,7 @@ public class productsBean implements Serializable{
 	
 	public void selectProducts(int productId) {
 		selectedProducts=productDataFacede.getById(productId);
+		selectedProductMaterials=productMaterialsDataFacede.getAllProductMaterialsWithProductId(selectedProducts.getId());
 		try {
 			FacesContext.getCurrentInstance()
 			   .getExternalContext().redirect("/pages/secured/admin/products/productDetails.jsf");
@@ -105,18 +113,38 @@ public class productsBean implements Serializable{
 	     
 	public void deleteProduct(int id) {
 		product deletedProduct=productDataFacede.getById(id);
-		List<productMaterials>pMs=productMaterialsDataFacede.getAllProductMaterialsWithProductId(id);
-		for(int i=0;i<pMs.size();i++) {
-			//Return the raw materials quantity used by this product
-			rawMaterial rM=pMs.get(i).getRawMaterial_id();
-			rM.setAvailableQuantity(rM.getAvailableQuantity()+pMs.get(i).getQuantityUsedByThisProduct());
-			rawMaterialDataFacede.addrawMaterial(rM);
+		List<sale> allSales=saleDataFacede.getAllProductById(deletedProduct.getId());
+		if(allSales==null) {
+				List<productMaterials>pMs=productMaterialsDataFacede.getAllProductMaterialsWithProductId(id);
+				if(pMs!=null) {
+				for(int i=0;i<pMs.size();i++) {
+					//Return the raw materials quantity used by this product
+					rawMaterial rM=pMs.get(i).getRawMaterial_id();
+					rM.setAvailableQuantity(rM.getAvailableQuantity()+pMs.get(i).getQuantityUsedByThisProduct());
+					rawMaterialDataFacede.addrawMaterial(rM);
+					
+					productMaterialsDataFacede.delete(pMs.get(i));
+				}
+				}
+				try {
+					productDataFacede.delete(deletedProduct);
+				} catch (Exception e) {
+					PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+							"			title: 'Problem!',\r\n" + 
+							"			text: 'Cannot delete this product, related to other data!',\r\n" + 
+							"			type: 'error',\r\n" + 
+							"			left:\"1%\"\r\n" + 
+							"		});");
+				}
 			
-			productMaterialsDataFacede.delete(pMs.get(i));
+		}else {
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Problem!',\r\n" + 
+					"			text: 'Cannot delete this product, related to some payments!',\r\n" + 
+					"			type: 'error',\r\n" + 
+					"			left:\"1%\"\r\n" + 
+					"		});");
 		}
-		
-		productDataFacede.delete(deletedProduct);
-		
 		
 	}
 	     
@@ -388,6 +416,22 @@ public class productsBean implements Serializable{
 
 	public void setProductMaterialsDataFacede(productMaterialsAppServiceImpl productMaterialsDataFacede) {
 		this.productMaterialsDataFacede = productMaterialsDataFacede;
+	}
+
+	public saleAppServiceImpl getSaleDataFacede() {
+		return saleDataFacede;
+	}
+
+	public void setSaleDataFacede(saleAppServiceImpl saleDataFacede) {
+		this.saleDataFacede = saleDataFacede;
+	}
+
+	public List<productMaterials> getSelectedProductMaterials() {
+		return selectedProductMaterials;
+	}
+
+	public void setSelectedProductMaterials(List<productMaterials> selectedProductMaterials) {
+		this.selectedProductMaterials = selectedProductMaterials;
 	}
 
 	

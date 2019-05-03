@@ -139,7 +139,7 @@
 											<th>Payment State</th>
 											<th class="hidden-phone">Amount</th>
 											<th class="hidden-phone">Due date</th>
-											<th class="hidden-phone">More</th>
+											<th class="hidden-phone" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''}">More</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -153,7 +153,7 @@
 											
 											
 											
-											<td class="center hidden-phone">
+											<td class="center hidden-phone" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''}">
 											<h:form>
 												<h:commandLink  class="fa fa-check-circle mb-xs mt-xs mr-xs " action="#{saleBean.setPaymentState(data.id,1)}">
 												</h:commandLink>

@@ -34,6 +34,11 @@ import main.com.crm.product.product;
 	query = "from sale d where d.id = :id"
 			)
 	
+	,
+	@NamedQuery(name="sale.getByProductId",
+	query = "from sale d where d.product_id = :id"
+			)
+	
 	
 	
 })
@@ -76,6 +81,23 @@ public class sale {
 	@JoinColumn(name = "addedByUser_id")
 	private user addedByUser_id;
 
+	
+	@Column(name = "lastUpdate")
+	private Calendar lastUpdate;
+
+	
+
+	public Calendar getLastUpdate() {
+		return lastUpdate;
+	}
+
+
+
+
+
+	public void setLastUpdate(Calendar lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 
 	public Integer getId() {
 		return id;

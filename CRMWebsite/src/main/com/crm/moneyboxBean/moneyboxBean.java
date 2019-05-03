@@ -49,18 +49,22 @@ public class moneyboxBean implements Serializable{
 	private moneybox addedMoneybox;
 	private int userId;
 	
-	
+	List<user> allShareHolders;
 	
 	@PostConstruct
 	public void init() {
 		addedMoneybox=new moneybox();
 		addedMoneybox.setUser_id(new user());
+		
 		refresh();
 		
 	}
 	
 	public void refresh(){
 		listOfMoneybox=moneyboxDataFacede.getAll();
+		allShareHolders=userDataFacede.getAllWithRole(user.ROLE_SHAREHOLDER);
+		List<user> admin=userDataFacede.getAllWithRole(user.ROLE_ADMIN);
+		allShareHolders.addAll(admin);
 	}
 
 	
@@ -193,6 +197,14 @@ public class moneyboxBean implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<user> getAllShareHolders() {
+		return allShareHolders;
+	}
+
+	public void setAllShareHolders(List<user> allShareHolders) {
+		this.allShareHolders = allShareHolders;
 	}
 
 

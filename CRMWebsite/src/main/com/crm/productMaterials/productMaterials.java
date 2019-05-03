@@ -1,5 +1,7 @@
 package main.com.crm.productMaterials;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,6 +65,24 @@ public class productMaterials {
 
 	@Column(name = "quantityUsedByThisProduct")
 	private Integer quantityUsedByThisProduct;
+	
+	
+	@Column(name = "lastUpdate")
+	private Calendar lastUpdate;
+
+	
+
+	public Calendar getLastUpdate() {
+		return lastUpdate;
+	}
+
+
+
+
+
+	public void setLastUpdate(Calendar lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 	
 	public Integer getId() {
 		return id;

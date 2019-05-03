@@ -110,8 +110,11 @@ public class loginBean implements Serializable{
 
 			try {
 				if(theUserOfThisAccount.getRole()==user.ROLE_SHAREHOLDER) {
-				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/home.jsf");
+					FacesContext.getCurrentInstance()
+					   .getExternalContext().redirect("/pages/secured/admin/home.jsf");
+				}else if(theUserOfThisAccount.getRole()==user.ROLE_ADMIN) {
+						FacesContext.getCurrentInstance()
+						   .getExternalContext().redirect("/pages/secured/admin/home.jsf");
 				}else {
 				FacesContext.getCurrentInstance()
 					   .getExternalContext().redirect("/");

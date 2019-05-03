@@ -111,7 +111,7 @@
 											
 											<td class="center hidden-phone">#{data.email}</td>
 											<td class="center hidden-phone">#{data.phone}</td>
-											<td class="center hidden-phone">#{data.role}</td>
+											<td class="center hidden-phone">#{data.getRoleString()}</td>
 											<td class="center hidden-phone">
 											<h:form>
 												<h:commandLink style="font-size: 21px;" class="fa fa-gear (alias) mb-xs mt-xs mr-xs " action="#{controlUsersBean.selectUser(data.id)}"></h:commandLink>

@@ -32,7 +32,7 @@ public class expensesRepositoryImpl implements expensesRepository{
 	@Override
 	public expenses addexpenses(expenses data) {
 		try{
-			System.out.println("Ahmed OKKKKKKKKKKKKKK");
+			data.setLastUpdate(Calendar.getInstance());
 			session = sessionFactory.openSession();
 			Transaction tx1 = session.beginTransaction();
 			session.saveOrUpdate(data);

@@ -1,6 +1,8 @@
 package main.com.crm.asset;
 
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,6 +75,22 @@ public class asset {
 
 
 
+	@Column(name = "lastUpdate")
+	private Calendar lastUpdate;
+
+	
+
+	public Calendar getLastUpdate() {
+		return lastUpdate;
+	}
+
+
+
+
+
+	public void setLastUpdate(Calendar lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 
 	public Integer getId() {
 		return id;

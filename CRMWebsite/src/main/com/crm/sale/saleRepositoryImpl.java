@@ -3,6 +3,7 @@
  */
 package main.com.crm.sale;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -31,7 +32,7 @@ public class saleRepositoryImpl implements saleRepository{
 	@Override
 	public sale addsale(sale data) {
 		try{
-			System.out.println("Ahmed OKKKKKKKKKKKKKK");
+			data.setLastUpdate(Calendar.getInstance());
 			session = sessionFactory.openSession();
 			Transaction tx1 = session.beginTransaction();
 			session.saveOrUpdate(data);
@@ -86,6 +87,19 @@ public class saleRepositoryImpl implements saleRepository{
 		List<sale> results=query.list();
 		 if(results.size()!=0){
 			 return results.get(0);
+		 }else{
+			 return null;
+		 }
+	}
+
+	@Override
+	public List<sale> getAllProductById(int idProduct) {
+		Query query 	=sessionFactory.getCurrentSession().getNamedQuery("sale.getByProductId").setInteger("id",idProduct);
+
+		 @SuppressWarnings("unchecked")
+		List<sale> results=query.list();
+		 if(results.size()!=0){
+			 return results;
 		 }else{
 			 return null;
 		 }

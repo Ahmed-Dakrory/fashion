@@ -63,7 +63,7 @@
 													
 													<h4 class="labelH4Column ">User Account</h4>
 													<h:selectOneMenu class="selectorColumn "  value = "#{moneyboxBean.userId}"> 
-													   <f:selectItems value="#{generalBean.allUsers}" var="entry"
+													   <f:selectItems value="#{moneyboxBean.allShareHolders}" var="entry"
 													          itemValue="#{entry.id}" itemLabel="#{entry.name}" />
 													</h:selectOneMenu>
 												

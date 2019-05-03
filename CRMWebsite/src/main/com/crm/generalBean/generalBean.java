@@ -118,19 +118,21 @@ public class generalBean implements Serializable{
 	
 	public void refresh(){
 		newProducts=productDataFacede.getLastNProducts(6);
-		System.out.println("Ahmed Dakrory: "+newProducts.size());
 		allUsers=userDataFacede.getAll();
 		allmoneybox=moneyboxDataFacede.getAll();
 		if(loginBean.getTheUserOfThisAccount().getId()!=null) {
 		myMoneyBox=moneyboxDataFacede.getByUserId(loginBean.getTheUserOfThisAccount().getId());
-		percentageRemainingMoney=(myMoneyBox.getTotalMoney()-myMoneyBox.getMoneyRemains())/myMoneyBox.getTotalMoney()*100;
-
+			if(myMoneyBox!=null) {
+				percentageRemainingMoney=(myMoneyBox.getTotalMoney()-myMoneyBox.getMoneyRemains())/myMoneyBox.getTotalMoney()*100;
+			}
 		}
 
 		updateProfitOfThisMonth();		
 
 		if(loginBean.getTheUserOfThisAccount().getId()!=null) {
-		percentageMyProfitThisMonth=updateMyPercentOfProfit(totalProfitThisMonth);
+			if(myMoneyBox!=null) {
+				percentageMyProfitThisMonth=updateMyPercentOfProfit(totalProfitThisMonth);
+			}
 		}
 	}
 

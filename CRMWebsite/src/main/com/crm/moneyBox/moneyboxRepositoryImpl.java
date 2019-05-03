@@ -3,6 +3,7 @@
  */
 package main.com.crm.moneyBox;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -31,7 +32,7 @@ public class moneyboxRepositoryImpl implements moneyboxRepository{
 	@Override
 	public moneybox addmoneybox(moneybox data) {
 		try{
-			System.out.println("Ahmed OKKKKKKKKKKKKKK");
+			data.setLastUpdate(Calendar.getInstance());
 			session = sessionFactory.openSession();
 			Transaction tx1 = session.beginTransaction();
 			session.saveOrUpdate(data);

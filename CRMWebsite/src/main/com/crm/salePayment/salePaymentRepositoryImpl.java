@@ -32,7 +32,7 @@ public class salePaymentRepositoryImpl implements salePaymentRepository{
 	@Override
 	public salePayment addsalePayment(salePayment data) {
 		try{
-			System.out.println("Ahmed OKKKKKKKKKKKKKK");
+			data.setLastUpdate(Calendar.getInstance());
 			session = sessionFactory.openSession();
 			Transaction tx1 = session.beginTransaction();
 			session.saveOrUpdate(data);

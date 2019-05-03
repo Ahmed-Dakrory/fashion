@@ -105,7 +105,7 @@
 											<td class="center hidden-phone">
 											<h:form>
 												<h:commandLink style="font-size: 17px;" class="fa fa-file-text-o mb-xs mt-xs mr-xs " action="#{expensesBean.selectExpenses(data.id)}"/>
-												<h:commandLink style="font-size: 17px;" class="fa fa-trash-o mb-xs mt-xs mr-xs " action="#{expensesBean.deleteExpenses(data.id)}"/>
+												<h:commandLink style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''} font-size: 17px;" class="fa fa-trash-o mb-xs mt-xs mr-xs " action="#{expensesBean.deleteExpenses(data.id)}"/>
 											</h:form>
 											</td> 
 										</tr>
@@ -117,7 +117,7 @@
 							
 							<h:form>
 								<div class="text-right mr-lg" style="    margin-top: 2%!important;">
-									<h:commandButton value="Add New Expense" action="#{expensesBean.goToAddNewExpenses()}" class="btn btn-default"></h:commandButton>
+									<h:commandButton value="Add New Expense" action="#{expensesBean.goToAddNewExpenses()}" class="btn btn-default" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''}"></h:commandButton>
 								</div>
 							</h:form>
 							</div>
