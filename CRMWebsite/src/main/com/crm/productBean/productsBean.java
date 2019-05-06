@@ -22,10 +22,14 @@ import main.com.crm.product.product;
 import main.com.crm.product.productAppServiceImpl;
 import main.com.crm.productMaterials.productMaterials;
 import main.com.crm.productMaterials.productMaterialsAppServiceImpl;
+import main.com.crm.productitem.productitem;
+import main.com.crm.productitem.productitemAppServiceImpl;
 import main.com.crm.rawMaterial.rawMaterial;
 import main.com.crm.rawMaterial.rawMaterialAppServiceImpl;
 import main.com.crm.sale.sale;
 import main.com.crm.sale.saleAppServiceImpl;
+import main.com.crm.salePayment.salePayment;
+import main.com.crm.salePayment.salePaymentAppServiceImpl;
 import main.com.crm.loginNeeds.user;
 
 
@@ -48,12 +52,18 @@ public class productsBean implements Serializable{
 	@ManagedProperty(value = "#{saleFacadeImpl}")
 	private saleAppServiceImpl saleDataFacede; 
 	
+	@ManagedProperty(value = "#{salePaymentFacadeImpl}")
+	private salePaymentAppServiceImpl salePaymentDataFacede; 
+	
 
 	@ManagedProperty(value = "#{rawMaterialFacadeImpl}")
 	private rawMaterialAppServiceImpl rawMaterialDataFacede; 
 	
 	@ManagedProperty(value = "#{productMaterialsFacadeImpl}")
 	private productMaterialsAppServiceImpl productMaterialsDataFacede; 
+	
+	@ManagedProperty(value = "#{productitemFacadeImpl}")
+	private productitemAppServiceImpl productitemDataFacede; 
 	 
 	@ManagedProperty(value = "#{loginBean}")
 	private main.com.crm.loginNeeds.loginBean loginBean;
@@ -61,6 +71,7 @@ public class productsBean implements Serializable{
 	
 	private product selectedProducts;
 	private List<productMaterials> selectedProductMaterials;
+	private List<productitem> selectedProductItems;
 	
 	
 	
@@ -99,6 +110,7 @@ public class productsBean implements Serializable{
 	public void selectProducts(int productId) {
 		selectedProducts=productDataFacede.getById(productId);
 		selectedProductMaterials=productMaterialsDataFacede.getAllProductMaterialsWithProductId(selectedProducts.getId());
+		selectedProductItems=productitemDataFacede.getitemsWithProductId(productId);
 		try {
 			FacesContext.getCurrentInstance()
 			   .getExternalContext().redirect("/pages/secured/admin/products/productDetails.jsf");
@@ -108,7 +120,41 @@ public class productsBean implements Serializable{
 		}
 	}
 	
-	
+	public void returnProductItem(int itemId) {
+		productitem pItem=productitemDataFacede.getById(itemId);
+		sale saleForItem=saleDataFacede.getById(pItem.getSale_id().getId());
+		product products=productDataFacede.getById(pItem.getProduct_id().getId());
+		
+		//return product quantity to product table
+		products.setQuantityAvailable(products.getQuantityAvailable()+1);
+		productDataFacede.addproduct(products);
+
+		//return productItem to productitem  table
+		pItem.setState(productitem.STATE_RETURN);
+		productitemDataFacede.addproductitem(pItem);
+
+		//return product quantity to sale table
+		saleForItem.setPriceTotal(saleForItem.getPriceTotal()-pItem.getRecievedPriceForThisItem());
+		saleForItem.setQuantity(saleForItem.getQuantity()-1);
+		saleDataFacede.addsale(saleForItem);
+		
+		//add new details for the salePayment Table
+		salePayment sPayment=new salePayment();
+		sPayment.setAmount(-pItem.getRecievedPriceForThisItem());
+		sPayment.setDateEnd(Calendar.getInstance());
+		sPayment.setPayedOrNot(salePayment.RETURNS);
+		sPayment.setSale_id(saleForItem);
+		salePaymentDataFacede.addsalePayment(sPayment);
+		
+		
+		
+		
+		//Update the data
+		selectedProducts=productDataFacede.getById(products.getId());
+		selectedProductMaterials=productMaterialsDataFacede.getAllProductMaterialsWithProductId(selectedProducts.getId());
+		selectedProductItems=productitemDataFacede.getitemsWithProductId(products.getId());
+		
+	}
 	 
 	     
 	public void deleteProduct(int id) {
@@ -127,6 +173,11 @@ public class productsBean implements Serializable{
 				}
 				}
 				try {
+					List<productitem> deletedProducts=productitemDataFacede.getitemsWithProductId(deletedProduct.getId());
+					for(int i=0;i<deletedProducts.size();i++) {
+						productitemDataFacede.delete(deletedProducts.get(i));
+					}
+					
 					productDataFacede.delete(deletedProduct);
 				} catch (Exception e) {
 					PrimeFaces.current().executeScript("new PNotify({\r\n" + 
@@ -160,6 +211,25 @@ public class productsBean implements Serializable{
 		try {
 			FacesContext.getCurrentInstance()
 			   .getExternalContext().redirect("/pages/secured/admin/products/addProduct.jsf");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void goToAddReadyMadeProducts() {
+		listOfSelectedRawMaterials=new ArrayList<productMaterials>();
+		addedProducts=new product();
+		addedProducts.setAddedByUser_id(new user());
+		addedProducts.setRecommendedmarkUp((float) 0.0);
+		dateString=null;
+		newOrReproduced=product.READYMADE_TYPE;
+
+		
+		try {
+			FacesContext.getCurrentInstance()
+			   .getExternalContext().redirect("/pages/secured/admin/products/addProductReadyMade.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -213,6 +283,8 @@ public class productsBean implements Serializable{
 		listOfSelectedRawMaterials.remove(index);
 		updateThetotalCostOfRawMaterials();
 	}
+	
+
 	public void printCommand() {
 		System.out.println("Ahmed Dakrory: "+addedProducts.getName());
 		System.out.println("Ahmed Dakrory: "+addedProducts.getQuantity());
@@ -222,6 +294,8 @@ public class productsBean implements Serializable{
 		System.out.println("Ahmed Dakrory: "+addedProducts.getRecommendedmarkUp());
 		System.out.println("Ahmed Dakrory: "+addedProducts.getRecommendedSalePrice());
 	}
+	
+	
 	public void addNewProducts() {
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM HH:mm:ss"); 
 		try {
@@ -253,8 +327,19 @@ public class productsBean implements Serializable{
 			
 			}
 		
-		productDataFacede.addproduct(addedProducts);
+		if(newOrReproduced==product.READYMADE_TYPE) {
+			addedProducts.setRawMaterialCostTotal(salerawMaterialPricePerUnit*addedProducts.getQuantity());
+		}
 		
+		productDataFacede.addproduct(addedProducts);
+		for(int i=0;i<addedProducts.getQuantity();i++) {
+			productitem pItem=new productitem();
+			pItem.setDate(Calendar.getInstance());
+			pItem.setProduct_id(addedProducts);
+			pItem.setState(productitem.STATE_PRODUCED);
+			pItem.setRecievedPriceForThisItem((float) 0);
+			productitemDataFacede.addproductitem(pItem);
+		}
 		addAllMaterialsToProduct();
 		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
 				"			title: 'Success',\r\n" + 
@@ -432,6 +517,30 @@ public class productsBean implements Serializable{
 
 	public void setSelectedProductMaterials(List<productMaterials> selectedProductMaterials) {
 		this.selectedProductMaterials = selectedProductMaterials;
+	}
+
+	public productitemAppServiceImpl getProductitemDataFacede() {
+		return productitemDataFacede;
+	}
+
+	public void setProductitemDataFacede(productitemAppServiceImpl productitemDataFacede) {
+		this.productitemDataFacede = productitemDataFacede;
+	}
+
+	public List<productitem> getSelectedProductItems() {
+		return selectedProductItems;
+	}
+
+	public void setSelectedProductItems(List<productitem> selectedProductItems) {
+		this.selectedProductItems = selectedProductItems;
+	}
+
+	public salePaymentAppServiceImpl getSalePaymentDataFacede() {
+		return salePaymentDataFacede;
+	}
+
+	public void setSalePaymentDataFacede(salePaymentAppServiceImpl salePaymentDataFacede) {
+		this.salePaymentDataFacede = salePaymentDataFacede;
 	}
 
 	

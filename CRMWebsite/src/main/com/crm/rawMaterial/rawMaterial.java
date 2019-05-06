@@ -197,6 +197,14 @@ public class rawMaterial {
 		}
 	}
 
+	public int getRawMaterialSafeOrNot() {
+		Float perc=(float) ((availableQuantity/expenses_id.getQuantity())*100);
+		if(perc<25) {
+			return 1; 
+		}
+		return 0;
+		
+	}
 	
 
 	public String getphoto() {

@@ -422,11 +422,14 @@ public class product {
 
 	public static int NEW_TYPE=1;
 	public static int REPRODUCED_TYPE=2;
+	public static int READYMADE_TYPE=3;
 	public String getNewOrReproducedString() {
 		if(newOrReproduced==1) {
 			return "New";
-		}else  {
+		}else if(newOrReproduced==2) {
 			return "Reproduced";
+		}else  {
+			return "Ready Made";
 		}
 	}
 

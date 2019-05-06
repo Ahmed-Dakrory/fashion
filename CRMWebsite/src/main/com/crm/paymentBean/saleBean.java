@@ -21,6 +21,8 @@ import main.com.crm.loginNeeds.user;
 import main.com.crm.loginNeeds.userAppServiceImpl;
 import main.com.crm.product.product;
 import main.com.crm.product.productAppServiceImpl;
+import main.com.crm.productitem.productitem;
+import main.com.crm.productitem.productitemAppServiceImpl;
 import main.com.crm.sale.sale;
 import main.com.crm.sale.saleAppServiceImpl;
 import main.com.crm.salePayment.salePayment;
@@ -50,6 +52,12 @@ public class saleBean implements Serializable{
 	
 	@ManagedProperty(value = "#{productFacadeImpl}")
 	private productAppServiceImpl productDataFacede;
+	
+	
+
+	@ManagedProperty(value = "#{productitemFacadeImpl}")
+	private productitemAppServiceImpl productitemDataFacede; 
+	
 	
 	@ManagedProperty(value = "#{loginBean}")
 	private main.com.crm.loginNeeds.loginBean loginBean;
@@ -137,10 +145,23 @@ public class saleBean implements Serializable{
 	 
 	public void delete(int paymentId) {
 		sale deletedSale=saleDataFacede.getById(paymentId);
+		
+		
+		//Release the product from the product items table
 		product productReturnQTY=productDataFacede.getById(deletedSale.getProduct_id().getId());
 		
 		productReturnQTY.setQuantityAvailable(productReturnQTY.getQuantityAvailable()+deletedSale.getQuantity());
 		productDataFacede.addproduct(productReturnQTY);
+		
+		//Release the product from the product items table
+		List<productitem> pItems=productitemDataFacede.getitemsWithSaleId(deletedSale.getId());
+		for(int i=0;i<pItems.size();i++) {
+			pItems.get(i).setCustomer_id(null);
+			pItems.get(i).setState(productitem.STATE_PRODUCED);
+			pItems.get(i).setRecievedPriceForThisItem((float) 0);
+			pItems.get(i).setSale_id(null);
+			productitemDataFacede.addproductitem(pItems.get(i));
+		}
 		
 		List<salePayment> allDeletedDetails=salePaymentDataFacede.getBySaleId(paymentId);
 		for(int i=0;i<allDeletedDetails.size();i++) {
@@ -191,6 +212,7 @@ public class saleBean implements Serializable{
 		addedSale.setAddedByUser_id(loginBean.getTheUserOfThisAccount());
 		saleDataFacede.addsale(addedSale);
 		adjustSalePaymentInstallments();
+		adjustItemsForThisProduct();
 		addInstallments();
 		
 		
@@ -214,6 +236,19 @@ public class saleBean implements Serializable{
 		}
 	}
 
+	private void adjustItemsForThisProduct() {
+		// TODO Auto-generated method stub
+		List<productitem> addedProductItems=productitemDataFacede.getAvailableItemsWithQuantity(addedSale.getProduct_id().getId(), addedSale.getQuantity());
+		for(int i=0;i<addedProductItems.size();i++) {
+			productitem pItem=addedProductItems.get(i);
+			pItem.setState(productitem.STATE_PAYED);
+			pItem.setRecievedPriceForThisItem(addedSale.getPriceTotal()/addedSale.getQuantity());
+			pItem.setCustomer_id(addedSale.getCustomer_id());
+			pItem.setSale_id(addedSale);
+			productitemDataFacede.addproductitem(pItem);
+		}
+	}
+
 	private void addInstallments() {
 		for(int i=0;i<listOfAddedSalePayments.size();i++) {
 			salePaymentDataFacede.addsalePayment(listOfAddedSalePayments.get(i));
@@ -223,6 +258,8 @@ public class saleBean implements Serializable{
 	public void print() {
 		System.out.println("Ahmed Dakrory: "+addedSale.getPriceTotal());
 	}
+	
+
 	private void adjustSalePaymentInstallments() {
 		long timeStart=calStart.getTimeInMillis();
 		long timeEnd=calEnd.getTimeInMillis();
@@ -446,6 +483,14 @@ public class saleBean implements Serializable{
 
 	public void setCalNow(Calendar calNow) {
 		this.calNow = calNow;
+	}
+
+	public productitemAppServiceImpl getProductitemDataFacede() {
+		return productitemDataFacede;
+	}
+
+	public void setProductitemDataFacede(productitemAppServiceImpl productitemDataFacede) {
+		this.productitemDataFacede = productitemDataFacede;
 	}
 
 	

@@ -79,6 +79,7 @@
 											<th>Id</th>
 											<th>Name</th>
 											<th class="hidden-phone">Total Price</th>
+											<th class="hidden-phone">Quantity</th>
 											<th class="hidden-phone">Bought From</th>
 											<th class="hidden-phone">Stored In</th>
 											<th class="hidden-phone">Added By</th>
@@ -94,6 +95,7 @@
 											<td>#{data.id}</td>
 											<td>#{data.expenses_id.name}</td>
 											<td class="center hidden-phone">#{data.expenses_id.quantity*data.expenses_id.pricePerUnit} LE</td>
+											<td class="center hidden-phone" style="#{((data.getRawMaterialSafeOrNot()==1))?'background:darksalmon':''}">#{data.expenses_id.quantity} #{data.getUnitString()}</td>
 											<td class="center hidden-phone">#{data.boughtFrom}</td>
 											<td class="center hidden-phone">#{data.storedIn}</td>
 											<td class="center hidden-phone">

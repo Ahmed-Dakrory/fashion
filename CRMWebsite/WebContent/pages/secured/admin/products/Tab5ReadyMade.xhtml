@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:tp="http://java.sun.com/jsf/composite/elements">
+	<h:panelGroup id="costPanal">
+	<div class="row">
+		<div class="col-md-13 classColumn3">
+		<div class="row">
+			<h4 class="col-sm-2 control-label" style="    padding-right: 3%;">Cost</h4>
+		</div>
+		
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-6 classColumn">
+		<div class="form-group">
+			<label class="col-sm-5 control-label" for="rawMaterialCostPerUnit">Cost per unit</label>
+			<div class="col-sm-5">
+				<tp:inputDynamic id="rawMaterialCostPerUnit" name="rawMaterial-CostPerUnit" classStyle="inputColumn2" type="text" required="true" beanValue="#{productsBean.salerawMaterialPricePerUnit}"/>	
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-5 control-label" for="recommendedMarkUp">Recommended MarkUp </label>
+			<div class="col-sm-5">
+				<tp:inputDynamic2 id="recommendedMarkUp" name="recommended-MarkUp" classStyle="inputColumn2 " type="number" required="true"  beanValue="#{productsBean.addedProducts.recommendedmarkUp}"/>	
+			</div>
+		</div>	
+		
+		<div class="form-group">
+			<label class="col-sm-5 control-label" for="recommendedSalePrice">Recommended Sale Price Per Unit</label>
+			<div class="col-sm-5">
+				<tp:inputDynamic readonly="true" id="recommendedSalePrice" name="recommendedSalePrice" classStyle="inputColumn2 inactive" type="text" required="true"  beanValue="#{productsBean.addedProducts.recommendedSalePrice}"/>	
+			</div>
+		</div>	
+		
+		
+		
+		</div>
+								
+	</div>										
+	</h:panelGroup>								
+												
+												
+											
+																		
+					<!-- end: page -->
+			
+
+		
+		
+</html>

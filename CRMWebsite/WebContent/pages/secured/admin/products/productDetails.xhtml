@@ -83,7 +83,7 @@
 												
 											</div>
 											
-											<div class="bill-to" style="padding: 2px 5px;">
+											<div class="bill-to" style="padding: 2px 5px; #{((productsBean.selectedProducts.newOrReproduced==3))?'display:none':''}  ">
 												<p class="mb-none">
 													<span class="text-dark">Material used by this product
 														<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
@@ -143,7 +143,15 @@
 												
 											</div>
 											
-											<div class="bill-to" style="padding: 2px 5px;">
+											<div class="bill-to" style="padding: 2px 5px; #{((productsBean.selectedProducts.newOrReproduced==1 ||productsBean.selectedProducts.newOrReproduced==2))?'display:none':''}  ">
+												<p class="mb-none">
+													<span class="text-dark">Cost of item without our profit: </span>
+													<span class="value">#{productsBean.selectedProducts.rawMaterialCostTotal/productsBean.selectedProducts.quantity} LE</span>
+												</p>
+												
+											</div>
+											
+											<div class="bill-to" style="padding: 2px 5px; #{((productsBean.selectedProducts.newOrReproduced==3))?'display:none':''}  ">
 												<p class="mb-none">
 													<span class="text-dark">Raw Material Total Production cost: </span>
 													<span class="value">#{productsBean.selectedProducts.rawMaterialCostTotal} LE</span>
@@ -208,7 +216,55 @@
 							
 							
 							</div>
-
+							
+							<section class="panel">
+							<header class="panel-heading">
+								<div class="panel-actions">
+									<a href="#" class="fa fa-caret-down"></a>
+									<a href="#" class="fa fa-times"></a>
+								</div>
+						
+								<h2 class="panel-title">Product items</h2>
+							</header>
+							<div class="panel-body">
+								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>State</th>
+											<th>Customer</th>
+											<th>price for this item</th>
+											<th>payed with this price</th>
+											<th class="hidden-phone">Last Update</th>
+											<th class="hidden-phone">More</th>
+										</tr>
+									</thead>
+									<tbody>
+									<ui:repeat var="data" value="#{productsBean.selectedProductItems}">
+										<tr class="gradeX" style="#{((data.state==2))?'background:#7eaecc':''}  #{((data.state==1))?'background:#81d2b7':''}">
+											<td>#{data.id}</td>
+											<td>#{data.getStateString()}</td>
+											<td>#{data.customer_id.name}</td>
+											<td>#{data.product_id.recommendedSalePrice}</td>
+											<td>#{data.recievedPriceForThisItem}</td>
+											<td>#{data.lastUpdate.getTime().toString()}</td>
+											<td class="center hidden-phone">
+											<h:form>
+												<h:commandLink style="#{(loginBean.theUserOfThisAccount.role==1||data.state==2 || data.state==0)?'display:none;':''} font-size: 21px;" class="col-md-1 fa   fa-mail-reply mb-xs mt-xs mr-xs" action="#{productsBean.returnProductItem(data.id)}"/>
+											</h:form>
+											</td> 
+											
+										</tr>
+									</ui:repeat>
+										
+										
+									</tbody>
+								</table>
+							
+							</div>
+						</section>
+						
+						
 							<div class="text-right mr-lg">
 								<a href="/pages/secured/admin/products/products.xhtml" class="btn btn-default">Go back</a>
 							</div>

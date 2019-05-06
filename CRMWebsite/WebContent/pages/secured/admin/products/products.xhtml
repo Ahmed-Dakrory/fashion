@@ -142,6 +142,13 @@
 									<h:commandButton value="Add New Products" action="#{productsBean.goToAddNewProducts()}" class="btn btn-default" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''}"></h:commandButton>
 								</div>
 							</h:form>
+							
+							
+							<h:form>
+								<div class="text-right mr-lg" style="    margin-top: 2%!important;">
+									<h:commandButton value="Add Ready Made Products" action="#{productsBean.goToAddReadyMadeProducts()}" class="btn btn-default" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none;':''}"></h:commandButton>
+								</div>
+							</h:form>
 							</div>
 						</section>
 						

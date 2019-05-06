@@ -61,6 +61,7 @@ public class salePayment {
 	
 	public static int PAYED=1;
 	public static int NOT_PAYED=2;
+	public static int RETURNS=3;
 	
 	@Column(name = "payedOrNot")
 	private Integer payedOrNot;
@@ -145,8 +146,10 @@ public class salePayment {
 	public String getPayedOrNotString() {
 		if(payedOrNot==1) {
 			return "Payed";
-		}else {
+		}else if(payedOrNot==2) {
 			return "Not payed";
+		}else {
+			return "Returns";
 		}
 	}
 	
