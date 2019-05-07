@@ -79,6 +79,7 @@ public class user {
 	public static int ROLE_ADMIN=0;
 	public static int ROLE_SHAREHOLDER=1;
 	public static int ROLE_CUSTOMER=2;
+	public static int ROLE_PLACE=3;
 
 	@Column(name = "role")
 	private Integer role;
@@ -236,12 +237,14 @@ public class user {
 
 
 	public String getRoleString() {
-		if(role==0) {
+		if(role==ROLE_ADMIN) {
 			return "Admin";
-		}else if(role==1) {
+		}else if(role==ROLE_SHAREHOLDER) {
 			return "Shareholder";
-		}else {
+		}else if(role==ROLE_CUSTOMER) {
 			return "Customer";
+		}else {
+			return "Place";
 		}
 	}
 

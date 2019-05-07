@@ -83,6 +83,7 @@ public class rawMaterialBean implements Serializable{
 	
 	public void refresh(){
 		allUsers=userDataFacede.getAllWithRole(user.ROLE_SHAREHOLDER);
+		allUsers.addAll(userDataFacede.getAllWithRole(user.ROLE_ADMIN));
 		listOfrawMaterials=rawMaterialDataFacede.getAll();
 	}
 

@@ -108,6 +108,7 @@ public class saleBean implements Serializable{
 		calNow=Calendar.getInstance();
 		listOfSales=saleDataFacede.getAll();
 		allCustomers=userDataFacede.getAllWithRole(user.ROLE_CUSTOMER);
+		allCustomers.addAll(userDataFacede.getAllWithRole(user.ROLE_PLACE));
 		allproducts=productDataFacede.getAll();
 		
 		addedSale=new sale();

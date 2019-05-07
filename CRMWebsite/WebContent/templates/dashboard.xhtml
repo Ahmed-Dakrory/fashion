@@ -232,6 +232,29 @@
 											</li>
 										</ul>
 									</li>
+									
+									<li class="nav-parent" style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none':''}">
+										<a>
+											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<span>Manage Places </span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/pages/secured/admin/controlPlaces/account/place.jsf">
+													 Manage places
+												</a>
+											</li>
+											
+											<li>
+												<a href="/pages/secured/admin/controlPlaces/account/register.jsf">
+													 Add New Place
+												</a>
+											</li>
+											
+											
+											
+										</ul>
+									</li>
 									<li>
 										<a href="/pages/secured/admin/products/products.jsf">
 											<span class="pull-right label label-primary">#{productsBean.listOfProducts.size()}</span>
@@ -273,17 +296,17 @@
 									<li class="nav-parent">
 										<a>
 											<i class="fa fa-table" aria-hidden="true"></i>
-											<span>Payments</span>
+											<span>Receivables</span>
 										</a>
 										<ul class="nav nav-children">
 											<li style="#{(loginBean.theUserOfThisAccount.role==1)?'display:none':''}">
 												<a href="/pages/secured/admin/payment/addPayment.jsf">
-													 Add payment
+													 Add Receivable
 												</a>
 											</li>
 											<li>
 												<a href="/pages/secured/admin/payment/payments.jsf">
-													 Payments
+													 Receivables
 												</a>
 											</li>
 										</ul>

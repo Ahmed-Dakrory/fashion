@@ -12,6 +12,15 @@
     border-color: #fcfcfc;
     box-shadow: 0px 1px 7px rgba(0,0,0,0.5), inset 0px 0px 11px rgba(0,0,0,0.5);
 }
+
+.squareImage3 {
+    width: 262px;
+    height: 262px;
+    border-style: solid;
+    border-color: #fcfcfc;
+    box-shadow: 0px 1px 7px rgba(0,0,0,0.5), inset 0px 0px 11px rgba(0,0,0,0.5);
+}
+
 		.PlusButton2 {
     vertical-align: middle;
     height: 31px;

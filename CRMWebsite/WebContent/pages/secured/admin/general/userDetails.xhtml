@@ -22,7 +22,7 @@
 		
 		.title {
 		  color: grey;
-		  font-size: 18px;
+		  font-size: 15px;
 		}
 		
 		.finishButton {
@@ -60,11 +60,17 @@
 		  
 		  <h1>#{generalBean.selectedUser.name}</h1>
 		  <p class="title">#{generalBean.selectedUser.getRoleString()}</p>
-		  <div style="margin: 24px 0;">
-		    <a href="#"><i class="fa fa-envelope-square"></i><span style="    margin-left: 4%;    font-size: initial;    font-family: initial;">#{generalBean.selectedUser.email}</span></a>
-		    
-		   
+		  <div  style="#{(generalBean.selectedUser.role==3)?'margin:43px;':''}">
+		  
 		  </div>
+		  <div >
+		    <i class="fa fa-university" ></i><span style="    margin-left: 4%;    font-size: initial;    font-family: initial;">#{generalBean.selectedUser.address}</span>  
+		 	
+		 	<div style="#{(generalBean.selectedUser.role==3)?'display:none;':''}">
+		 	<a href="#"><i class="fa fa-envelope-square"></i><span style="    margin-left: 4%;    font-size: initial;    font-family: initial;">#{generalBean.selectedUser.email}</span></a>
+		    </div>
+		   </div>
+		 
 			  <p>
 				  <h:form style="    width: 99%;    margin-left: 0.5%;">
 					  <p:commandButton class="finishButton" value="Return" action="#{generalBean.doSomethingAndCloseDialog1()}"/>

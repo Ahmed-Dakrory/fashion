@@ -47,7 +47,9 @@ public class controlUsersBean implements Serializable{
 	}
 	
 	public void refresh(){
-		listOfUser=userDataFacede.getAll();
+		listOfUser=userDataFacede.getAllWithRole(user.ROLE_ADMIN);
+		listOfUser.addAll(userDataFacede.getAllWithRole(user.ROLE_CUSTOMER));
+		listOfUser.addAll(userDataFacede.getAllWithRole(user.ROLE_SHAREHOLDER));
 		emptyFieldsOFRegisteration();
 	}
 

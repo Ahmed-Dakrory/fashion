@@ -52,7 +52,7 @@
    		 width: fit-content;
 	}
 	</style>
-	#{controlUsersBean.refresh()}	
+	#{controlPlacesBean.refresh()}	
 		<section role="main" class="content-body">
 					<header class="page-header">
 						<h2>Dashboard</h2>
@@ -64,7 +64,7 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>User</span></li>
+								<li><span>Places</span></li>
 							</ol>
 					
 							<a class="sidebar-right-toggle" href="/pages/secured/admin/home.xhtml"><i class="fa fa-chevron-left"></i></a>
@@ -81,22 +81,21 @@
 									<a href="#" class="fa fa-times"></a>
 								</div>
 						
-								<h2 class="panel-title">All Users</h2>
+								<h2 class="panel-title">All Places</h2>
 							</header>
 							<div class="panel-body">
 								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 									<thead>
 										<tr>
 											<th>Id</th>
-											<th>User</th>
-											<th class="hidden-phone">Email</th>
+											<th>Place</th>
 											<th class="hidden-phone">Phone</th>
-											<th class="hidden-phone">Role</th>
+											<th class="hidden-phone">Address</th>
 											<th class="hidden-phone">More</th>
 										</tr>
 									</thead>
 									<tbody>
-									<ui:repeat var="data" value="#{controlUsersBean.listOfUser}">
+									<ui:repeat var="data" value="#{controlPlacesBean.listOfPlace}">
 										<tr class="gradeX">
 											<td>#{data.id}</td>
 											<td style="width: 31%;">
@@ -109,12 +108,11 @@
 													
 											</td>
 											
-											<td class="center hidden-phone">#{data.email}</td>
 											<td class="center hidden-phone">#{data.phone}</td>
-											<td class="center hidden-phone">#{data.getRoleString()}</td>
+											<td class="center hidden-phone">#{data.address}</td>
 											<td class="center hidden-phone">
 											<h:form>
-												<h:commandLink style="font-size: 21px;" class="fa fa-gear (alias) mb-xs mt-xs mr-xs " action="#{controlUsersBean.selectUser(data.id)}"></h:commandLink>
+												<h:commandLink style="font-size: 21px;" class="fa fa-gear (alias) mb-xs mt-xs mr-xs " action="#{controlPlacesBean.selectPlace(data.id)}"></h:commandLink>
 											</h:form>
 											</td> 
 										</tr>
@@ -126,7 +124,7 @@
 							
 							<h:form>
 								<div class="text-right mr-lg" style="    margin-top: 2%!important;">
-									<h:commandLink value="Add New User " action="/pages/secured/admin/controlUsers/account/register.jsf" class="btn btn-default"></h:commandLink>
+									<h:commandLink value="Add New Place " action="/pages/secured/admin/controlPlaces/account/register.jsf" class="btn btn-default"></h:commandLink>
 								</div>
 							</h:form>
 							</div>

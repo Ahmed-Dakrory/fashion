@@ -78,6 +78,7 @@ public class expensesBean implements Serializable{
 	public void refresh(){
 		listOfExpenses=expensesDataFacede.getAll();
 		allUsers=userDataFacede.getAllWithRole(user.ROLE_SHAREHOLDER);
+		allUsers.addAll(userDataFacede.getAllWithRole(user.ROLE_ADMIN));
 	}
 
 	

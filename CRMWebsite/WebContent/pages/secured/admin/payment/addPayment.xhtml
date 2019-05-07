@@ -30,7 +30,7 @@
 		
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Add Payment </h2>
+						<h2>Add Receivable </h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -39,8 +39,8 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Payment</span></li>
-								<li><span>Add Payment</span></li>
+								<li><span>Receivable</span></li>
+								<li><span>Add Receivable</span></li>
 							</ol>
 					
 							<a class="sidebar-right-toggle" href="/pages/secured/admin/payment/payments.jsf"><i class="fa fa-chevron-left"></i></a>
@@ -51,7 +51,7 @@
 					<h:form id="mainForm">
 						<div class="container panel-body2">
 						<div class="row" style=" margin-bottom: 3%;">
-						<h1 style="margin-top: 3%;    margin-left: 5%;">Payment</h1>
+						<h1 style="margin-top: 3%;    margin-left: 5%;">Receivable</h1>
 						</div>
 							<div class="row" style="margin-left: 8%;" >
 							<div >
@@ -65,10 +65,10 @@
 															           itemValue="#{entry.id}" itemLabel="# #{entry.id} #{entry.name}" />
 													</h:selectOneMenu>
 												
-													<h4 class="labelH4Column ">Bought By Customer</h4>
+													<h4 class="labelH4Column ">Brought In/With</h4>
 													<h:selectOneMenu class="selectorColumn "  value = "#{saleBean.addedSale.customer_id.id}"> 
 													   <f:selectItems value="#{saleBean.allCustomers}" var="entry"
-													           itemValue="#{entry.id}" itemLabel="#{entry.name}" />
+													           itemValue="#{entry.id}" itemLabel="#{entry.getRoleString()}: #{entry.name}" />
 													</h:selectOneMenu>
 													
 													
@@ -98,7 +98,7 @@
 											
 														<h:panelGrid id="panelGid2" class="tableItSelfDiv" columns="2" columnClasses="labelH4ColumnTr,inputColumnTr">
 																
-																<h4 class="rowSpaceing labelH4Column ">Payment Method</h4>
+																<h4 class="rowSpaceing labelH4Column ">Receivable Method</h4>
 																<p:selectOneButton  styleClass="inputColumnSelectOneButton "  value = "#{saleBean.paymentAddingMethod}"> 
 																	<f:ajax  render="panelGid2"></f:ajax>
 																	<f:selectItem itemValue = "1" itemLabel = "Cash" /> 
@@ -178,7 +178,7 @@
 						
 						<div class="row" style="    margin-bottom: 2%;" >
 							<div class="text-right mr-lg" style="    margin-right: 7%!important;">
-								<h:commandButton value="Add Payment" action="#{saleBean.addNewSale()}" class="btn btn-default"></h:commandButton>
+								<h:commandButton value="Add Receivable" action="#{saleBean.addNewSale()}" class="btn btn-default"></h:commandButton>
 							</div>
 							</div>
 						</div>

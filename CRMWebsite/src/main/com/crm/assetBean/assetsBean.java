@@ -81,6 +81,7 @@ public class assetsBean implements Serializable{
 	
 	public void refresh(){
 		allUsers=userDataFacede.getAllWithRole(user.ROLE_SHAREHOLDER);
+		allUsers.addAll(userDataFacede.getAllWithRole(user.ROLE_ADMIN));
 		listOfAssets=assetDataFacede.getAll();
 	}
 
