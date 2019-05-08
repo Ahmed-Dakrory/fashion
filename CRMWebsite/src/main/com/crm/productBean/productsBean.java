@@ -255,17 +255,38 @@ public class productsBean implements Serializable{
 					"			left:\"1%\"\r\n" + 
 					"		});");
 		}else {
+			
 			productMaterials pM=new productMaterials();
 			pM.setRawMaterial_id(addedMaterial);
 			pM.setQuantityUsedByThisProduct(quantityOfRawMaterialsUsedByProduct);
-			
-			listOfSelectedRawMaterials.add(pM);
-			selectedRawMaterialId=0;
-			quantityOfRawMaterialsUsedByProduct=0;
-			updateThetotalCostOfRawMaterials();
+			if(!isInList(pM)) {
+				listOfSelectedRawMaterials.add(pM);
+				selectedRawMaterialId=0;
+				quantityOfRawMaterialsUsedByProduct=0;
+				updateThetotalCostOfRawMaterials();
+			}else {
+				PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+						"			title: 'Problem!',\r\n" + 
+						"			text: 'You already added this material!',\r\n" + 
+						"			type: 'error',\r\n" + 
+						"			left:\"1%\"\r\n" + 
+						"		});");
+			}
 		}
 		
 		
+	}
+	
+	private boolean isInList(productMaterials pM) {
+		if(listOfSelectedRawMaterials!=null) {
+			if(listOfSelectedRawMaterials.size()!=0) {
+				for(int i=0;i<listOfSelectedRawMaterials.size();i++) {
+					if(pM.getRawMaterial_id().getId()==listOfSelectedRawMaterials.get(i).getRawMaterial_id().getId()) return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	public void updateThetotalCostOfRawMaterials() {
