@@ -159,6 +159,9 @@
 												</h:commandLink>
 												<h:commandLink  class="fa fa-times-circle mb-xs mt-xs mr-xs " action="#{saleBean.setPaymentState(data.id,2)}">
 												</h:commandLink>
+												
+												<h:commandLink  class="fa fa-money mb-xs mt-xs mr-xs " rendered="#{data.payedOrNot==1?true:false}" action="#{saleBean.selectSalaPayment(data.id)}">
+												</h:commandLink>
 											</h:form>
 											</td>
 											 

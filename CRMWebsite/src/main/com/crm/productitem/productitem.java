@@ -1,6 +1,7 @@
 package main.com.crm.productitem;
 
 
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -11,12 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
 import main.com.crm.loginNeeds.user;
 import main.com.crm.product.product;
 import main.com.crm.sale.sale;
+import net.glxn.qrgen.core.vcard.VCard;
+import net.glxn.qrgen.javase.QRCode;
 
 
 /**
@@ -187,5 +191,30 @@ public class productitem {
 	
 
 
+	public String getQr() {
+		
+		VCard vcard=new VCard(product_id.getName())
+				
+				
+				//Address == time in millis
+				.setAddress(String.valueOf((date.getTimeInMillis())))
+				
+				//Email == id
+				.setEmail(String.valueOf(id))
+				
+				//Phone Number == productId
+				.setPhoneNumber(String.valueOf(product_id.getId()));
+		
+		
+		ByteArrayOutputStream out = QRCode.from(vcard).stream();
+		
+	
+			String imageString= new String(Base64.encodeBase64(out.toByteArray()));
+			
+		
+
+		return "data:image/png;base64, "+imageString;
+		
+	}
 
 }

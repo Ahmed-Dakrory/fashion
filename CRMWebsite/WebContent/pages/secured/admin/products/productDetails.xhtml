@@ -242,7 +242,9 @@
 									<tbody>
 									<ui:repeat var="data" value="#{productsBean.selectedProductItems}">
 										<tr class="gradeX" style="#{((data.state==2))?'background:#7eaecc':''}  #{((data.state==1))?'background:#81d2b7':''}">
-											<td>#{data.id}</td>
+											<td>
+												<h:graphicImage value="#{data.getQr()}"/>
+											</td>
 											<td>#{data.getStateString()}</td>
 											<td>#{data.customer_id.name}</td>
 											<td>#{data.product_id.recommendedSalePrice}</td>

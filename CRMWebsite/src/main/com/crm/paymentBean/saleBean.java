@@ -87,6 +87,7 @@ public class saleBean implements Serializable{
 	private Calendar calEnd;
 	private Calendar calNow;
 	
+	private salePayment selectedSalePaymentForInvoice;
 	
 	@PostConstruct
 	public void init() {
@@ -108,7 +109,10 @@ public class saleBean implements Serializable{
 		calNow=Calendar.getInstance();
 		listOfSales=saleDataFacede.getAll();
 		allCustomers=userDataFacede.getAllWithRole(user.ROLE_CUSTOMER);
-		allCustomers.addAll(userDataFacede.getAllWithRole(user.ROLE_PLACE));
+		List<user> allPlacesCustomers=userDataFacede.getAllWithRole(user.ROLE_PLACE);
+		if(allPlacesCustomers!=null &&allPlacesCustomers.size()>0) {
+			allCustomers.addAll(allPlacesCustomers);
+		}
 		allproducts=productDataFacede.getAll();
 		
 		addedSale=new sale();
@@ -142,7 +146,17 @@ public class saleBean implements Serializable{
 		}
 	}
 	
-	
+	public void selectSalaPayment(int salePaymentId) {
+		selectedSalePaymentForInvoice=salePaymentDataFacede.getById(salePaymentId);
+		
+		try {
+			FacesContext.getCurrentInstance()
+			   .getExternalContext().redirect("/pages/secured/admin/payment/salePaymentDetails.jsf");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	 
 	public void delete(int paymentId) {
 		sale deletedSale=saleDataFacede.getById(paymentId);
@@ -492,6 +506,14 @@ public class saleBean implements Serializable{
 
 	public void setProductitemDataFacede(productitemAppServiceImpl productitemDataFacede) {
 		this.productitemDataFacede = productitemDataFacede;
+	}
+
+	public salePayment getSelectedSalePaymentForInvoice() {
+		return selectedSalePaymentForInvoice;
+	}
+
+	public void setSelectedSalePaymentForInvoice(salePayment selectedSalePaymentForInvoice) {
+		this.selectedSalePaymentForInvoice = selectedSalePaymentForInvoice;
 	}
 
 	
