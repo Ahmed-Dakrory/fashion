@@ -265,8 +265,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot');
-  src: url('/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('/fashion/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot');
+  src: url('/fashion/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/fashion/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/fashion/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/fashion/resources/css/dashboard/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;

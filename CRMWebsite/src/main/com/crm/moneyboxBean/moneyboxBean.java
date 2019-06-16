@@ -72,7 +72,7 @@ public class moneyboxBean implements Serializable{
 		selectedMoneybox=moneyboxDataFacede.getById(moneyboxId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/controlUsers/moneybox/moneyboxDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/controlUsers/moneybox/moneyboxDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,7 +93,7 @@ public class moneyboxBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/controlUsers/moneybox/addMoneybox.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/controlUsers/moneybox/addMoneybox.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,7 +113,7 @@ public class moneyboxBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/controlUsers/moneybox/moneybox.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/controlUsers/moneybox/moneybox.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class moneyboxBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/controlUsers/moneybox/moneybox.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/controlUsers/moneybox/moneybox.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

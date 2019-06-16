@@ -3,6 +3,7 @@ package main.com.crm.controlPlacesBean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -58,7 +59,7 @@ public class controlPlacesBean implements Serializable{
 		selectedPlace=userDataFacede.getById(placeId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/controlPlaces/account/placeDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/controlPlaces/account/placeDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +71,7 @@ public class controlPlacesBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("/pages/secured/admin/controlPlaces/account/place.jsf");
+			.redirect("/fashion/pages/secured/admin/controlPlaces/account/place.jsf");
 
 			
 		} catch (IOException e) {
@@ -86,14 +87,15 @@ public class controlPlacesBean implements Serializable{
 		// TODO Auto-generated method stub
 			thePlaceOfThisRegisteration.setPassword(new  Md5PasswordEncoder().encodePassword(DEFAULT_PASSOWRD,thePlaceOfThisRegisteration.getEmail()));
 			thePlaceOfThisRegisteration.setActive(1);
-			thePlaceOfThisRegisteration.setEmail(DEFAULT_EMAIL);
+			String randomEmailForPlace="Place"+thePlaceOfThisRegisteration.getName()+UUID.randomUUID().toString();
+			thePlaceOfThisRegisteration.setEmail(randomEmailForPlace);
 			thePlaceOfThisRegisteration.setRole(user.ROLE_PLACE);
 			userDataFacede.adduser(thePlaceOfThisRegisteration);
 			
 			
 			try {
 				FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/pages/secured/admin/controlPlaces/account/place.jsf");
+				.redirect("/fashion/pages/secured/admin/controlPlaces/account/place.jsf");
 
 				
 			} catch (IOException e) {

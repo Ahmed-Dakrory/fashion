@@ -75,13 +75,14 @@ public class loginBean implements Serializable{
 	
 	public String logOut(){
 
+		System.out.println("logOut from account1");
 		emailOfUserLoggedIn="";
 		passwordOfUserLoggedIn="";
 		authenticationService.logout();
 		theUserOfThisAccount=new user();
 		isLoggedIn=false;
-		System.out.println("");
-		return "/pages/public/index.jsf?faces-redirect=true";
+		System.out.println("logOut from account");
+		return "/pages/public/index.jsf";
 	}
 	public void login(){
 
@@ -111,10 +112,10 @@ public class loginBean implements Serializable{
 			try {
 				if(theUserOfThisAccount.getRole()==user.ROLE_SHAREHOLDER) {
 					FacesContext.getCurrentInstance()
-					   .getExternalContext().redirect("/pages/secured/admin/home.jsf");
+					   .getExternalContext().redirect("/fashion/pages/secured/admin/home.jsf");
 				}else if(theUserOfThisAccount.getRole()==user.ROLE_ADMIN) {
 						FacesContext.getCurrentInstance()
-						   .getExternalContext().redirect("/pages/secured/admin/home.jsf");
+						   .getExternalContext().redirect("/fashion/pages/secured/admin/home.jsf");
 				}else {
 				FacesContext.getCurrentInstance()
 					   .getExternalContext().redirect("/");

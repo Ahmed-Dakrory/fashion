@@ -139,7 +139,7 @@ public class saleBean implements Serializable{
 		listOfSeletedSalePayments=salePaymentDataFacede.getBySaleId(saleId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/payment/paymentDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/payment/paymentDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,7 +151,7 @@ public class saleBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/payment/salePaymentDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/payment/salePaymentDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -202,7 +202,7 @@ public class saleBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/payment/addPayment.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/payment/addPayment.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -243,7 +243,7 @@ public class saleBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/payment/payments.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/payment/payments.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -113,7 +113,7 @@ public class productsBean implements Serializable{
 		selectedProductItems=productitemDataFacede.getitemsWithProductId(productId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/products/productDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/products/productDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -210,7 +210,7 @@ public class productsBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/products/addProduct.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/products/addProduct.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -229,7 +229,7 @@ public class productsBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/products/addProductReadyMade.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/products/addProductReadyMade.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -370,7 +370,7 @@ public class productsBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/products/products.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/products/products.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

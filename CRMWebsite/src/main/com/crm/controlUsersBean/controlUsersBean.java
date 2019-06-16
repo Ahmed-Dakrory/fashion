@@ -63,7 +63,7 @@ public class controlUsersBean implements Serializable{
 		selectedUser=userDataFacede.getById(userId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/controlUsers/account/userDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/controlUsers/account/userDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class controlUsersBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("/pages/secured/admin/controlUsers/account/user.jsf");
+			.redirect("/fashion/pages/secured/admin/controlUsers/account/user.jsf");
 
 			
 		} catch (IOException e) {
@@ -139,7 +139,7 @@ public void RegisterNewUser(){
 		
 		try {
 			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("/pages/secured/admin/controlUsers/account/user.jsf");
+			.redirect("/fashion/pages/secured/admin/controlUsers/account/user.jsf");
 
 			
 		} catch (IOException e) {

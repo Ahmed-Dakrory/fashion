@@ -37,7 +37,7 @@ public class ProfileCustomFilter implements Filter{
            if(!authentication.getPrincipal().equals("anonymousUser")&&(((HttpServletRequest)req).getRequestURL().toString().contains("pages"))){
         	   String mail=((User) authentication.getPrincipal()).getUsername();
         	  	  if(mail.contains("admin@gmail.com")) {
-        	  		// response.sendRedirect(((HttpServletRequest)req).getContextPath()+"/pages/secured/admin/adminController.xhtml?faces-redirect=true"); 
+        	  		// response.sendRedirect(((HttpServletRequest)req).getContextPath()+"/fashion/pages/secured/admin/adminController.xhtml?faces-redirect=true"); 
               	   
         	  	  }
             		  }

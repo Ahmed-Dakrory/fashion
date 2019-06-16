@@ -92,7 +92,7 @@ public class rawMaterialBean implements Serializable{
 		selectedrawMaterial=rawMaterialDataFacede.getById(rawMaterialId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterialDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/rawMaterial/rawMaterialDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -163,7 +163,7 @@ public class rawMaterialBean implements Serializable{
 		dateString=null;
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/addrawMaterial.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/rawMaterial/addrawMaterial.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -214,7 +214,7 @@ public class rawMaterialBean implements Serializable{
 				
 				try {
 					FacesContext.getCurrentInstance()
-					   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterials.jsf");
+					   .getExternalContext().redirect("/fashion/pages/secured/admin/rawMaterial/rawMaterials.jsf");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -243,7 +243,7 @@ public class rawMaterialBean implements Serializable{
 			
 			try {
 				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/rawMaterial/rawMaterials.jsf");
+				   .getExternalContext().redirect("/fashion/pages/secured/admin/rawMaterial/rawMaterials.jsf");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

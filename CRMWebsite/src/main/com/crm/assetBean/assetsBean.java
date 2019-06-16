@@ -90,7 +90,7 @@ public class assetsBean implements Serializable{
 		selectedAsset=assetDataFacede.getById(assetId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/assetDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/assets/assetDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -161,7 +161,7 @@ public class assetsBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/assets/addAsset.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/assets/addAsset.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -208,7 +208,7 @@ public class assetsBean implements Serializable{
 			
 			try {
 				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/assets/assets.jsf");
+				   .getExternalContext().redirect("/fashion/pages/secured/admin/assets/assets.jsf");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -236,7 +236,7 @@ public class assetsBean implements Serializable{
 			
 			try {
 				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/assets/assets.jsf");
+				   .getExternalContext().redirect("/fashion/pages/secured/admin/assets/assets.jsf");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

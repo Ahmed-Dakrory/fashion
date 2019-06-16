@@ -86,7 +86,7 @@ public class expensesBean implements Serializable{
 		selectedExpenses=expensesDataFacede.getById(expensesId);
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/expenses/expenseDetails.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/expenses/expenseDetails.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -142,7 +142,7 @@ public class expensesBean implements Serializable{
 		
 		try {
 			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/admin/expenses/addExpense.jsf");
+			   .getExternalContext().redirect("/fashion/pages/secured/admin/expenses/addExpense.jsf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -187,7 +187,7 @@ public class expensesBean implements Serializable{
 			
 			try {
 				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/expenses/expenses.jsf");
+				   .getExternalContext().redirect("/fashion/pages/secured/admin/expenses/expenses.jsf");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -215,7 +215,7 @@ public class expensesBean implements Serializable{
 			
 			try {
 				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/expenses/expenses.jsf");
+				   .getExternalContext().redirect("/fashion/pages/secured/admin/expenses/expenses.jsf");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -238,7 +238,7 @@ public class expensesBean implements Serializable{
 			
 			try {
 				FacesContext.getCurrentInstance()
-				   .getExternalContext().redirect("/pages/secured/admin/expenses/expenses.jsf");
+				   .getExternalContext().redirect("/fashion/pages/secured/admin/expenses/expenses.jsf");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

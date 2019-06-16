@@ -78,7 +78,7 @@ $(document).ready( function () {
 					return;
 				}
 				$.ajax( {
-					url: '../resources/examples.php',
+					url: '../fashion/resources/examples.php',
 					data: {
 						src: settings.sAjaxSource || settings.ajax.url || settings.ajax
 					},
