@@ -109,7 +109,7 @@
 						}
 					</style>
 					<label  for="mainForm:buttonUploadImage_input">
-							<h:graphicImage value="/fashion/resources/images/imageEmpty.png" rendered="#{productsBean.addedProducts.image==null}"  class="squareImage" alt=""/>
+							<h:graphicImage value="/resources/images/imageEmpty.png" rendered="#{productsBean.addedProducts.image==null}"  class="squareImage" alt=""/>
 							<h:graphicImage value="#{productsBean.addedProducts.getphoto()}" rendered="#{productsBean.addedProducts.image!=null}"  class="squareImage" alt=""/>
 					</label>
 			<p:fileUpload id="buttonUploadImage" fileUploadListener="#{productsBean.handleImageUpload}" mode="advanced"
