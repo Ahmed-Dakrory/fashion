@@ -46,7 +46,6 @@
 							<div class="form-group mb-lg">
 								<div class="clearfix">
 									<label class="pull-left">Password</label>
-									<a href="pages-recover-password.html" class="pull-right">Lost Password?</a>
 								</div>
 								<div class="input-group input-group-icon">
 									<p:inputText type="password" id="Password" required="true" class="form-control input-lg" value="#{loginBean.passwordOfUserLoggedIn}"/>
@@ -60,10 +59,10 @@
 
 							<div class="row">
 								<div class="col-sm-8">
-									<div class="checkbox-custom checkbox-default">
+									<!--  <div class="checkbox-custom checkbox-default">
 										<input id="RememberMe" name="rememberme" type="checkbox"/>
 										<label for="RememberMe">Remember Me</label>
-									</div>
+									</div>-->
 								</div>
 								<div class="col-sm-4 text-right">
 									<h:commandButton action="#{loginBean.login}" value="Sign In" type="submit" class="btn btn-primary hidden-xs">
@@ -75,12 +74,7 @@
 								</div>
 							</div>
 
-							<span class="mt-lg mb-lg line-thru text-center text-uppercase">
-								<span>or</span>
-							</span>
-
 							
-							<p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a></p>
 
 						</h:form>
 					</div>
