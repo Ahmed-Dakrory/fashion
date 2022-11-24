@@ -20,7 +20,7 @@
 		<aspectj.version>1.7.4</aspectj.version>
 
 		<!-- Hibernate / JPA -->
-		<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate.version>5.3.20.Final</hibernate.version>
 
 		<!-- JSF Version -->
 		<jsf.version>2.2.18</jsf.version>
